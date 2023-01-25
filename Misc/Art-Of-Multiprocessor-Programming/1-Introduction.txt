@@ -15,6 +15,20 @@
 
 1.2: Shared
 -------------------------
+- coordination protocol: mutually compatible procedures for deciding what to do
+- good example of "flag principle" in book
+- two kinds of communication occur naturally in concurrent systems
+1) Transient: requires both parties to participate at the same time
+2) Persistent: allows sender/receiver to participate at different time (required by mutual exclusion)
+- interrupts are a common way for threads to communicate
+
+1.3: The Producer-Consumer Problem
+-------------------------
+- example in the section
+- the way in which processors place data in communication buffers to be read/transmitted across a network interconnect or shared bus
+
+
+
 
 
 
