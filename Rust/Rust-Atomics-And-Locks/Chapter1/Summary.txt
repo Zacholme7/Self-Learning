@@ -1,0 +1,24 @@
+• Multiple threads can run concurrently within the same program and can be
+spawned at any time.
+• When the main thread ends, the entire program ends.
+• Data races are undefined behavior, which is fully prevented (in safe code) by
+Rust’s type system.
+• Data that is Send can be sent to other threads, and data that is Sync can be shared
+between threads.
+• Regular threads might run as long as the program does, and thus can only
+borrow 'static data such as statics and leaked allocations.
+• Reference counting ( Arc ) can be used to share ownership to make sure data lives
+as long as at least one thread is using it.
+• Scoped threads are useful to limit the lifetime of a thread to alllow it to borrow
+non- 'static data, such as local variables.
+• &T is a shared reference. &mut T is an exclusive reference. Regular types do not
+allow mutation through a shared reference.
+• Some types have interior mutability, thanks to UnsafeCell , which allows for
+mutation through shared references.
+• Cell and RefCell are the standard types for single-threaded interior mutability.
+Atomics, Mutex , and RwLock are their multi-threaded equivalents.
+• Cell and atomics only allow replacing the value as a whole, while RefCell ,
+Mutex , and RwLock allow you to mutate the value directly by dynamically
+enforcing access rules.
+• Thread parking can be a convenient way to wait for some condition.
+• When a condition is about data protected by a Mutex , using
