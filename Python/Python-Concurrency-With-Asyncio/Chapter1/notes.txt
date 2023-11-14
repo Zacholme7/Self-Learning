@@ -1,0 +1,115 @@
+1.1: What is asyncio
+--------------------
+- in a synchronous application, code runs sequentially 
+    - next line of code has to wait till the one before is finished
+- concurrency: allowing more than one task to be handled at the same time
+    - in relation to I/O -> allow multiple web request to be made at the same time, allowing simultaneous connections to web server,etc
+- asynchronous programming allows for a long running task to be run in the background separate from the main application
+    - once task completed, we get notified so that we can process the result
+- async-io uses single threaded event loop
+
+1.2: What is I/O bound and what is CPU bound
+--------------------
+- limiting factors that prevents the operation from running faster
+- cpu bound operations are typically computations and processing code
+- i/o bound is when we spend most of our time waiting on a network or other i/o device
+
+1.3: Understanding concurrency, parallelism, and multitasking
+--------------------
+- happening concurrently -> happening at the same time (concurrency)
+    - does not imply that they are running in parallel
+    - task switching
+- running in parallel -> 2+ tasks happening concurrency and executing at the same time (parallelism)
+    - executing at the same time with multiple tasks
+- concurrency is about multiple tasks that can happen independently from one another
+    - cpu with one core can use preemptive multitasking to switch between tasks
+- parallelism is about doing multiple things at the same time
+    - cpu with multiple cores can run multiple tasks in parallel
+- multitasking
+    - preemptive multitasking: os decides what to execute via time slicing
+    - cooperative multitasking: explicity code points in application where other tasks can run
+        - used by asyncio, mark code where we can wait for result to come back then wake up when finished
+        - less resource intensive, dont need context switches
+
+1.4: Understanding processes, threads, multithreading and multiprocessing
+--------------------
+- process: application run that has a private memory space
+    - always has one thread associated with it, called the main thread
+    - can create worker/background threads
+- thread: lighter-weight process 
+    - share memory with the process who created them
+- multiprocessing: parent process creates one or more child processes that it manages
+    - usually the best when we have cpu intensive work
+
+1.5: Understanding the global interpreter lock
+--------------------
+- Gil = global interpreter lock
+- GIL prevents one python process from executing more than one python bytecode instruction at any give time
+- multiprocessing can run multiple instructions since each process has its own GIL
+- why does it exist?
+    - lies in how memory is managed in CPython
+        - managed by a reference counting (keeping track of who currently needs access to a particular object)
+        - when reference count hits zero, it can be deleted from memory
+    - implementation of CPython is not thread safe
+- 1-5 and 1-6 demonstrates the negative effects of GIL
+-  GIL is released when i/o operations happen
+    - has to with with the system calls that are made in the background, in case of i/o, they are outside the python runtime
+- when we use asyncio, we create coroutines
+    - can be thought of as executing a lightweight thread
+
+1.6: How single-threaded concurrency works
+--------------------
+- at the system level, I/O operations can be completed concurrently
+- socket is a low level abstraction for sending and receiving data
+    - two main operations: sending bytes and receiving bytes
+- sockets are blocking by default
+    - when we are waiting for a serve to reply with data, we halt/block our application until we get data to read
+- at os level, sockets can operate in non blocking mode
+    - can do other stuff while waiting for the data to come back and os will inform us when it is recieved
+
+1.7: How an event loop works
+--------------------
+- event loop is the heart of every asyncio application
+- when we create an event loop, we create an empty queue of tasks
+    - can add tasks into the queue to run
+- each iterator of the event lop checks for tasks that need to be run, run them one at a time until a task hits an I/O operation
+    - on next iteration, check to see if the I/O has completed
+
+Summary
+--------------------
+- CPU-bound work is work that primarily utilizes our computer’s processor whereas
+I/O-bound work primarily utilizes our network or other input/output devices.
+asyncio primarily helps us make I/O-bound work concurrent, but it exposes
+APIs for making CPU-bound work concurrent as well.
+- Processes and threads are the basic most units of concurrency at the operating
+system level. Processes can be used for I/O and CPU-bound workloads and
+threads can (usually) only be used to manage I/O-bound work effectively in
+Python due to the GIL preventing code from executing in parallel.
+- We’ve seen how, with non-blocking sockets, instead of stopping our application
+while we wait for data to come in, we can instruct the operating system to tell us
+when data has come in. Exploiting this is part of what allows asyncio to achieve
+concurrency with only a single thread.
+- We’ve introduced the event loop, which is the core of asyncio applications. The
+event loop loops forever, looking for tasks with CPU-bound work to run while
+also pausing tasks that are waiting for I/O.
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
