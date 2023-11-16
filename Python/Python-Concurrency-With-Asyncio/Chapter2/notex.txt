@@ -1,0 +1,15 @@
+2.1: Introducing Coroutines
+--------------------
+- think of a regular python function, but can pause execution and wake up later
+- async lets us define a coroutine
+- await lets use pause our coroutine when we have long running operation
+- coroutines are not executed when we call them directly
+    - it creates a coroutine object that can be run later
+    - need to explicitly run it on an event loop
+- await keyword is usually followed by a call to a coroutine
+    - specifically, an object known as an awaitable (this is not always a coroutine)
+- using await will cause the coroutine following it to be run
+    - in constrast, calling a coroutine directly will produce a coroutine object
+- await expression will pause the coroutine where it is contained in until the coroutine we awaited finished and returns a result
+
+
