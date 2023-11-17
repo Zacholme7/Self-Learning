@@ -12,4 +12,29 @@
     - in constrast, calling a coroutine directly will produce a coroutine object
 - await expression will pause the coroutine where it is contained in until the coroutine we awaited finished and returns a result
 
+2.2: Introducing long-running coroutines with sleep
+--------------------
+- can simulate long running coroutine with asyncio.sleep
+
+2.3: Running concurrently with tasks
+--------------------
+- need to use tasks to run co-routines concurrently
+- tasks are wrappers around a coroutine that schedules a coroutine to run on the event loop as soon as possible
+- use asyncio.create_task to create a fast
+    - give it a coroutine to run
+- sequentially start multiple tasks to run them concurrently
+- when we hit first await, all tasks are scheduled
+- executing long running operations concurrenty is where asyncio shines
+
+2.4: Canceling tasks and setting timeouts
+--------------------
+- need to be careful that we dont wait indefinitely
+- each taks has a method called cancel that we can use to stop a task
+    - will cause task to raise CancelledError when we await it 
+- can use asyncio.wait_for to specify a timeout
+    - will raise asyncio.TimeoutError if the coroutine takes longer than the specified timeout
+- may also want to keep task running, but notify user that something is taking longer
+    - can use asyncio.shield to wrap a task
+    - will prevent the task from being cancelled
+
 
