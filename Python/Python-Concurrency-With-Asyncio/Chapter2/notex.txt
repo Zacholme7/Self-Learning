@@ -37,4 +37,8 @@
     - can use asyncio.shield to wrap a task
     - will prevent the task from being cancelled
 
+2.5: Tasks, coroutines, futures, and awaitables
+--------------------
+- coroutines and tasks can both be used in await expressions
+
 
