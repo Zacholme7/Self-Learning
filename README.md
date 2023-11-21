@@ -9,6 +9,7 @@ The repository is organized into language-specific directories:
 - `/rust` - Contains Rust projects and exercises.
 - `/cpp` - Houses C++ experiments, practice problems, and mini-projects.
 - `/python` - Dedicated to Python scripts, learning exercises, and small applications.
+    - [Python Concurrency with Asyncio](https://www.amazon.com/Python-Concurrency-asyncio-Matthew-Fowler/dp/1617298662)
 
 ## Goals
 The primary aim of this repository is to track my progress as I delve into different programming paradigms and enhance my coding skills across various languages.
