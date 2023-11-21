@@ -2,7 +2,6 @@ import functools
 import time
 from typing import Callable, Any
 
-# decorator to time async funtions
 # Decorator to time async functions
 def async_timed(func: Callable) -> Callable:
     @functools.wraps(func)

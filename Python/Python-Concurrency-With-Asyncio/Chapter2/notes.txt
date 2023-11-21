@@ -40,5 +40,63 @@
 2.5: Tasks, coroutines, futures, and awaitables
 --------------------
 - coroutines and tasks can both be used in await expressions
+- a future is a python object that contains a single value that you expect to get at some point in the future
+    - may not have it yet
+- usually when you create a future it does not have any value it wraps around bc it does not exist yet
+    - once you get result, you can set the value of future, this will complete it
+- can also use future in await expression
+    - if we await future, it means "pause until future has a value set then wake up and process"
+- with asyncio, we should not use futures that much
+- there is a strong relationship between tasks and futures
+    - task directly inherits from future
+    - future can be thought of as representing a val that we wont have for a while
+    - task can be thought of as a combination of a coroutine and a future
+        - when we create a task, we are creating an empty future and running the coroutine
+        - when coroutine is complete, we set the value of the future
+    - common thread is the Awaitable abstract base class
+
+2.6: Measuring coroutine execution time with decorators
+--------------------
+- added timer to time the code
+
+2.7: The pitfalls of coroutines and tasks
+--------------------
+- two main errors occur when trying to turn application asynchronous
+    - attemping to run cpu bound code in tasks/coroutines without multiprocessing
+    - using blocking I/O bound apis without multithreading
+- to perform cpu bound work and still use async/await, have to use process pool
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
