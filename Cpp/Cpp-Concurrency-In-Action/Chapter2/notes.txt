@@ -1,0 +1,14 @@
+2.1: Basic thread management
+-----------------
+- every program has one thread that is started by the c++ runtime, the main() thread
+- threads started by constructing std::thread object
+    - pass it a function object
+- supplied function is copied into storage belowing to new thread and execution is invoked
+- if you pass temporary rather than named variable, can be interpreted as function declaration
+    - ex: std::thread my_thread(background_task())
+        - declared a function rather than lauching a new thread
+    - use extra parentheses or uniform initialization syntax to avoid
+        - ex std::thread my_thread{background_task()};
+- once you start thread, you have to wait for it to finish or leave it to run on its own
+    - call join() to wait for a thread to finish
+
