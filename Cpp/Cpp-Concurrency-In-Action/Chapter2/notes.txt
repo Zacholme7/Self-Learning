@@ -11,4 +11,24 @@
         - ex std::thread my_thread{background_task()};
 - once you start thread, you have to wait for it to finish or leave it to run on its own
     - call join() to wait for a thread to finish
+- calling detach() leaves the thread to run in the background
+    - no direct means of communicating with it
+    - no longer possible to wait for it to complete
+    - detached threads are called daemon threads
+        - typically long running 
+
+2.2: Passing arguments to a thread function
+-----------------
+- just have to pass args to std::thread constructor
+- by default, the arguments are copied
+    - this is done even if it is expecting a reference
+- std::bind, std::ref
+
+2.3: transferrig ownership of a thread
+-----------------
+- std::thread has move support
+    - moveable, but not copyable
+- ownership of a particular thread of execution can be moved between std::thread instances
+
+
 
