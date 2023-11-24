@@ -30,5 +30,23 @@
     - moveable, but not copyable
 - ownership of a particular thread of execution can be moved between std::thread instances
 
+2.4: Choosing the number of threads at runtime
+-----------------
+- std::thread::hardware_concurrency() indicates the number of hardware threads
+    - this is the number of threads that can truly be run concurrently
+    - only a hint, not a definite answekrjo
+
+2.5: Identifying Threads
+-----------------
+- identifiers are of type std::thread::id
+- can be retrieved in two ways
+1) std::thread object by callin get_id()
+2) calling std::this_thread::get_id()
+- identifier can be freely copied and compared
+- if id's are equal, they represent the same thread
+- can be used as keys in unordered associative containers too
+- often used to check whether a thread needs to perform some operation
+
+
 
 

@@ -1,0 +1,12 @@
+3.1: Working with blocking sockets
+---------------------
+- socket is a way to read and write data over a network
+- example represents making a simple server
+
+3.2: Connecting to a server with Telnet
+---------------------
+- can use telnet to try to connect to our server from the previous chapter
+- socket class have "recv" that we can use to get data from a socket
+    - takes number of bytes that we wish to read
+- 3.3 is blocking
+
