@@ -1,0 +1,36 @@
+Chapter 3: Sharing data between threads
+-----------------
+- incorrect use of shared data is one of the biggest causes of concurrency related bugs
+
+3.1: Problems with sharing data between threads
+-----------------
+- the problems with sharing data between threads are all due to the consequences of modifying data
+- if all shared data is read only, then there is no problem
+- if data is shared and one or more threads modify it, that is where problems arise
+- race condition: anything where the outcome depends on the relative ordering of exection of operations on two or more threads
+    - threads race to perform their respective operations
+    - when a race condition leads to broken invariants, that is when a problem arises
+- problamatic race conditions typically occur when an operation requries modificatino of two or more pieces of data
+- several ways to prevent race condtions
+    - simplest way is to wrap your data structure with protection mechanisms
+    - modify the design of your data structure so modifications are done as series of indivisible changes
+        - lock free programming, difficult to get right
+    - handle updates to data as transactions
+
+3.2: Protecting shared data with mutexes
+-----------------
+- mutex (mutual exclusion)
+- lock mutex associated with data before accessing it
+- unlock mutex after you are done wtih the data
+- only one thread can hold lock at a time, meaning only one thread can access the data
+- most general data protection mechanims available in c++
+- create mutex by constructing instance of std::mutex
+    - lock it with lock()
+        - is not recommended to directly call lock since you have to remeber to call unlock
+    - use std::lock_guard()
+        - implemented RAII
+        - locks upon construcion and unlockes upon destruction
+- majority of cases its common to gropu the mutex and the protected data together in a class
+- if a function returns a pointer or reference to protected data, it doesnt matter if you lock mutexed
+    - code that has access to pointer can modify data regardless of lock
+

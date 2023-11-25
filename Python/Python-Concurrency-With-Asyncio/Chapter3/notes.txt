@@ -10,3 +10,26 @@
     - takes number of bytes that we wish to read
 - 3.3 is blocking
 
+3.3: Working with nonblocing sockets
+---------------------
+- non blocking mode wil make it so that functions will return instantly
+- if we dont have data, then an exception will be thrown
+
+3.4: Using the selectors module to build a socket event loop
+---------------------
+- os has efficient apis that let us watch sockets for cinoming data and other events 
+    - give a list of sockets that we want to monitor for events
+    - instead of constantly checking each socket to see if it has data, os tells us when sockets have data
+    - implemented at the hardware level
+- these notifications are at the core of how asyncio achieves concurrency
+- selectors api
+    - exposes BaseSelector abstract base class
+        - multiple implementations for each notifiaction system
+    - Default-Selector class, auto chooses which implementation is most efficient
+- BaseSelector important concepts
+    - registration: register socket with selector and tell it which evnets we are interested in
+        - can also deregister a socket when we are no longer interestd
+    - select: will block until an event has happened
+        - once event happends, call will return with a list of sockets that are read yfor processing along with event that triggered it
+
+
