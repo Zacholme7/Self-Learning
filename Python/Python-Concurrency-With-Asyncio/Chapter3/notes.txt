@@ -32,4 +32,20 @@
     - select: will block until an event has happened
         - once event happends, call will return with a list of sockets that are read yfor processing along with event that triggered it
 
+3.5: An echo server on the asyncio event loop
+---------------------
+- working with select is low level and we would rather use asyncio baked in features
+- methods for dealing iwth sockets are on asyncios event loop
+    - sock_accpet: will return a tuple of a socket connection and a client address
+    - sock_recv: will await until a socket has bytes we can process
+    - sock_sendall: takies in a socket, the data we want to send and waits until all the data has been sent
+- need a coroutine that will just listen for connections
+- should create a task for each connection to read and write data
+- asyncio can only print the message and traceback for exception in task when the task is garbage collection
 
+3.6: Shutting down gracefully
+---------------------
+- signals are a concept for asynchronously notifying a process of an event that has occured
+- can implement listeners in asyncio that will listen for signals 
+    - add_signal_handler method
+- 
