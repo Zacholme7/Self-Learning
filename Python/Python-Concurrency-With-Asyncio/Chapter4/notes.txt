@@ -1,0 +1,38 @@
+4: Concurrent Web Requests
+--------------
+- aiohttp is a non blocking sockets library to make web requests
+
+4.1: Introducing atiohttp
+--------------
+- popular requests library is "requests", but it is blocking
+- aiohttps solves the problem of non blocking sockets
+
+4.2: Asynchronous context managers
+--------------
+- can use context manager to abstrct the shutdown logic with the try/finally block for exception handling
+    - with ... as ...
+    - wont work with async though
+- can use a asynchronous context manager
+    - async with ... as ...
+    - implement two special coroutine methods
+        - __aenter__: asynchronously aquires a resource
+        - __aexit__: closes the resource
+- aiohttp employ the concept of a session
+    - think of session as opening a new browser window
+    - within brower window, you make connection to any number of web pages
+        - this is known as conneciton pooling
+- most aiohttp applications run one session for the entire application
+- session object passed to method where needed
+- has methods on it for making any number of web requests
+    - GET, PUT, POSTS, ...
+- create session using async with and aiohttp.ClientSession context manager
+- ClientSession will create a default maximum of 100 connections
+    - can make instance of TCPConnector specifiying the max connections if we want
+- can also set timeouts for aiohttp requests
+    - by default, it is 5 minutes
+    - can set as session level or request level
+    - specify timeouts using ClientTimeout data structure
+        - can also set timeouts on establishing connection or reading data
+
+
+
