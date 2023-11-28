@@ -34,5 +34,24 @@
     - specify timeouts using ClientTimeout data structure
         - can also set timeouts on establishing connection or reading data
 
+4.3: Running tasks concurrently, revisited
+--------------
+- list comprehension will make it run requentially
+    - await as soon as we create the task, so it will run sequentially
+- create in one and await in a second
 
-
+4.4: Running requests concurrently with gather
+--------------
+- asyncio.gather is used for running awaitable concurrently
+    - takes a sequence of awaitables and lets us run them concurrently
+    - will automatically wrap it in a task 
+    - returns an awaitable that we have to wait 
+- gather will always return the the awaitables in the order that we pass them in
+- optional parameter return_exceptions which allows us to specify how we want to deal with exceptions from awaitables
+    - False: default value, if any throw exception, gather will always throw exception
+        - other coroutines will still run run as long as we handle the exception
+    - True: gather will return any exceptions as part of the result list
+        - gather will not throw any exceptions itself
+- there is not an easy way to cancel our tasks if one throws an exception
+- must wait for all coroutines to finish before we can process the results
+- can solve both of the above issues through...
