@@ -55,3 +55,53 @@
 - there is not an easy way to cancel our tasks if one throws an exception
 - must wait for all coroutines to finish before we can process the results
 - can solve both of the above issues through...
+
+4.5: Processing requests as they complete
+--------------
+- asyncio.gather has the drawnack that it waits for all awaitables to finish before allowing access to results
+    - doesnt let us process a result as it is done
+- to handle this, exposes function named as_completed
+    - this takes a list ofa waitables and returns an iterator of futures
+    - can then iterate over them and await each one
+    - when await completes, we can retrieve the result of the coroutine that finished first out of all our awaitables
+    - although, they are no longer deterministic
+    - supposed a timeout with an optional timeout parameter, raises TimeoutException if it times out
+
+4.6: Finger grained control with wait
+--------------
+- drawback to gather and as_completed is that there is no easy way to cancel tasks that were already running when we saw an exception
+- for as_completed, another drawback is that it is non deterministic
+- wait is similar to gather wait that offers more specific control to handle these situations
+    - returns a set of tasks that are finished with either a result or an exception
+    - and a set of tasks that are still runnning
+    - can also set a timeout that does not throw exception
+- signature of wait is a list of awaitable objets, followed by optional timeout and optional return_when string
+    - ALL_COMPLETED, FIRST_EXCEPTION, FIRST_COMPLETED. all_completed is default
+- .exception() will check to see if we have an exception
+- drawback of ALL_COMPLETED is that we could have any number of exceptions while we wait for other coroutines to complete
+- FIRST_EXCEPTION
+    - no exceptions from any awaitables: then it is equivalent to ALL_COMPLETED
+    - one or more exception: will immediately return once exception is throw
+        - done set will have coroutines that finished alongside any with excpetions
+- FIRST_COMPLETED
+    - make the wait coroutine return as soon as it has at least one result
+- wait also allows us to set timeouts
+    - set the timeout parameters with the number of seconds desired
+    - if we exceed the time, wait will return both the done and pending task set
+- best practice to wrap coroutines we pass into wait in a task
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+1: What is amazon web services
+------------------------
+- cloud computing is a metaphore for supply and consumption of IT resources
+    - layers of abstraction exist between the user and the IT resources
+    - offers things like virtual machines, providing software as a service, on demand resources, etc..
+- 5 essential characteristics: on demand self service, broad network access, resource pooling, rapid elasticity, measured service
+- offerings are divided into three types
+    - public: cloud managed by an organization and open to use by the general public (AWS)
+    - private: cloud that virtualizes and distributes the IT infra for a single organization
+    - hybrid: a mixture of public and private cloud
+
+1.1: What is Amazon Web Services (AWS)
+------------------------
+- a platform of web services that offers solutions for computing, storing, and networking at different layers of abstraction
+- can use between different data centers
+
+1.2: What can you do with AWS
+------------------------
+- here are a few examples of what you can do
+- hosting a web shop
+- running java EE application in your private network
+- implementing a haghly available system
+- profitting from low costs for batch processing infrastructure
+
+1.3: How you can benefit from using AWS
+------------------------
+- cost savings
+- innovative and fast growing platform
+- services solve common problems
+- enabling automation
+- flexible capacity
+- built for failure
+- reducing time to market
+- benefiting from economies of scale
+- global infrastructure
+- professional partners
+
+1.4: How much does it cost
+------------------------
+- similar to an electric bill
+- billed in the following ways
+    - based on time of use
+    - based on traffic
+    - based on storage usage
+- lower barrier of entry since you dont have to invest in infrastructure up front
+
+
+
+
+
+

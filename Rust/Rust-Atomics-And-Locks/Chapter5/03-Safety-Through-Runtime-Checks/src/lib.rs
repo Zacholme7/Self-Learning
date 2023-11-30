@@ -68,12 +68,3 @@ impl<T> Channel<T> {
         unsafe { (*self.message.get()).assume_init_read() }
     }
 }
-
-
-
-
-
-
-
-
-
