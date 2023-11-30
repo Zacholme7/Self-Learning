@@ -1,0 +1,29 @@
+5: Non blocking database drivers
+-------------------------
+- typical SQL libraries block, so we need to use async ones
+
+5.1: Introducing Asyncpg
+-------------------------
+- use asyncpg which will asynchronously connect to postgras databases and run queries against them
+
+5.2: Connecting to a Postgres database
+-------------------------
+- example shows connecting to an example database
+
+5.3: Defining a database schema
+-------------------------
+- can execute statements using asyncpg
+- defines the statements that we want in this section
+
+5.4: Executing queries with asyncpg
+-------------------------
+- write a program to execute all of these statements
+- execute() is a coroutine so we have to await the call
+
+5.5: Executing queries concurrently with connection pools
+-------------------------
+- true benefit of asyncio for I/O bound operations is the ability to run multiple tasks concurrently
+    - queries have to be independent from each other
+- executemany coroutine takes in one SQL statemetn and a list of tuples that we want to insert
+
+
