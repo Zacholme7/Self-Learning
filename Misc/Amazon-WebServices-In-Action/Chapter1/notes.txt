@@ -44,8 +44,26 @@
     - based on storage usage
 - lower barrier of entry since you dont have to invest in infrastructure up front
 
+1.5: Comparing alternatives
+------------------------
+- microsoft azure and google cloud platform are major players are as well
+- aws is the market leader in cloud computing
 
+1.6: Exploring AWS services
+------------------------
+- AWS services run on hardware
+- you can manager sercies by sending request to the api 
+- can connect to virtual machines though SSH
 
+1.7: Interacting with AWS
+------------------------
+- when you interact with AWS to configure or use services, you make calls to the API
+- management console allows you to manage and access services though a GUI
+- can use command line interface to also access it
+- can use a sdk to interact with many programming languages
+- blueprint: a description of your system containin all resources and their dependencies
+    - infrastructure as code tool compares your blueprint with the current system and calcualtes the steps to update infra
 
-
-
+1.8: Creating a AWS account
+------------------------
+- just stuff to create an account
