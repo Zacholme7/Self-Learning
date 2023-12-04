@@ -26,4 +26,28 @@
     - queries have to be independent from each other
 - executemany coroutine takes in one SQL statemetn and a list of tuples that we want to insert
 
+5.6: Managing transactions with asyncpg
+-------------------------
+- transaction consists of one or more SQL statements that are executed asone atomic unit
+    - if no errors occur, we commit the statement to the database making the changes permanent
+    - if any errors, we roll back state so it is as if none of them happened
+- in asyncpg use connection.transaction asyncrhonous context manager
+- supports nested transactions through savepoitns
+    - SAVEPOINT command
+    - can rollback to that savepoint and any queries will be undone
+- sometimes need to manually manage transaction
+    - can use the transaction manager returned outside context manager
+    - manually call start method and commit on successa nd rollback on failure
+
+5.7: Asynchronous generators and streaming result sets
+-------------------------
+- drawbacks to default fetch impl asyncpg provides is that it pulls all data from any query we execute into memory
+    - if large query, have to fit is all in memory
+- can support streaming query results through the concept of cursors
+    - pointer to where we currentlya re in iterating though a result set
+- can get cursor to connection and then use it to execute a streaming query
+- called a asynchronous generator
+
+
+
 
