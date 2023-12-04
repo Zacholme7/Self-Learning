@@ -1,0 +1,9 @@
+6.1: Introducting Multiprocessing library
+-------------------------
+- can spawn new processes that will each have their own GIL
+    - both concurrent and parallel
+- need the __name__ == "__main__" or else there will be an exception thrown
+    - prevent others who may import your code from accidentally launching multiple processes
+- awkward because we have to use use start() and join()
+
+
