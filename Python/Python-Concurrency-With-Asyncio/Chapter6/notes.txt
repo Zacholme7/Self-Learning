@@ -6,4 +6,34 @@
     - prevent others who may import your code from accidentally launching multiple processes
 - awkward because we have to use use start() and join()
 
+6.2: Using process pools
+-------------------------
+- process pools are a connection of python processes that we can use to run functions in parallel
+    -when we have cpu bound function, we ask pool to run it for us
+    - it cleans up the resources when it is done
+    - automatically creates processes equal tot he number of cpu cores on the machine you are running
+        - can change this but the default is usually good
+- use the apply method to run function in seperate process
+- although, the apply function blocks 
+- can use apply_async so we do not block
+    - returns Asyncresult instantly
+    - can use get method to block and obtain result of function call
+
+6.3 Using process pool executors with asyncio
+-------------------------
+- python offers abstraction on top of multiprocessing process pool
+    - concurrent.futures model
+    - contains executors for both processes and threads that can be used on their own but also interoperate with asyncio
+- concurrent.futures provides this abstraction for us with the Executor abstract class
+    - two methods for running work asynchronously
+        - submit: take a callable and return a Future, equivlane tot pool.apply_async
+        - map: take a callable and a list of function arguments and the execute each argumetn in the list asynchronously
+            - returns iterator of the results of our calls
+
+
+
+
+
+
+
 

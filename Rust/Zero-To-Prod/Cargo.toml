@@ -1,0 +1,29 @@
+[package]
+name = "Zero-To-Prod"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+# Dev dependencies are used exclusively when running tests or examples
+# They do not get included in the final application binary!
+[dev-dependencies]
+reqwest = "0.11"
+
+# Notice the double square brackets: it's an array in TOML's syntax.
+# We can only have one library in a project, but we can have multiple binaries!
+# If you want to manage multiple libraries in the same repository
+# have a look at the workspace feature - we'll cover it later on.
+[[bin]]
+path = "src/main.rs"
+name = "Zero-To-Prod"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=lld"]
+
+[dependencies]
+actix-web = "4.4.0"
+reqwest = "0.11.22"
+tokio = { version = "1.34.0", features = ["macros", "rt-multi-thread"] }
