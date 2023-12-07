@@ -1,3 +1,4 @@
 2: A simple example - Wordpress in 15 minutes
 ------------------------------
+- chapter just talks about setting up a basic ec2 instance
 

@@ -1,0 +1,24 @@
+3.1: Exploring a Virtual Machine
+------------------------------
+- vm runs on a physical machine
+    - isolated from each other from a hypervisor
+- consists of cpus, memory, network interfaces, and storage
+- physical machine is called the host machine
+    - vms running on it are called guests
+- hypervisor is responsible for isolating guests from each other and schedules requests to the hardware
+- the AMI is the basis for your virtual machine starts
+    - when choosing, think about requirements of the application that you want to run on the VM
+- aws classifies computing power into instance types
+    - T family: cheaper, moderate performance with ability to burst for short periods
+- M family: General purpose with balance of CPU and memory
+- C family: computer optimized, high CPU performance
+- R family: memory optimized
+- X family: extensive capacity with a focus on memory
+- D family: storage optimized, offer huge HDD capacity
+- I family: storage optimized, offer huge SSD capacity
+- P, G, CG family: accelerated computing based on GPUs
+- F family: accelerated computing based on FPGAs
+
+
+
+

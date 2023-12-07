@@ -29,6 +29,28 @@
         - submit: take a callable and return a Future, equivlane tot pool.apply_async
         - map: take a callable and a list of function arguments and the execute each argumetn in the list asynchronously
             - returns iterator of the results of our calls
+- once we have pool, can use method on asyncio loop called run_in_executor
+    - take a callable alongside an executor and will run that callable inside the pool
+    - returns an awaitable that we can await of pass into function such as gather
+
+6.4: Solving a problem with MapReduce using asyncio
+-------------------------
+- mapreduce
+    - break data down into sets, apply map function, then apply reduce to combine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
