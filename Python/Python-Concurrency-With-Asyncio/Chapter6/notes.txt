@@ -38,6 +38,25 @@
 - mapreduce
     - break data down into sets, apply map function, then apply reduce to combine
 
+6.5: Shared data and locks
+-------------------------
+- multiprocesing supports a concept called shared memory objects
+    - chunk of memory allocated that a set of separate processes can access
+    - each process can read and write into that memory space
+- multiprocessing supports two kinds of shared data: values and array
+    - value is single value
+    - array is an array of singular values
+- can lead to race conditions
+    - occurs when the outcome of a set of operations is dependant on which operation finishes first
+- can avoid race conditions by syncrhonizing acces to any shared data we want to modify
+    - explcity block operation running until the first one completes
+- lock (mutex) can be used for synchronization
+    - can lock a section of a code, usually called critical sections
+    - acquire the lock and release the lock
+
+
+
+
 
 
 
