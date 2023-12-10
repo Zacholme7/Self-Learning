@@ -53,6 +53,14 @@
 - lock (mutex) can be used for synchronization
     - can lock a section of a code, usually called critical sections
     - acquire the lock and release the lock
+- process pool executors keep a queue of tasks to manage the tasks
+    - when we submit a task to pool, its arguments are pickled and put on task queue
+    - then each worker process pulls a task of the queue, unpickles the args, and then executres it
+- can use process pool initializer to put shared counter in global variable and let workers know about it
+
+6.6: Multiple processes, multiple event loops
+-------------------------
+- multiprocesses have soem benefits for I/O bound tasks
 
 
 

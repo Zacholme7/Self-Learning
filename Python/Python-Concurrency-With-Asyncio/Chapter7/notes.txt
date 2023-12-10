@@ -1,0 +1,12 @@
+7: Handling blocking work with threads
+-----------------------
+- can use multithreading with asyncio to run blocking apis
+
+7.1: Introducing the threading module
+-----------------------
+- can create and manage threads via the threading module
+    - exposes the Thread class, accepts function to run in a different thread
+- I/O released GIL, so we can run IO in different threads concurrently
+- exceptions are only thrown in the main thread
+- can use daemon threads (long running background tasks)
+- thread class has run method that we can override
