@@ -44,4 +44,11 @@
 - a few asyncio functions that are non blocking and thread safe
     - call_soon_threadsafe: takes a python function and schedules it to execute it in a thread safe manner at next iteration of asynico even tloop
     - asyncio.run_coroutine_threadsafe: takes coroutine and submits it to run in threadsafe manner
+- common to use queue to share information
 
+7.5: Event loops in separate threads
+-----------------------
+- for most cases, the rule of thumb is multi threading only makes sense for blocking I/O
+- to properly release GIL and avoid concurrency bugs, code needs to avoid python objects    
+    - (dictionaries, lists, integers, ..)
+- some libraries such as hashlib and numpy perform work in c and release the GIL
