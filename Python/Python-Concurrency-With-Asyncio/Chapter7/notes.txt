@@ -52,3 +52,13 @@
 - to properly release GIL and avoid concurrency bugs, code needs to avoid python objects    
     - (dictionaries, lists, integers, ..)
 - some libraries such as hashlib and numpy perform work in c and release the GIL
+- lots of numpy operations are also low level code outside of python that release the GIL
+    - depends if there is a lot of supporting python code
+
+
+
+
+
+
+
+
