@@ -1,0 +1,24 @@
+8: Streams
+-----------------------
+- many use cases opf sockets rely on a few conceptually simple operations
+- using streams is the recommended way to build network based applications in asyncio
+
+8.1: Introducing Streams
+-----------------------
+- streams are a high lvel set of classes/fucntions that create and manage network connections and generic stream of data
+- built on top of apis known as transports and protocols
+    - directly wrap sockets providing a clean interface
+
+8.2: Transports and protocols
+-----------------------
+- transport is an abstraction for communcation with an arbitrary stream of data
+    - various transports depending on what source we are using
+    - ReadTransport, WriteTransport, and Transport
+- protocol is just a python class here, not something like HTTP/FTP
+    - connection_made: transport calls this method when the underlying socket has successfully connected
+    - data_received: transport calls this method whenever it receives data
+- once we write protocol, use create_connector to create a socket connection and wrap it in the appropriate transport
+
+
+b
+
