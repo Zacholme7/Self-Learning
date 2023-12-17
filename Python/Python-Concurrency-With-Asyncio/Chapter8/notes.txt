@@ -19,6 +19,12 @@
     - data_received: transport calls this method whenever it receives data
 - once we write protocol, use create_connector to create a socket connection and wrap it in the appropriate transport
 
+8.3: Stream readers and stream writers
+-----------------------
+- transports and protocols are lower level apis that are best suited for when we need direct contorl over when we send and recieve data
+- asyncio has the streams api
+    - encapsulates the standard use cases of tranports and protocols into two classes 
+    - StreamReader, StreamWriter
+-
 
-b
 
