@@ -25,6 +25,16 @@
 - asyncio has the streams api
     - encapsulates the standard use cases of tranports and protocols into two classes 
     - StreamReader, StreamWriter
--
+
+8.4: Non blocking command line input
+-----------------------
+- traditionally, use input function to get input but this is blocking
+- asyncio provides connect_read_pipe: connects a protocol to a file like object
+    - accepts a protocol factory: a function that creates a protocol instance
+    - and a pipe: file like object that defines read and write
+- utility class StreamReaderProtocol to connect insnaces of stream readers to protocols
+- 
+
+
 
 
