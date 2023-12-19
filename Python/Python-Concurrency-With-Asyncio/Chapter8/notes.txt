@@ -33,7 +33,10 @@
     - accepts a protocol factory: a function that creates a protocol instance
     - and a pipe: file like object that defines read and write
 - utility class StreamReaderProtocol to connect insnaces of stream readers to protocols
-- 
+- can swtich terminal to raw mode
+    -every keystroke is send to the application, no buffering
+- also have cbreak mode
+    - raw move but keys like ctrl-c will still be interpreted
 
 
 
