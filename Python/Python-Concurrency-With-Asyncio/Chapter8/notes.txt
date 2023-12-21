@@ -38,6 +38,17 @@
 - also have cbreak mode
     - raw move but keys like ctrl-c will still be interpreted
 
+8.5: Creating servers
+-----------------------
+- can use asyncio.start_server to create a server
+    - only really consider host, port, client_connected_cb functions
+    - callback takes in a StreamReader and StreamWriter that will let us read and write to the client that connected
+- when we await start_server, returns AbstractServer object
+
+8.6: Creating a chat server and client
+-----------------------
+- describes some information about what we want in this chapter
+- main details are in the coding files for a full example
 
 
 
