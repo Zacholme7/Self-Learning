@@ -7,5 +7,10 @@
     - has decorator that lets us specify the request
 - aiohttp application class acts as a dictionary
 - every request that our route gets will have a reference to the application instance through the app field
+- signal handler oon application to handle setup tasks
+- can parameterize routes and get the value through the reuqest.match_info dictionary
+
+
+
 
 
