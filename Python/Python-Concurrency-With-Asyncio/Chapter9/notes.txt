@@ -1,0 +1,11 @@
+9.1: Creating a REST API with aiohttp
+----------------------
+- REST: representational state transfer
+    - key concept is a resource -> anything that can be represented by a noun
+- aiohttp provides webserver functionality through the web module
+- can then define routes with a RouteTableDef
+    - has decorator that lets us specify the request
+- aiohttp application class acts as a dictionary
+- every request that our route gets will have a reference to the application instance through the app field
+
+
