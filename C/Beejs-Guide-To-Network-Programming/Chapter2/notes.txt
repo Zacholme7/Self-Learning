@@ -1,0 +1,40 @@
+2: What is a socket
+------------------------
+- socket: a way to speak to other programs using unix file descriptors
+- when unix programs do any sort of I/O, they do it by writing to a file descriptor
+- file descriptor: an integer associated with an open file (file can be network connection, FIFO, pipe, etc)
+    - "everything on unix is a file"
+- socket() returns a fd you communicate with via send() and recieve()
+- many different types of sockets (looking up and learn about raw sockets...)
+- book focuses on two: stream sockets (SOCK_STREAM) and datagram sockets (STOCK_DGRAM)
+
+2.1: Two types of internet sockets
+------------------------
+- stream sockets
+    - reliable two way connection streams and error free
+    - uses TCP which provides reliability
+- datagram sockets (connectionless sockets)
+    - if you send datagram, it may arrive... but if it does the data in the packet is error free
+    - uses UDP 
+    - dont need to maintain a connection like you do with stream sockets
+    - advantage is the speed
+
+2.2: Low level nonsense and network theory
+------------------------
+- data encapsulation: pack is born and repeatedly wrapped by following protocols. unwrapped upon arrival
+- layered network model (ISO/OSI)    
+    - application
+    - presentation
+    - session
+    - transport
+    - network
+    - data link
+    - physical
+- a layered model more consistent with unix
+    - application layer (telnet, ftp, ...)
+    - host to host transport layer (tcp, udp)
+    - internet layer (IP and routing)
+    - network access layer (ethernet, wifi, ...)
+------------------------
+
+
