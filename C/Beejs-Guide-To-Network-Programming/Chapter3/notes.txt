@@ -1,0 +1,66 @@
+3.1: IP Address,es versions 4 and 6
+----------------------------
+- Internet protocol version 4 (IPv4)
+    - addresses made up of 4 bytes, 32 bits (192.0.2.111)
+    - virtually every site on the internet uses ipv4
+    - can run out
+    - 127.0.0.1 is the loopback address (machine i am running on now)
+- Internet protocol version 6 (IPv6)
+    - address made up of 16 bytes, 128 bits and is hexadecimal 
+    - each two byte chunk separated by a colon (2001:0db8:c9d2:aee5:73e3:934a:a5ae:9511)
+    - can also compress and leave off leading and trailing zeroes
+    - address ::1 is the loopback address (machine i am running on now)
+- if you want to represent ipv4 and ipv6, use notation "::ffff:192.0.2.33"
+- sometimes want some organization
+    - declare first x part to be network portion and rest to be host portion
+- now just put a slash after the ip address and then follow that by the number of networks bits in decimal
+- port number is also used: 16 bit number thats like the local address for the connection
+- mental model
+    - ip address = street address of a hotel
+    - port number = the room number
+- different services on the internet have different well known port numbers
+
+3.2: Byte order
+----------------------------
+- big endian: number stored with the big end first
+    - b3cf -> |b3|cf|
+    - this is network byte order
+- little endian: number stored with the small end first
+    - b3cf -> |cf|b3|
+- computer stores bytes in host byte order
+- always run value through function to set it to network byte order
+- can convert shorts (two bytes) and longs (four bytes)
+- ex: want to convert a short from host byte order to network byte order
+    - start with "h" for host
+    - follow it with "to", then "n" for network
+    - end with "s" for short 
+    - h-to-n-s -> htons() (host to network short)
+- htons(): host to network short
+- htonl(): host to network long
+- ntohs(): network to host short
+- ntohl(): network to host long
+- convet the number to network byte order before they go on the wire and host byte order as they come off the wire
+
+3.3: structs
+----------------------------
+- socket descriptor: int
+- struct addrinfo: used to prep the socket address structures for subsequent use
+struct addrinfo {
+    int ai_flags; 
+    int ai_family;
+    int ai_socktype;
+    int ai_protocol;
+    size_t ai_addrlen;
+    struct sockaddr *ai_addr;
+    char *ai_canonname;
+    struct addrinfo *ai_next;
+}
+
+
+
+
+
+
+
+
+
