@@ -10,6 +10,26 @@
 - signal handler oon application to handle setup tasks
 - can parameterize routes and get the value through the reuqest.match_info dictionary
 
+9.2: The asynchronous server gateway interface
+----------------------
+- WGSI is a standardized way to forward web request to a web framework 
+    - not designed to support asyncrhonous workloads
+- ASGI was created to fill this purpose
+    - has three params: scope dictionary, receive coroutine, and send coroutine
+    - can run with uvicorn to serve it
+
+9.3: ASGI with Starlette
+----------------------
+- starlette is a small asgi compliant framework
+- startlette class takes the following parametres
+    -list of route object and a list of routines to run on startup and shutdown
+- can use WebSocketEndpoint in starlette to create a websocket
+    - need to implement on_connect endpoint, on_recieve endpoint, and on_disconnect endpoint
+
+
+ 
+
+
 
 
 

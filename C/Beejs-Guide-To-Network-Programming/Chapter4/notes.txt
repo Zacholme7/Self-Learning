@@ -1,0 +1,21 @@
+4: Jumpting from Ipv4 to Ipv6
+-------------------------------
+Here is the process to convert from 4 to 6
+1) try to use getaddrinfo() to get all of the struct sockaddr into
+2) any plce you are hardcoding anything related to ip version, wrap it in a helper function
+3) change AF_INET to AF_INET6
+4) change PF_INET to PF_INET6
+5) Change INADDR_ANY assignment to in6addr_any assignment
+struct sockaddr_in sa;
+struct sockaddr_in6 sa6;
+sa.sin_addr.s_addr = INADDR_ANY; // use my IPv4 address
+sa6.sin6_addr = in6addr_any; // use my IPv6 address
+- IN6ADDR_ANY_INIT can be used as an initialize when struct in6_addr is declared like so
+struct in6_addr ia6 = IN6ADDR_ANY_INIT;
+6) instead of struct sockaddr_in use strut sockaddr_in6
+7) instread of struct in_addr use struct in6_addr
+8) instead of inet_aton()/inet_addr() use inet_pton()
+9) instead of inet_ntoa() use inet_ntop()
+10) instead of gethostbyname() use getaddrinfo()
+11) instead of gethostbyaddr() use getnameinfo()
+12) use Ipv6 multicast
