@@ -1,0 +1,22 @@
+5.1: getaddrinfo() - prepare to launch
+-------------------------
+- helps set up structs for later on
+int getaddrinfo(const char *node, const char *service, const struct addrinfo *hints, struct addrinfo **res);
+    - node: the host name/ip address to connect to
+    - service: the port or a service
+    - hints: addrinfo with relavant info
+- this is the more modern version in comparison to sockaddr_in, can handle ipv4 and ipv6
+
+5.2: socket() - Get the file descriptor
+-------------------------
+- sidetip. use AF_INET in struct sockaddr_in and use PF_INET in you call to socket
+    - af = address family
+    - pf = protocol family
+int socket(int domain, int type, int protocol)
+- allow you to say what kind of socket you want (ipv4/6, stream or datagram, tcp or udp)
+- use call from getaddrinfo() to fill int he socket
+s = socket(res->ai_family, res->ai_socktype, res->ai_protocol)
+- returns a file descriptor for the socket
+
+
+

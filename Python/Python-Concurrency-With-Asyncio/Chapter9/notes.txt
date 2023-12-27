@@ -26,8 +26,9 @@
 - can use WebSocketEndpoint in starlette to create a websocket
     - need to implement on_connect endpoint, on_recieve endpoint, and on_disconnect endpoint
 
+9.4: Django asynchronous views
+----------------------
 
- 
 
 
 
