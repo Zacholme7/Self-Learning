@@ -18,5 +18,74 @@ int socket(int domain, int type, int protocol)
 s = socket(res->ai_family, res->ai_socktype, res->ai_protocol)
 - returns a file descriptor for the socket
 
+5.3: bind() - What port am I on?
+-------------------------
+- once you have a socket, you can ssociated it with a port on the local machine
+    - commonly done if you are going to listen for connections on that port
+- port number is used by the kernel to match an incoming packed to a certain processes socket descriptor
+int bind(int sockfd, struct sockaddr *my_addr, int addrlen)
+    - sockfd: the socked fd returned by a call to socket
+    - my_addr: pointer that contains info about your address (port and ip)
+    - arrlen: length in bytes of above
+- using AI_PASSIVE for ai_fflags tells it to use the ip the host is running on, use the specific ip if you want a specific one
+- dont use port below 1024. can use up to 65535 (provided they arent already used)
+
+5.4: connect() - Hey you!
+-------------------------
+- used to connect to a remote host
+int connect(int sockfd, struct sockaddr *serv_addr, int addrlen)
+    - sockfd: socket file descriptor
+    - serv_addr: struct containing destination ip addr and port
+    - addlen: length in bytes of above
+
+5.5: listen() - Will somebody please call me?
+-------------------------
+- to wait for incomming connection, listen() then accept()
+int listen(int sockfd, int backlog)
+    - sockfd: socket file descriptor to listen on
+    - backlog: the number of connections allowed on the incoming queue
+        - incoming connetions are going to wait up until you accept them
+- if you are going to be listening for incoming connections, this it the call process
+1) getaddrinfo();
+2) socket();
+3) bind();
+4) listen();
+5) accept();
+
+5.6: accept() - Thank you for calling port 3490
+-------------------------
+- new connection will be queued up waiting to be accept()ed
+- you call accept and you tell it to get the new connection
+    - it will return a new file descriptor to use for this new connection
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+    - sockfd: the socket fd we are listening on
+    - addr will usually point to struct sockaddr_storage which is where info about incomming connection will go
+    - addlen: set to size of struct sockaddr_storage
+
+5.7: send() and recv() - Talk to me baby
+-------------------------
+- these are for communcation over stream sockets or connected datagram sockets
+int send(int sockfd, const void *msg, int len, int flags)
+    - sockfd: file descriptor you want to send data two
+    - msg: pointer to the data you want to send
+    - len: the length of the data you want to send
+    - int flag: just set to 0
+    - returns: the number of bytes that was send out
+int recv(int sockfd, void *buf, int len, int flags)
+    - sockfd: file descriptor you want to recieve data from
+    - buf: the buffer to read info into
+    - len: the length of the buffer
+    - flags: just sent to 0
+    - returns: the number of bytes that was read into the buffer, if 0, then connection was closed
+
+5.8: sendto() and recvfrom() - Talk to me DGRAM-style
+-------------------------
+- datagram sockets are not connected to remote host, have to specify dst
+
+
+
+
+    
+
 
 

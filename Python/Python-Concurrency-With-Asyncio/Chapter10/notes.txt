@@ -1,0 +1,23 @@
+10: Microservices
+-------------------------
+- many web applications are structured as monoliths
+- microservice approach can help this
+
+10.1: Why microservices?
+-------------------------
+- what are they?
+    - loosely coupled and independently deployable
+    - own independent stack
+    - communication with another via a procol (rest, gprc, ...)
+    - follow single responsibility, do one thing and do it well
+- async can help with concurrent communcation between services
+
+10.2: Introducing the backend for frontend pattern
+-------------------------
+- instead of UIs directly communcating with our serivces, we create a new service that makes calls and aggregates the response
+
+10.3: Implementing the product listing api
+-------------------------
+- this section goes though an implementation for an all products page of an ecommerce store
+- keeps track of a mapping from user to product ids they have put in their factories list
+
