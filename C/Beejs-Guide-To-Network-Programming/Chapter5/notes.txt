@@ -81,6 +81,51 @@ int recv(int sockfd, void *buf, int len, int flags)
 5.8: sendto() and recvfrom() - Talk to me DGRAM-style
 -------------------------
 - datagram sockets are not connected to remote host, have to specify dst
+int sendto(int sockfd, const void *msg, int len, unsigned int flags, const struct sockaddr *to, socklen_t tolen)
+    - basically the same as the call to send
+    - to: pointer to the destination ip address and port
+    - tolen: length of the destination struct
+int recvfrom(int sockfd, void *buf, itn len, unsigned int flags, struct sockaddr *from, int *fromlen)
+    - basically the same as the call to recv
+    - from: pointer to ip address and port of originating machine
+    - fromlen: length of the originating machine info
+- why use struct_sockaddr_storage as the socket type?
+    - dont want to tie ourselves down to ipv4/6, storage will be big enough for either
+- if you connect() to datagram socket, can still use send() and recv(), socket interface will automatically add dst and src info for you
+
+5.9: close() and shutdown() - Get outta my face! 
+-------------------------
+- can use regular unix file descriptor close
+- will prevent any more reads and writes to the socket
+close(sockfd)
+- shutdown will give you more control
+- does not actually close the fd, just changes its usability
+int shutdown(int sockfd, int how)
+    - sockfd: how you want to shutdown
+        - 0: further receives are disallowed
+        - 1: further sends are disallowed
+        - 2: both are disallowed, like close()
+
+5.10: getpeername() - Who are you?
+-------------------------
+- will tell you who is at the other end of a connected stream socket
+int getpeername(int sockfd, struct sockaddr *addr, int *addrlen)
+    - sockfd: fd of connected stream socket
+    - addr: will hold info about hte other side
+    - addrlen: the length of the addr
+
+5:11: gethostname() - Who am I?
+-------------------------
+- returns the name of the computer that your program is running on
+- the name can then be used by getaddrinfo() to determien the IP address of your local machine
+int gethostname(char *hostname, size_t size)
+    - hostname: pointer that will contain the hostname upon function return
+    - size: the size of hostname array
+
+
+   
+
+
 
 
 

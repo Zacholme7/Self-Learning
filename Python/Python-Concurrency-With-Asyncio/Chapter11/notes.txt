@@ -1,0 +1,22 @@
+11: Synchrononization
+---------------------
+- concurrency bugs are not fully eliminated with asyncio
+
+11.1: Understanding single threaded concurrency bugs
+---------------------
+- in asyncio single thread model, operation will always run to completion without inconsistent state information
+- can still cause bug where multiple operations executed in the wrong order can cause issues
+    - you hit a suspension point with await and another coroutine runs and modifies some shared state
+- in multithreaded: race conditions are possible anywhere you modify a mutable state
+- in singlethreaded: race conditions are possible when you need to modify the mutable state during an await point
+
+11.2: Locks
+---------------------
+- asyncio locks operate similarly to locks in multiprocessing/threading
+    - except these are awaitables objects that suspend coroutine execution when they are blocked
+    - other code can run when coroutine is waiting to acquire a lock
+    - also asynchronous context managers, can use "async with"
+
+
+
+
