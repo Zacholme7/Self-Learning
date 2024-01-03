@@ -1,0 +1,28 @@
+1: Deducing types
+---------------------------------
+- function templates were introducted in c++98
+- c++11 expanded upton this and added "auto" and "decltype"
+- type deduction makes it so you dont have to spell out types that are obvious or redundant
+
+Item 1: Understanding template type deduction
+---------------------------------
+#1
+- compilers use expr to deduce two types
+        - one for T in the template and one for ParamType
+        - often different because ParamType often has adornments such as const
+- the type deduced for T is dependent not just on the type of expr, but also on the form of ParamType
+# Case 1: ParamType is a reference or pointer, but not a universal reference
+        - in this situation, type deduction is the following
+        1: If exprs type is a reference, ignore the reference part
+        2: then pattern match exprs type against ParamType to determine T
+        - cx and rx are const values, so T is also a const int and param is const int &
+        - for rx, even though rx is a ref T is deduced to be a non reference (referenceness ignored during type deduction)
+# Case 2: ParamType is a Universal Reference
+        - if expr is lvalue, both T and ParamType deduced to be lvalue references
+                - only situation where T deduced to be a reference
+        - if expr is rvalue, case 1 rules apply
+        - type deduction rules for universal ref params are differenet from those for params that are lvalue ref or rval ref
+# Case 3: ParamType is neither a pointer nor a reference
+        - dealing with pass by value here
+        1: if expr type is reference, ignore the reference part
+        2: after ignoring refness, if expir is const ignore that too
