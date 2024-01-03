@@ -18,12 +18,24 @@
     - also asynchronous context managers, can use "async with"
 - dont have to use locks that often. Most of the time you can just re organize the code
 
-11.2: Locks
+11.3: Limiting concurrency with semaphores
 ---------------------
 - semaphore: act like lock but can be acquired up to a set number of times
     - will block if this limit is reached until the count goes back down
 - async with will always handle acquire and release, but you can call release more than you call acquire
     - can use BoundedSemaphore, will throw error if released more than acquired
+
+11.4: Notifying tasks with events
+---------------------
+- sometimes we need to wait for some external event to happen before we can proceed
+- Event objects provide mechanism to help out when we want to idle while waiting for something to happen
+    - keeps track of flag that indicates if an event has happened or not
+    - can control flag with set and clear()
+    - call wait coroutine on event to block until set is called
+
+
+
+
 
 
 
