@@ -1,0 +1,11 @@
+12.1: Asynchronous queue basics
+-----------------------------
+- queues are first in first out
+- asynchronous queues let us use multiple workers to pull from the queue
+- why is there nowait at the end of each method?
+    - two ways of getting and retrieving an item from a queue
+    - one that is a coroutine and blocks
+    - one that is nonblocking and is a regular method (get_nowait, put_nowait)
+- by default, queues are unbounded
+
+

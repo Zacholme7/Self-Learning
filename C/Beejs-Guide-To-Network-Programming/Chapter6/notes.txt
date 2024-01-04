@@ -1,0 +1,11 @@
+6: Client-Server Background
+----------------------------
+- server will often accept a connection and fork a child process to handle it
+
+6.1: A simple stream server
+---------------------------
+- code in file
+- for the talker and listener, udp is connectionless so we can just fire away ( can have connection though...)
+
+
+

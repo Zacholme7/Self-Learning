@@ -33,6 +33,12 @@
     - can control flag with set and clear()
     - call wait coroutine on event to block until set is called
 
+11.5: Conditions
+---------------------
+- Condition combines aspects of a lock and an event into one synchronization primitive
+    - acquire lock then wait for an event to occur
+- wait_for: instead of blocking until someone notifies the condition, wait_for takes a predicate and will block until that predicate returns true
+
 
 
 
