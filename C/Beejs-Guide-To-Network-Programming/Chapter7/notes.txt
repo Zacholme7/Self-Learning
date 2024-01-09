@@ -5,7 +5,7 @@
 sockfd = socket(PF_INET, SOCK_STREAM, 0)
 fcntl(sockfd, F_SETFL, O_NONBLOCK)
 
-7.2: Polling
+7.2: poll() - synchronous I/O multiplexing
 -------------------
 - poll() allows us to just be notified when some data is ready to be read on the socket
   - process can go to sleep in the meantime
@@ -21,6 +21,30 @@ struct pollfd {
 - events is a bitwise OR of the following 
   - POLLIN: alert me when data is ready to recv() on this socket
   - POLLOUT: alert me when I can send() data to this socket without blocking
+
+7.3: select() - synchronous I/O multiplexing old school
+-------------------
+- both select() and poll() offer similar functionality and performance but differ a bit on how they are used
+- select() gives you the ability to monitor several sockets at the same time
+int select(int numfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, strut timeval *timeout);
+- monitors "sets" of file descriptors
+- when select() returns, the fds will be modified to reflect which of the file descriptors you selected is ready for some operation
+- you can test them with FD_ISSET()
+FD_SET(int fd, fd_set *set) -> add fd to the set
+FD_CLR(int fd, fd_set *set) -> remove fd from the set
+FD_ISSET(int fd, fd_set *set) -> return true is fd is in the set
+FD_ZERO(fd_set *set) -> clear all entries from the set
+- timeval allows you to specify a timeout period
+struct timeval {
+  int tv_sec; -> number of seconds to wait
+  int tv_usec; -> number of microseconds to wait
+};
+- if set to 0, then select() will timeout immediately and poll all fds 
+- if set to NULL, select() will never timeout and will wait till a fd is ready
+
+
+
+
 
 
 
