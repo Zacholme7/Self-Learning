@@ -42,6 +42,53 @@ struct timeval {
 - if set to 0, then select() will timeout immediately and poll all fds 
 - if set to NULL, select() will never timeout and will wait till a fd is ready
 
+7.4: handling partial send()s
+-------------------
+- kernel might not send out all bytes and buffer them instead
+- can have a sender make sure to send all bytes, but then this makes it a pain to for the reciever
+
+7.5: Serialization - How to pack
+-------------------
+- options for sending binary data across the network
+1) convert numbers into tetxt and then send text, reciever will convert it back
+- advantage that you can easily print and read the data the is sent
+- may be slow to convert and takes up more space than the original number
+2) send raw data passing pointer to the data to send
+- fast 
+- not portable since not all machines represent numbers the same
+3) encode hte number into portable binary form for the reciever to decode (preferred)
+- pack data into a known format and send over wire for decoding
+- (various macros in the book that do packing, usually just want to handle this with a library)
+- how to send a struct?
+- best is to pack each field indepdendently and then unpack them into a struct on the other side
+- (packing example functions in the book)
+- RFC 4506 defines binary formats for a bunch of different types, useful for packing
+
+7.6: Son of Data Encapsulation
+-------------------
+- stick a header on there with some identifiying info 
+- encapsulate data in a tiny header and packet structure
+- both the client and server know how to pack (marshal) and unpack (unmarshal)
+
+7.7: Broadcast packets - Hello World
+-------------------
+- with UDP IPv4 (not TCP) you can broadcast
+  - IPv6 is called multicasting
+- socket option SO_BROADCAST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
