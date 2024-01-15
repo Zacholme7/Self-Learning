@@ -1,5 +1,3 @@
-#include <iostream>
-
 // #1
 // think of function template as looking like this
 // template<typename T>
