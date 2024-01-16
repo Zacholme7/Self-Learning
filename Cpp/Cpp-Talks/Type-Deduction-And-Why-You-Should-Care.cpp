@@ -16,5 +16,14 @@
 // 1) Paramtype is a reference or pointer, but not a universal reference
 // - if expr's type is a reference, ignore that
 // - pattern match exprs type against ParamType to determine T
+// - auto plays the same role as T
 // 2) Paramtype is a universal reference
-// 3) Paramtype is neither a reference nor a pointer
+// template<typename T>
+// void f(T&& param);
+// f(expr);
+// - treated like normal ref papram expect if expr is lvalue with deduced type E, T is deduced as E&
+// - only place in type deduction where T will be a refernce
+// 3) Paramtype is neither a reference nor a pointer, by value
+// - if exprs type is a reference, ignore that
+// - is expr is const or volatile, ignore that
+// - T is the result
