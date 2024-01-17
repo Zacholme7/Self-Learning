@@ -27,3 +27,17 @@
 // - if exprs type is a reference, ignore that
 // - is expr is const or volatile, ignore that
 // - T is the result
+
+// when using auto, it plays the role of T, ref/const is dropped
+// auto is never deduced to be a reference, it must be manually added
+// creates a brand new object unless it is adorned with references/pointers
+// this is for c++ 14
+// difference when you have braced initializer 
+// - a braced initializer has no type
+// - this will fail type deduction
+// - BUT, if you use auto a type will be deduced... an initilizer list
+// after N3922, c++17
+// using auto but dont use equal with initializer list
+// - if one element, type of auto is the type of element inside
+//
+
