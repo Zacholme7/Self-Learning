@@ -29,6 +29,13 @@ int main() {
   constexpr int x = 42; // x as a constant expression with type const int and value 41
   // int &x2 = x; error: x is a const, x2 is not const
   // int *p2 = &x; error: x is a const, *p2 is not const
+  
+  // const qualifier can be used in funcion decl to make promise about what non local objects will not be modified by function
+  // if pointee is const, function promise not to change the pointeee
+  // if referee is const, fucntion promise not to change refree
+  // if func wil never modify pointee/referee associated wtih func, param type should be made pointer/reference to const obj
+  // if not const, assumption is that you plan to change it
+
 
   return 0;
 

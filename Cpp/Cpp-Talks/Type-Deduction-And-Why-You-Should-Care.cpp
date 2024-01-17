@@ -21,7 +21,8 @@
 // template<typename T>
 // void f(T&& param);
 // f(expr);
-// - treated like normal ref papram expect if expr is lvalue with deduced type E, T is deduced as E&
+// - treated like normal ref papram expect if expr is lvalue with deduced type
+// E, T is deduced as E&
 // - only place in type deduction where T will be a refernce
 // 3) Paramtype is neither a reference nor a pointer, by value
 // - if exprs type is a reference, ignore that
@@ -32,12 +33,33 @@
 // auto is never deduced to be a reference, it must be manually added
 // creates a brand new object unless it is adorned with references/pointers
 // this is for c++ 14
-// difference when you have braced initializer 
+// difference when you have braced initializer
 // - a braced initializer has no type
 // - this will fail type deduction
 // - BUT, if you use auto a type will be deduced... an initilizer list
 // after N3922, c++17
 // using auto but dont use equal with initializer list
 // - if one element, type of auto is the type of element inside
-//
+
+// lambda caputre type deduction
+// three types
+// 1) by reference: use template type deduction rules
+// 2) c++14 init capture: uses auto type deduction
+// 3) by values: use template type dedution except cv qualifiers are retained
+
+// you can observe deducded types
+// wont compile but in the error message you can see the type
+template <typename T> class TD; // type displayer
+
+template <typename T> // template with types of interest
+void f(T &param) {
+  TD<T> tType;
+  TD<decltype(param)> paramType;
+}
+
+// for auto variables, use decltype to get type
+//int x = 22;
+//const int &rx = x;
+//auto y = rx;
+//TD<decltype(y)> yType; // compile diagnostics show type
 
