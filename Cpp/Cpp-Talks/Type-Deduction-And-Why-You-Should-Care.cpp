@@ -58,8 +58,15 @@ void f(T &param) {
 }
 
 // for auto variables, use decltype to get type
-//int x = 22;
-//const int &rx = x;
-//auto y = rx;
-//TD<decltype(y)> yType; // compile diagnostics show type
+// int x = 22;
+// const int &rx = x;
+// auto y = rx;
+// TD<decltype(y)> yType; // compile diagnostics show type
 
+// refer to lecture for deducing at runtime (47:00)
+// avoid std::type_info::name
+
+// decltype(name) = declared type of name
+// never strips const/volatile references
+int x = 10;        // decltype(x) = int
+const auto &rx = x; // decltype(rx) = const int &
