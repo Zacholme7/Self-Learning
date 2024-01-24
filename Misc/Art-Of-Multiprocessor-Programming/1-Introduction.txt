@@ -1,0 +1,20 @@
+1: Introduction
+-------------------------
+- transition to building multicore cpus due to moore's law
+- multiprocessor chips exploit parallelism
+- sequential correctness is concerened with "safety property" (nothing bad will happen) 
+  - concurrent programs are also concernered with "liveness property" (something we expect to happen will happen)
+
+1.1: Shared Objects and Synchronization
+-------------------------
+- "equal ranges of input do not always produce equal amounts of work"
+- most hardware provides special read-modify-write instructions to make instrs atomic
+- race conditions can be the bane of concurrent programs
+  - Ex: two threads access a shared counter at the same time and in the end it only gets incremented once
+- mutual exclusion problem: the problem of making sure that ony one thread at a time can execute a particular block of code
+
+1.2: Shared
+-------------------------
+
+
+

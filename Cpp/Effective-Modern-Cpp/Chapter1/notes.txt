@@ -26,3 +26,34 @@ Item 1: Understanding template type deduction
         - dealing with pass by value here
         1: if expr type is reference, ignore the reference part
         2: after ignoring refness, if expir is const ignore that too
+
+- Array arguments
+- Array types are different from pointer types (seem similary because array can decary into pointer to first element
+- What happens when passed into template taking by value parameter?
+- Array parameters declaration treated as if they are pointer params
+- Although, you can have a reference to an array
+- So if we use case 1 then T will be deduced to the actual type of the array
+
+- Function types can decay into function pointers 
+- Everything regarding type deduction for arrays applied to functions and their decay into function pointers
+
+- Things to remember
+- During template type deduction, arguments that are references are treated as non references (reference-ness is ignored)
+- when deducting types for universal reference parameters, lvalue args get special treatment
+- When deducting types for by value params, const/vol arguments are treated as non const and non vol
+- When deducing types for arguments that are array or function names, decay to pointers unless theyre used to init references
+
+
+Item 2: Understand auto type deduction
+---------------------------------
+- auto type deduction is template type deduciton with one exception
+- auto plays the role of T in the template and the type specifier for the var acts as ParamType
+- type specifier takes place of ParamType, so again there are three cases
+# Case 1: The type specifier is a pointer or reference, but not a universal reference
+# Case 2: The type specifier is a universal reference
+# Case 3: The type specifier is neither a pointer nor a reference
+
+ 
+  - 
+
+

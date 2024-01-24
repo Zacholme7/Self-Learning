@@ -70,3 +70,35 @@ void f(T &param) {
 // never strips const/volatile references
 int x = 10;        // decltype(x) = int
 const auto &rx = x; // decltype(rx) = const int &
+
+// function return type deduction
+// makes code really confusing though.. be cautious
+// c++14: extensive, all lambda + all functions
+// auto: use template ( not auto ) type deduction rules
+// decltype(auto): use decltype type deduction rules
+
+// rules of thumb
+// use auto if a reference type would never be correct
+// use decltype(auto) only if a reference type could be correct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
