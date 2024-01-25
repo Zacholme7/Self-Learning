@@ -101,4 +101,3 @@ const auto &rx = x; // decltype(rx) = const int &
 
 
 
-
