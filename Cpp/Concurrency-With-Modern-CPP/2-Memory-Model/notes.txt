@@ -1,0 +1,36 @@
+2.1: Basics of the memory model
+------------------------------
+- from concurrency pov, two main aspects
+1) What is a memory location
+  - object of a scalar type (ex int or a pointer) or contiguous sequence of bit fields (from cppreference)
+2) What happens if two threads access the same memory location
+  - if two threads access the same memory location and want to modify it, you have a data race unless...
+    a) the memory location is modified by an atomic operation
+    b) one access "happens before" the other
+      - synchronization primitives are used to establish happens before relationships
+      - memory ordering defines the details
+
+2.2: The Contract
+------------------------------
+- contract between programmer and the system
+- the system consists of numerous parts that are all trying to optimize in their own way
+- "The weaker the rules are that the programmer has to follow, the more potential there is for the system to generate a highly optimized executable"
+  - unfortunately this does not apply in practice. you are granted many optimization choices but it makes it very difficult to manage
+- the stronger the contract, the less liberties the system has to generate an optimized executable
+- Roughly three contract levels in c++11
+*Strong*
+Single threading: one control flow...
+Multi-threading: tasks, threads, condition varibles...
+Atomic: sequential consistency, acquire release semantic, relaxed semantic...
+*Weak*
+- c++ memory model has to deal with the following points
+1) Atomic operations: operations that can perform without interruption
+2) Partial ordering of operations: sequences of operations that must not be reordered
+3) Visible effects of operations: guarantees when opeartions on shared variables are visible to other threads
+- the more we weaken the memory model, the more we change our focus
+
+
+
+
+
+
