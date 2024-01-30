@@ -35,8 +35,5 @@ int main() {
   // if referee is const, fucntion promise not to change refree
   // if func wil never modify pointee/referee associated wtih func, param type should be made pointer/reference to const obj
   // if not const, assumption is that you plan to change it
-
-
   return 0;
-
 }

@@ -29,6 +29,41 @@ Atomic: sequential consistency, acquire release semantic, relaxed semantic...
 3) Visible effects of operations: guarantees when opeartions on shared variables are visible to other threads
 - the more we weaken the memory model, the more we change our focus
 
+2.3: Atomics
+------------------------------
+- sequential consistency refers to the strong memory model
+- if provides two guarantees that only hold for atomics, but influence non atomics
+1) the instructions of a program are executed in the order written down
+2) there is a global order of all operations on all threads (global clock that all threads have to obey, on each tick a atomic operation takes place)
+- numberous interleavings of the instructions but the general execution is "sequentially consistent"
+
+- between sequential consistency and relaxed semantics there are a few more models, the most important being acquire release semantics
+  - programmer has to obey weaker rules than with sequential but there can be more optimizaitons
+  - threads are syncrhonized at specific syncrhonization points
+
+- relaxed semantics refers to the weak memory model
+- relaxed semantics is much more difficult to understand the interleavings and gives the system much more optimization possibilities
+
+- std::atomic_flag: an atomic boolean (https://en.cppreference.com/w/cpp/atomic/atomic_flag)
+1) the only lock free atomic (guaranteed system wide progress)
+2) the building block for higher level thread abstractions
+- powerful enough to build a spinlock
+  - eager asks for the lock to get access to critical section
+  - saves context swtich at the expense of wasting cpu cycles
+  - lock often used combo of spin and mutex to spin for a limited amount of time then sleep
+- it cannot be victim to lost wakeups
+
+- std::atomic
+- same atomic interface for all templates
+- do not have the guarantee that they are lock free
+- three partial speciailzations support the fundamental atomic interface
+  - std::atmoic<bool>, std::atoimc<user-defined-type>, std::atomic<smart T*>
+
+
+
+
+
+
 
 
 
