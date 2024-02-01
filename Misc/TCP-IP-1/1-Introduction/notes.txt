@@ -1,0 +1,43 @@
+1: Introduction
+------------------------------
+- when a set of common behaviors is used with a common language, a protocol is being used
+- collection of related protocols is a protocol suit
+- the architecture of the protocol suit specifies how various protocols relate to each other and divide up tasks to be accomplished
+- TCP/IP is a protocol suit that implements the internet architecture
+
+1.1: Architectural Principals
+------------------------------
+- internet: ability to provide communication between computers
+- WWW: application that uses internet for communication
+- "Interent architecture should be able to interconnect multiple distinct networks and muliple activites should be able to run simultaneously on the resulting network"
+---- Packets, connections, and datagrams ----
+- packets switching is an important concept that was developed in the 1960s
+  - chunks "packets" are carried though the network
+  - can be mixed together (multiplexing)
+- when packets recieved at a switch, they are stored in buffer
+- scheduled via
+1) First in first out
+2) Time division multiplexing
+3) Statistical multiplexing
+- 1960s datagram was developed: packet in which all identifiying info of source and final destination are in the packet
+---- The End-To-End Argument and Fate Sharing ----
+- end-to-end argument: main rules for taking care of data at endpoints, not in the middle
+- design "dumb" network with "smart" systems connected to it
+- fate sharing: all state to maintain active communication associate at same location with communicating endpoints (gets there in once piece or it doesnt)
+---- Error Control and Flow Control ----
+- circumstances where data gets damaged or lost in network, error control deals with it
+- various mathematical codes that can fix small errors mid transmission, retransmit with large errors
+- cost associated with reliable delivery, most apps just care that they get all the data
+- also best effort delivery where network does not put much work into ensuring data is delivered without errors or gaps
+- flow control can slow down senders
+
+Takeaways
+- Up to the 1960s, networks were largely based on telephone network which used circuit switching. There was then a shift to packet switching
+that broke down the information and sent it over the network via statistical multiplexing and time division multiplexing. Virtual circuits 
+preserved the nature of physical circuits but behave like packet switched networks. This is a connection oriented network as each switch has
+to maintain some state. Around the 1960s, a datagram was developed which contained all of the necessary information for routing. This lead to 
+a connectionless network in contract to VC. The end to end argument and fate sharing is very important in the design of TCP. End to end says
+that rules to take care of data should be at endpoint and fate sharing says that either a system all works or none of it works. In terms of data 
+transfer, you can get reliable transport for a overhead or best effort delivery where you are not guaranteed to get all your data/correct. 
+
+
