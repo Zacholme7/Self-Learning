@@ -59,6 +59,16 @@ Atomic: sequential consistency, acquire release semantic, relaxed semantic...
 - three partial speciailzations support the fundamental atomic interface
   - std::atmoic<bool>, std::atoimc<user-defined-type>, std::atomic<smart T*>
 
+- compare_and_exchange_strong will compare and exchange in one operation (compare and swap)
+  - this is the foundation of non blocking algorithms
+- atomicValue.compare_exchange_strong(expected, desired)
+  - if the compare of atomicValue with expected is true, atomicValue is set to desired
+  - if comparison is false, expected is set to the atomicValue
+- also a weak version since some processors dont support atomic compare exchange instrs
+  - when called in a loop you should prefer the weak form
+
+
+
 
 
 
