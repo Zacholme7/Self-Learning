@@ -1,0 +1,4 @@
+// why are these needed
+// if you pass to another thread, it might invalidate some invariant
+// rc and mutex guards
+// rc is not send because you can write code
