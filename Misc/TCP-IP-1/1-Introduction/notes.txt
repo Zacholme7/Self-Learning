@@ -104,6 +104,89 @@ on the use case.
 of the application, transport, network, and link layers. There are various protocols that take place in this layer and this is foundational
 to the internet. 
 
+--------------------------------------------
+| 1.4: Internets, Intranets, and Extranets | 
+--------------------------------------------
+- internet: multiple networks connected together using a a common protocol suite
+- Internet: collection of hosts around the world that can communcate with each other using TCP/IP
+- Internet is an interenet but the reverse is not true
+- 1980s realized isolated groups of stand alone computers did not make sense
+  - seperate networks that could not interoperate were not as valuable as bigger networks that can
+- Matcalfe's law: value of computer network is proportional to the square of the number of connected endpoints
+- intranet: private internetwork
+
+
+---- Takeaways ---
+- The interent is multiple networks connected together while the Internet is a collection of networks around the world that communicate 
+via TCP/IP. This came to be around the 1980s where there was a reliazation that interconnectedness was very powerful and this formed the basis 
+of Matcalfes law.
+
+-------------------------------
+| 1.5: Designing Applications |
+-------------------------------
+
+---- Designing Applications ----
+- network applications often designed with client at one end and server at the other
+- sever provides some type of service to clients
+1) iterative server
+I1: wait for client request to arrive
+I2: process the client request (bottleneck)
+I3: send response back to the client that sent the request
+I4: go back to I1
+2) Concurrent server
+I1: wait for a client request to arrive
+I2: start new server instance to handle the request. instance handles this one clients request
+I3: go back to I1
+
+---- Peer to Peer ---- 
+- application acts as both a client and a server
+- capable of forwarding requests
+- form a network of networks called a overlay network
+
+---- Application Programming Interfaces (APIs) ----
+- desired network operations are expressed via an api
+
+---- Takeaways ----
+- Internet applications are designed in various ways. The two most common are server client configurations and peer to peer configuration.
+A server client structure is where two end devices, a client and a server, communicate between each other. A server can be iterative or concurrent.
+The other architecture is a peer to peer network where a host acts as both a client and a serer. These all express their desired network operations
+via an api. 
+
+--------------------------------
+| 1.6: Standardization Process |
+--------------------------------
+- Internet Engineering Task Force (IETF)
+  - meets three times each year to discuss/agree on standard for the interents core protocls
+- Interenet Research Task Force (IRTF)
+  - explores protocols, architectures, and procedures that are not mature enough for standardization
+
+---- Request for Comments (RFC) ----
+- every official standard in the Interent community is published as a Request for Comments (RFC)
+
+---- Takeaways ----
+- Request for comments (RFCs) describe the standard in for the interent.
+
+---------------------------------------------------
+| 1.7: Implementations and Software Distributions |
+---------------------------------------------------
+- each popular operating system usually has own implementation but original was from Berkely
+- by mid 1990s, interenet and TCP/IP was well established
+
+---- Takeaways ----
+- Berkely had the original tcp/ip implementation but popular operating systems have now branched off and implemented their 
+own. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
