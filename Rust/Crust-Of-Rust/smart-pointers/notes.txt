@@ -1,0 +1,24 @@
+std::cell
+- can never get a pointer inside the cell itself
+- can copy, replace, etc but can never get a pointer
+- that means that it is always safe to mutate since no on
+- does not implement sync
+- benefit to cell is that you can have multiple shared re
+- usually used with rc
+- can have multiple references to the same thing but sinc
+- should just be used for small copy types
+- unsafe cell is the primitive building block
+    - you can get raw pointer to it whenver you want
+- sharable mutable containers exist to permit mutability
+- interior mutability means it is mutable via &T
+- often used with thread locals
+- shared ref to exclusive ref, only way is with unsafe cell
+
+std::refcell
+- all borrow checking done at compile time with rust
+- lets you check at runtime wheather someone else is mutating
+- handy when youre trying to take more mutiple references
+- way to get dynamically checked borrowing
+- good for things like graphs and trees
+- 
+

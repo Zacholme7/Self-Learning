@@ -1,0 +1,36 @@
+------------------
+| 1: Foundations |
+------------------
+
+---- Talking About Memory ----
+- value: combination of a type and an element that is in the types domain of values
+  - can be turned into a sequence of bytes using its types representation
+- Ex: 6 is the the type u8, instance of mathematical integer 6, in memory rep of 0x06
+- value is stored in a place (a location that can hold a value)
+- pointer is a value that holds the address of a region of memory
+- high level memory model useful for thinking about lifetimes and borrows
+  - think of variables as names given to values as they are instantiated, moved, and used
+  - consider the flows from a variable to all of its uses
+- low level memory model good for reasoning about unsafe code and raw pointers
+  - variables name memory locations that may or may not hold legal values
+  - value slot that is filled and replaced with new values
+- stack: segment of memory that your program uses as a scratch space for function calls
+  - on each function call, frame allocated at the top of the stack
+  - near bottom is frame for main function
+  - variables stored in a frame on stack cannot be accessed after frame goes away, so after reference to 
+  it must have a lifetime that is at most as long as the lifetime of the frame
+- heap: a pool of memory that isn't tied to the current call stack of the program
+  - values live until they are explicitly deallocated
+  - lifetime is however long your program keeps it alive
+- static memory: live for the entire execution of your program
+  - holds memory for variables you declare with the static keyword
+  - lifetime 'static marks as valid for as long as static memory is around (until the program shuts down)
+
+---- Ownership ----
+- memory model centers on the idea that all values have a single owner
+  - values get moved to new owners and invalidated access to old owner
+- if value implements copy, it is not moved and rather copied and both locations are accessible
+- dropping happends automatically when variable that holds the value is no longer in scope
+- 
+
+
