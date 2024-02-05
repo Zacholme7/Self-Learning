@@ -176,6 +176,28 @@ via an api.
 - Berkely had the original tcp/ip implementation but popular operating systems have now branched off and implemented their 
 own. 
 
+----------------------------------------------------
+| 1.8: Attacks Involving the Internet Architectrue |
+----------------------------------------------------
+- spoofying: can insert whatever ip address choose into source ip address field of each ip datagram someone sends
+  - delivered to destination but difficult to determine origin
+- denial of service: using so much of some important resource that legitimate users are denied service
+
+---- Takeaways ---- 
+- There are various different attacks malicious users can preform against the interent
+
+----------------
+| 1.9: Summary | 
+----------------
+- interenet architecture was designed to interconnect different existing networks and provide a wide range of services and protocols operating simultaneously
+- use packet switching with datagrams
+- interent employs a layered architecutre and employs encapsulation
+  - three main layers in TCP/IP are network, transport, and application
+  - network (IP) provides unreliable datagram service while transport provides end to end service to applications on end hosts
+- Tcp provides in ordered reliable stream delivery with flow/congestion control
+- Udp provides no capabilities beyond IP except port numbers for demultiplexing and error detection, supports multicast
+- router connects the network at the ip layer
+
 
 
 
