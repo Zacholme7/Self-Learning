@@ -59,4 +59,23 @@ E) reversed: 32bits; 28 free (1111 = E)
 - address range (240.0.0.0–255.255.255.255), reserved, 1/16
 - this scheme was used till about the early 1980s unitl it began to have scaling problems
 
+----- Subnet Addressing -----
+- inconvenience to have to allocate new network number for any new network segment attatched to the internet
+- alter netork portion of ip address for local purpose at site, rest of network would see A,B,C paritions
+  - subnet addressing
+- site allocated as A, B, or C leaving some host bits to further allocated and assigned within site
+- divide host potion of its base address allocation into subnet number and a host number
+- administrator is free to change subnet number and host number allocation as they saw fit
+  - allows for an easily configurable network:host ratio
 
+----- Subnet Masks -----
+- subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
+is partitioned from the host info in a corresponding ip address
+- configured statically or dynamically
+- used to determine where the network/subnetwork portion of ip address ends and host part begins
+- 1 in subnet masks = corresponding bit position in IP address should be considered part of combined network/subnetwork portion of address
+- 0 in subnet maks means corresponding bit position should be considered part of the host portion
+- subnet maks is purely a local matter at the site
+
+----- Variable Length Subnet Masks (VLSM) -----
+- 
