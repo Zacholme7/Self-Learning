@@ -37,6 +37,22 @@
   - do not give mutable ref to inner value and just gives you methods for manipulating it in place
   - atoimc integer types nad Cell
   - cannot get direct ref but can read and replace value inside
+- lifetime is a name for a region of code taht some reference must be valid for
+- at heart of lifetimes is the borrow checker
+- whenever a reference with some lifetime 'a is used, the borrow checker checks to see if 'a is still alive
+  - traced the path back to where 'a starts 
+- sometimes need to store references within your own types, can use generic lifetimes
+- two subtelties
+1) if your type implements drop then dropping your type counts as a use of any lifetime or type your type is generic over
+2) while a type can be generic over multiple lifetimes, making it so often server to unnecessarily complicate type signature
+- lifetime variance: describes what types are subtypes of other types and when a subtype can be used in place of a supertype (and vice versa)
+- 'static is a subtype of 'a because 'static lives at least as long as any 'a and so it is more useful
+- all types of a variance and there are three types
+1) covariant if you can just use a subtype in place of a type
+  - ex: can pass &Vec<&'static str> to function that takes &Vec<&'a str>
+2) invariant: you must provide exactly the given type
+  - ex: if function takes &mut Vec<'a str> you cannot pass &mut Vec<&'static str>
+3) contravariant: function types are more useful if theyre okay with their arguments being less useful
 
 
 

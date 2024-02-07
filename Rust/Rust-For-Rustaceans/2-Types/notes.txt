@@ -1,0 +1,18 @@
+------------
+| 2: Types |
+------------
+
+---- Types in Memory ----
+- types tell you how to interpret bits in memory
+- alignment dictates where the bytes for a type can be stored
+  - ex: pointers point to bytes, not bits
+- on cpu, memory often accessedin block larger than a single byte (cpu word size)
+- operations on data that is not aligned is called misaligned accesses, can lead to poor performance
+- cpu prefer/require argument that are naturally aligned (alignment matches its size)
+- complex types are assigned the largest alignment of all the types they contain
+- rust provides repr() attribute to request particular memory representation
+  - repr(c) gives predictable c layout, good when working with unsafe raw pointers
+  - repr(transparent): used only on types with single field and guarantees that layout of outer type is exactly the same as the inner type
+-
+
+
