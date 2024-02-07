@@ -19,18 +19,19 @@
   - near bottom is frame for main function
   - variables stored in a frame on stack cannot be accessed after frame goes away, so after reference to 
   it must have a lifetime that is at most as long as the lifetime of the frame
-- heap: a pool of memory that isn't tied to the current call stack of the program
-  - values live until they are explicitly deallocated
-  - lifetime is however long your program keeps it alive
-- static memory: live for the entire execution of your program
-  - holds memory for variables you declare with the static keyword
-  - lifetime 'static marks as valid for as long as static memory is around (until the program shuts down)
+- heap: pool of memory that is not tired to the current call stack of the program
 
 ---- Ownership ----
-- memory model centers on the idea that all values have a single owner
-  - values get moved to new owners and invalidated access to old owner
-- if value implements copy, it is not moved and rather copied and both locations are accessible
-- dropping happends automatically when variable that holds the value is no longer in scope
-- 
+- all value have a single owner
+- values may implment copy in which they are copied instead of moved
+
+--- Borrowing and Lifetimes ----
+- owner of a vlaue may lend out that vlaue to others without giving up ownership via references
+- shared reference (&T) is pointer that may be shared
+  - values behind shared reference are not mutalbe
+  - many can exist at any point in time
+- mut reference (&mut T) is a pointer to a value that may be mutated
+  - compile assumes that the reference is exclusive
+
 
 

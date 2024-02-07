@@ -1,0 +1,62 @@
+------------------------------------------
+| 2: The Internet Address Architecture |
+------------------------------------------
+---- 2.1: Introduction ----
+- network layer addresses use IP addressing
+- every device connected to internet has IP address
+- often shielded from user by DNS
+
+
+---- 2.2: Expressing Ip Addresses ---- 
+- IPv4 is most popular ip type
+  - expressed in dotted decimal notation
+  - ex: 165.195.130.107
+  - 4 numbers in range [0, 255]
+  - dotted decimal notation just a way to express 32 bit nonegative representation
+  - 165.195.130.107 -> 10100101 11000011 10000010 01101011
+- Ipv6 is 128 bits in length
+  - four hexadecimal numbers called block/fields separated by colons
+  - Ex: 5f05:2000:80ad:5800:0058:0800:2023:1d71
+- standardized simplifications
+1) leading zeroes do not need to be expressed
+  - Ex: 5f05:2000:80ad:5800:58:800:2023:1d71
+2) Blocks of all zeroes can be obmitted and replaced by ::.
+  - Ex: 2001:0db8:0:0:0:0:0:2 -> 2001:db8::2
+3) Ipvj represented in Ipv6 form can use notation where block preceeding ipv4 portion has value FFFF
+  - Ex: ::ffff:10.0.0.1 represents ipv4 10.0.0.1
+  - called IPv4 mapped IPv6 address
+4) low order 32 bits of ipv6 address can be written using dotted quand notiation
+  - Ex: ipv6 addr ::0102:f001 -> ::1.2.240.1
+  - called ipv4 compatible ipv6 address
+  - this is no longer required
+
+---- 2.3: Basic IP Address Structure ----
+- ipv4 has 4,294,967,269 possible combinations
+- ipv6 has 340,282,366,920,938,463,463,374,607,431,768,211,456 possible combinations
+- convenient to devide address space into chunks
+- most ipv4 addresses sundivided down to single address used to identify single network interface of computer attached to interent
+  - called unicast addresses 
+- historical evolution of ip addresses
+
+----- classful addressing -----
+- when internet address originally deifned, every unicast ip address has network portion
+  - identified network on which teh interface using the ip address was to be found
+- also had host portion
+  - identified particular host on network given in the network portion
+- ip contained a net number and a host number
+- networks began to have different number of hosts and each host needed a ip addresses
+- developed paritioning where different size allocation units of ip addr space given out to sites based on projected number of hosts
+- divided into 5 classes
+A) net number: 8 bits; 7 free (0 = A), host: 24 bits
+- address range (0.0.0.0–127.255.255.255), unicast, 1/2 fraction of total, num nets = 128, num hosts = 16,7772216
+B) net number: 16 bits; 14 free (10 = B), host: 16 bits
+- address range (128.0.0.0–191.255.255.255), unicast, 1/4 fraction of total, num nets = 16,384 num hosts = 65,536
+C) net number: 24 bits; 21 free (110 = C), host: 8 bits
+- address range (192.0.0.0–223.255.255.255), unicast, 1/8 fraction of total, num nets = 2,097,152 num hosts = 256
+D) multicast address: 32 bits; 28 free (1110 = D)
+- address range (224.0.0.0–239.255.255.255), multicast, 1/16
+E) reversed: 32bits; 28 free (1111 = E)
+- address range (240.0.0.0–255.255.255.255), reserved, 1/16
+- this scheme was used till about the early 1980s unitl it began to have scaling problems
+
+

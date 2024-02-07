@@ -20,5 +20,7 @@ std::refcell
 - handy when youre trying to take more mutiple references
 - way to get dynamically checked borrowing
 - good for things like graphs and trees
-- 
 
+std::rc
+- allow multiple references to something and only deallocate it when the last one goes away
+- useful in data structures where you have one element present in multiple places

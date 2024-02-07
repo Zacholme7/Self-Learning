@@ -28,6 +28,13 @@ fn main() {
     }
     let x2 = x1; // x1 is copy so it was not moved into z and copied, therefore we can still use it
     // let y2 = y1; box is not copy so y1 was dropped when it was moved 
+    
+
+    let mut x = 42;
+    let z = 10;
+    let mut y = &mut x;
+    *y = 10;
+
 
 
 
