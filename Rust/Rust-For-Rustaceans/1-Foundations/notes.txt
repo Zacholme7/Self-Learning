@@ -19,19 +19,26 @@
   - near bottom is frame for main function
   - variables stored in a frame on stack cannot be accessed after frame goes away, so after reference to 
   it must have a lifetime that is at most as long as the lifetime of the frame
-- heap: pool of memory that is not tired to the current call stack of the program
+- heap: where dynamic memory lives
 
----- Ownership ----
-- all value have a single owner
-- values may implment copy in which they are copied instead of moved
+---- Borrowing and Lifetimes ----
+- references are pointers that come with an additional contrct for how they can be used
+- shared reference, &T, is a pointer that may be shared
+  - any other number of references may exist at the same time and each is copy
+  - value behind shared ref is not mutable
+- mutable references, &mut T, exclusive mutable reference
+- the owner of a value is the one responsible for dropping it
+- some types provide interior mutability which allows you to mutate a value through a shared reference
+  - rely on things like atomic instructions or invariants
+- two categories
+1) those that let you get a mutable reference through a shared reference
+  - Mutex, RefCell
+2) those that let you replace a value given only a shared reference
+  - do not give mutable ref to inner value and just gives you methods for manipulating it in place
+  - atoimc integer types nad Cell
+  - cannot get direct ref but can read and replace value inside
 
---- Borrowing and Lifetimes ----
-- owner of a vlaue may lend out that vlaue to others without giving up ownership via references
-- shared reference (&T) is pointer that may be shared
-  - values behind shared reference are not mutalbe
-  - many can exist at any point in time
-- mut reference (&mut T) is a pointer to a value that may be mutated
-  - compile assumes that the reference is exclusive
+
 
 
 
