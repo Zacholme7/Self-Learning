@@ -39,29 +39,29 @@
 - historical evolution of ip addresses
 
 ----- classful addressing -----
-- when internet address originally deifned, every unicast ip address has network portion
-  - identified network on which teh interface using the ip address was to be found
+- when internet address originally defined, every unicast ip address has network portion
+  - identified network on which the interface using the ip address was to be found
 - also had host portion
   - identified particular host on network given in the network portion
 - ip contained a net number and a host number
 - networks began to have different number of hosts and each host needed a ip addresses
 - developed paritioning where different size allocation units of ip addr space given out to sites based on projected number of hosts
 - divided into 5 classes
-A) net number: 8 bits; 7 free (0 = A), host: 24 bits
+A) 0: net number: 8 bits; 7 free (0 = A), host: 24 bits, mask 255.0.0.0, very large netowrks
 - address range (0.0.0.0–127.255.255.255), unicast, 1/2 fraction of total, num nets = 128, num hosts = 16,7772216
-B) net number: 16 bits; 14 free (10 = B), host: 16 bits
+B) 10: net number: 16 bits; 14 free (10 = B), host: 16 bits, mask 255.255.0.0, medium sized networks
 - address range (128.0.0.0–191.255.255.255), unicast, 1/4 fraction of total, num nets = 16,384 num hosts = 65,536
-C) net number: 24 bits; 21 free (110 = C), host: 8 bits
+C) 110: net number: 24 bits; 21 free (110 = C), host: 8 bits, mask 255.255.255.0, small networks
 - address range (192.0.0.0–223.255.255.255), unicast, 1/8 fraction of total, num nets = 2,097,152 num hosts = 256
-D) multicast address: 32 bits; 28 free (1110 = D)
+D) 1110: multicast address: 32 bits; 28 free (1110 = D)
 - address range (224.0.0.0–239.255.255.255), multicast, 1/16
-E) reversed: 32bits; 28 free (1111 = E)
+E) 1111: reversed: 32bits; 28 free (1111 = E)
 - address range (240.0.0.0–255.255.255.255), reserved, 1/16
 - this scheme was used till about the early 1980s unitl it began to have scaling problems
 
 ----- Subnet Addressing -----
 - inconvenience to have to allocate new network number for any new network segment attatched to the internet
-- alter netork portion of ip address for local purpose at site, rest of network would see A,B,C paritions
+- alter network portion of ip address for local purpose at site, rest of network would see A,B,C paritions
   - subnet addressing
 - site allocated as A, B, or C leaving some host bits to further allocated and assigned within site
 - divide host potion of its base address allocation into subnet number and a host number
@@ -78,4 +78,73 @@ is partitioned from the host info in a corresponding ip address
 - subnet maks is purely a local matter at the site
 
 ----- Variable Length Subnet Masks (VLSM) -----
-- 
+- it is possible to use a different length subnet mask applied to the same network numbers in different portions of the same site
+- adds flexibility since diff subnetworks can be set up with different number of ports
+- VLSM now supported by most hosts, routers, and routing protocols 
+
+----- Broadcast Addresses -----
+- in ipv4 subnetwork, special address is the subnet broadcast address
+- formed buy setting network/subnetwork portion of ipv4 address to right value and then all bits in the host field to 1
+  - invert subnet mask and perform OR with address of any computer on subnet
+
+----- IPv6 addresses and Interface Identifiers -----
+- ipv6 addrs are 4 times longer than ipv6
+- special prefixes indicate scope of address, indicate portion of network where address can be used 
+  - node-local: address only valid for communication within the same device
+  - link-local: address is valid for communication among devices on the same network segment or ipv6 prefix
+  - global: address is valid across the internet
+- ipv6 devices typically use more than one address for communication
+- interface identifiers are used to uniquely identify interfaces on a netowrk
+  - can be formed from mac address of nic using EUI-64 format
+- EUI-64 invovles 24 bit OUI and 40 bit extension
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

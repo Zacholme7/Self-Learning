@@ -13,6 +13,29 @@
 - rust provides repr() attribute to request particular memory representation
   - repr(c) gives predictable c layout, good when working with unsafe raw pointers
   - repr(transparent): used only on types with single field and guarantees that layout of outer type is exactly the same as the inner type
--
+- c repr requires we place all fiields in same order they appear in original struct def
+  - repr(Rust) removes this
+- place fields in decreasing size so smaller ones are used as padding
+- use #[repr(packed)] to say you are fine with misalignment, need every bytes
+  - may lead to much slower code and can even cause crash if instr needs alignment
+- use #[repr(align(n))] if you want to give field or type larger alignment than it requires
+  - can be used to make values end up in diff cache lines, avoid false sharing
+- tuple: represented like a struct with fields of the same type as the tuple values in the same order
+- array: represented as contiguous seq of the contained type w/ no padding
+- union: layout chosen ind for each variant, alignment is max across all variants
+- enumeration: same as union w/ field additional field that stores enum variant discrimant
+  - value code uses to determine which of the the enum variants a given value holds
+- most types in rust implement the Sized trait automatically (size known at compile time)
+  - trait objects and slices do not (they are dynamically sized types, dyn)
+- compiler requires types to be sized nearly everywhere
+  - every single type bound you write includes T: Sized, can explicity opt out with T: ?Sized 
+    - ? : may not be
+- wide/fat pointer can be used to bridge gap between unsized and sized types
+  - like normal pointer but includes extra word sized field
+  - when you take ref to DST, wide pointer is automatically constructed
+  - wide pointer is twice the size of usize, one for pointer and one for extra info
+
+---- Traits and Trait Bounds ----
+
 
 
