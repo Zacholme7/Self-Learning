@@ -1,0 +1,24 @@
+----------------------------------------------------------------
+| 2: How Programming Languages Model Asynchronous Program Flow |
+----------------------------------------------------------------
+- 2 broad abstractions over concurrent operations
+1) Cooperative: tasks that yield voluntarily 
+2) Non-cooperative (premptive): tasks that dont necessarily yield voluntarily and scheduler pre-empts running tasks
+- can then again be further divided
+1) stackful: each task has its own calls tack. execution can be suspended and whole stack is preserved
+2) stackless: all tasks share the same call stack. task cant be suspended in middle of stack frame
+- thread = thread of execution = set of instrs that need to be executed sequentially
+1) os thread: threads that are created by the os and managed by the os scheduler, kernel thread
+2) user level threads: created and managed by programmer without os knowing about them
+- scheduler descies who gets cpu time to progress
+- threads provided by the os is called 1:1 threading, each task is assigned on os thread
+- operating system is the runtime
+- creating new os thread has overhead, need bookkeeping and initialization
+- green threads/fibers are example of m:n threading
+- runtime with scheduler that schedules what task (M) gets time to run on os thread (N)
+- coroutines are either asymmetric or symmetric
+1) asymmetric: yields to a scheduler
+2) symmetric: yield a specific destination
+- async in rust will re write funciton call into a future
+  - async fn run() -> () {..} gets changed to fn fun() -> impl Future<Output = ()>
+- await will yield control to the runtime scheduler

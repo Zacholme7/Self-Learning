@@ -36,6 +36,26 @@
   - wide pointer is twice the size of usize, one for pointer and one for extra info
 
 ---- Traits and Trait Bounds ----
-
-
-
+- when you write type/function that is generic over T, youre really telling compiler to make copy of that type/func for each type T
+  - doesnt actually do full copy past, just parts that you use 
+- static dispath: for any given copy, the address we are dispatchign to is known statically
+- generic type -> many non generic types is called monomorphization
+- dynamic dispatch enables code to call a trait method on a generic type without knowing what that type is 
+  - &dyn makes it so caller must give two pieces of info for that arg. the address of the pattern and the function  
+  - in practice, get pointer to memory in vtable
+- combination of a type that implments a trait and its vtable is a trait object
+- to be object-safe, non of traits methods can be generic or use the self type and no static methods
+- dynamic dispatch can cut compile time and improve efficiency, but it prevents compiler from optimizing for the specific types that are used
+- broadly speaking, want to use static dispatch in libraries and dynamic dispath in binaries
+- rustt traits can be generic in two ways
+1) with generic type parameter. Ex: trait Foo<T>
+  - have to specify all generic parameters and repeat any bounds on the parameters
+2) associated types. Ex: trait Foo { type Bar; }
+- use an associated type if you expect only one implementation of the trait for a given type and use generic type parameter otherwise
+- rust is pretty struct about where you can implement traits and what types you can implement them on
+  - this is to preserver the coherence property: for any given type and method there is only one correct choice for which implemented of the method to use for that type
+  - Ex: imagine if you could write your own Display trait for bool
+- orphan rule established the balance: you can implmenet a trait for a type only if the trait or the type is local to your crate
+  - allows you to implemented traits over a range of type with code like impl<T> MyTrait for T where T: ..., this is blanket implementation
+- trait bounds do not need to be of form T: Trait where T is some type your impl is generic over
+- higher ranked trait bound: bound says "this reference implements this trait for any lifetime"

@@ -98,6 +98,26 @@ is partitioned from the host info in a corresponding ip address
   - can be formed from mac address of nic using EUI-64 format
 - EUI-64 invovles 24 bit OUI and 40 bit extension
 
+---- 2.4: CIDR and Aggregation ----
+- in early 1990s there was serious scaling problem
+1) by 1994 onver half of all class B addresses allocated
+2) 32bit ipv4 inadequate size
+3) entries in global routine table was growing fast
+- Introduction of classless inter domain routing
+  - address range is not predefined as being part of a class, instead requires a mask
+  - called network prefix
+- eliminate predefined separation of network and host number within ip address, makes finer grain allocation possible
+- prefix appended to end of ip address following /
+
+---- 2.5 Special-Use Addresses ----
+- consult book for list of special addresses
+- may want to translate betwee ipv4 and ipv
+  - makes use of ipv4 embeded ipv6 address
+  - contains ipv4 address within ipv6 address
+- ipv4/6 both support multicast address which identifies a group of host interfaces rather than just one
+- for ipv4, class D space reserved for multicast
+
+
 
 
 

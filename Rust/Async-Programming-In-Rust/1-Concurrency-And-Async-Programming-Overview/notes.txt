@@ -1,0 +1,29 @@
+--------------------------------------------------------------------
+| 1: Concurrency and Asynchronous Programming, a detailed overview |
+--------------------------------------------------------------------
+- non preemptive multitasking (cooperative multitasking): put responsibility of letting os run other tasks in hands of programmer
+  - programmer yielded control to the os
+- preemptive multitasking: responsbility of scheduling cpu resources in hands of os via context switches
+- concurrency is about dealing with multiple things at one time while parallelism is about doing a lot of things at the same time
+- progressing multiple tasks at same time = multitasking
+either
+  1) progress task concurrently but not at same time
+  2) progress tasks at the exact same time in parallel
+- resource: something we need to progress a task, could be cpu time or memory
+- task: set of operations that require some kind of resource to progress
+- parallel: happening independently at the same time
+- concurrent: tasks that are in progress at the same time, but not necessarily progressing simultaneously
+- paralleism has to do with increasing the resources used to solve a task, concurrency just has to do with using resources more efficiently
+  - throwing more resources at a problem vs working smarter
+- asynchronous programming is the way a prog lang/library abstracts over concurrent operations and how we use it 
+- operating system is an abstraction over the hardware
+  - communiate with the os via sys calls, exposed through libc on unix
+- how does cpu prevent us from accessing memory we are not supposed to?
+- cpus have mmu which maps virtual addresses to physical addresses
+  - in the assembly deref example, the 999... will trigger page fault defined in the interrupt descriptor table and cpu hands control over to os
+- in essence, os and cpu cooperate a lot
+
+
+
+
+

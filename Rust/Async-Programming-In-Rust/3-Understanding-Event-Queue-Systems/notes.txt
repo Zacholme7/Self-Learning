@@ -1,0 +1,15 @@
+
+------------------------------------------------------------------------------------------
+| 3: Understanding Os-Backed Event Queues, System Calls, and Cross Platform abstractions |
+------------------------------------------------------------------------------------------
+- I/O operations need to go through the operating system since they are dependend on things os abstracts over
+- Os backed event queue allows us to know status of each call and allows us to use non blocking calls
+- blocking i/o calls will suspend thread until i/o is complete and then resume from point of suspension
+- non blocking i/o will not put the thread to sleep and will give it a handle that it can poll to see if the event is ready or not
+- two options for event queueing that will make it so we only yield control to os when we cannot make any more progress
+1) query queue w/ regular intervals to check if an events have changed status
+2) make blocking call to queue and say we want to wake up when at least one event in queue has changed status
+- epoll/kqueue are readiness based event queues
+  - they let you know when an action is ready to be preformed
+- IOCP (input/output completion port) is a completion based event queue
+  - queue notifies you when events are completed
