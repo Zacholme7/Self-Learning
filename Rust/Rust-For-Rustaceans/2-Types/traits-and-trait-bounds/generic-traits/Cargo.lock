@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "exploration"
+name = "generic-traits"
 version = "0.1.0"
