@@ -1,0 +1,15 @@
+Level triggered vs edge triggers
+------------------------------
+- epoll can notify events in level triggered or edge triggered mode
+- default is level triggered, EPOLLET sets edge triggered
+- level triggered means that the answer to "has an event happened" is true as long as the electrical signal on an 
+interrupt line is high
+  - read event has occured as long as there is data in the buffer associated with the file handle
+  - can encounter case where we get multiple notis on same events since we havent had time to drain buffer yet
+    - EPOLLONESHOT: tells epoll that once we recieve an event on this fd, it should disable fd in the interest list
+    - have to reactivate it by calling epoll_ctl with EPOLL_CTL_MOD and new bitmask
+- edge triggerd means that the answer to "has an event happened" is true only if the electrical signal has changed from low to high
+  - event occurs when buffer goes from having no data to having data
+  - wont get repeated notifications but have to drain buffer properly or you dont get any more notifications on that fd
+- thundering heard: multiple threads that share a wakeup source in their epoll() sets
+

@@ -16,6 +16,7 @@
 // - helps produce much more efficient code
 // - generate for any types we invoke the function with
 // - leads to more code in the final binary
+// - usually not too much of a cost to generate other functions
 // 
 // example 1
 fn strlen(s: impl AsRef<str>) -> usize {
@@ -31,6 +32,59 @@ fn strlen_string(s: String) -> usize {
     s.len()
 }
 
+// if you ran this function, it would generate a copy of f "inlined" (more of option to) into the function
+fn bool_then<T>(b: bool, f: impl FnOnce() -> T) -> Option<T> {
+    if b {
+        Some(f())
+    } else {
+        None
+    }
+}
+
+
+// now lets get into dispatch...
+trait Hello {
+    fn hello(&self);
+}
+
+impl Hello for &str {
+    fn hello(&self) {
+        println!("hello {}", self);
+    }
+}
+
+fn foo() {
+    // compiler will determine type of this then look up which methods are available on &str
+    // doesnt find any called hello, then looks at the traits and finds it
+    "J".hello();
+}
+
+fn bar(h: impl Hello) {
+    // compiler doesnt actually know the type of h, so what is going to happen here?
+    // monomophization will happen and new function will be generated...
+    h.hello();
+}
+
+// function similar to the following is generated
+fn bar_str(h: &str) {
+    // now dispatching this is trival, this is statis dispatch
+    // at compile the compiler knows what the type is 
+    h.hello();
+}
+
+
+// what if we dont just want a bunch of copies everywhere?
+// what if dont want to care about concrete type and just care it implements some trait?
+// dynamic dispatch and DSTs
+
+// Starting off with the Sized trait
+// - Sized trait just signals types whos size is known at compile time
+// - arguments passed to a function takes up size of the stack, so compiler must know how many
+// bytes its going to take up
+// - basically always a requirement that a type is sized so the compiler knows how to generate the
+// code for it
+//
+
 
 fn main() {
     let hello_str = "hello";
@@ -39,3 +93,60 @@ fn main() {
     strlen(hello_str);
     strlen(hello_string);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
