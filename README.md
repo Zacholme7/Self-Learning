@@ -1,15 +1,11 @@
-# Programming Languages Learning Repository
+# Readings
 
-## Overview
-This repository is my personal space for learning and experimenting with different programming languages. Here, you'll find directories dedicated to each language I'm currently exploring: Rust, C++, and Python.
+This repository is my personal space for learning and experimenting with different programming languages. Here, you'll find various directories with all the textbooks that I am going through. Topics vary but can be broadly categorizied into computer science related readings and programming language readings. 
 
 ## Structure
 The repository is organized into language-specific directories:
-
-- `/rust` - Contains Rust projects and exercises.
-- `/cpp` - Houses C++ experiments, practice problems, and mini-projects.
-- `/python` - Dedicated to Python scripts, learning exercises, and small applications.
-    - [Python Concurrency with Asyncio](https://www.amazon.com/Python-Concurrency-asyncio-Matthew-Fowler/dp/1617298662)
+- `/CsTopics` - Contains general computer science topics
+- `/ProgLangs` - Contains general programming language topics
 
 ## Goals
-The primary aim of this repository is to track my progress as I delve into different programming paradigms and enhance my coding skills across various languages.
+The primary aim of this repository is to track my progress as I delve into different programming paradigms/computer science topics and enhance my knowledge and skillset
