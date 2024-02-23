@@ -17,7 +17,7 @@
 // - generate for any types we invoke the function with
 // - leads to more code in the final binary
 // - usually not too much of a cost to generate other functions
-// 
+//
 // example 1
 fn strlen(s: impl AsRef<str>) -> usize {
     s.as_ref().len()
@@ -40,7 +40,6 @@ fn bool_then<T>(b: bool, f: impl FnOnce() -> T) -> Option<T> {
         None
     }
 }
-
 
 // now lets get into dispatch...
 trait Hello {
@@ -68,10 +67,9 @@ fn bar(h: impl Hello) {
 // function similar to the following is generated
 fn bar_str(h: &str) {
     // now dispatching this is trival, this is statis dispatch
-    // at compile the compiler knows what the type is 
+    // at compile the compiler knows what the type is
     h.hello();
 }
-
 
 // what if we dont just want a bunch of copies everywhere?
 // what if dont want to care about concrete type and just care it implements some trait?
@@ -83,8 +81,59 @@ fn bar_str(h: &str) {
 // bytes its going to take up
 // - basically always a requirement that a type is sized so the compiler knows how to generate the
 // code for it
-//
 
+// can make unsized sized through indirction
+// for example, reference
+//  - reference is always the same size
+//  - box has a size
+// - in general, just place it behind some pointer type
+pub fn strlen_dyn(s: Box<dyn AsRef<str>>) -> usize {
+    s.as_ref().as_ref().len()
+}
+
+// trait object: only has the property that it represents a trait
+// - only behave as some underlying trait
+
+// how does it know where the hello method is?
+// - this is where dynamic dispatch and vtables come into play
+// - trait object is a fat pointer
+// - ref to trait object stores pointer to the actual concrete implementing type and a pointer to
+// the vtable for the referenced trait
+// What is a vtable? (virtual dispatch table)
+// - dyn Hello, vtable:
+//      struct HelloVtable {
+//          hello: *mut Fn(*mut ()),
+//      }
+// - diff vtable is constructued for each concrete type
+// &str -> &dyn Hello
+// 1) pointer to the str
+// 2) HelloVtable {
+//  hello: &<str as Hello>::Hello
+// }
+// - address to vtable goes inside reference
+// - indirect via the vtable
+
+fn say_hi(s: &dyn Hello) {
+    s.hello() // call???
+}
+
+// v tables are built at compile time, but utilized at runtime
+// Box<dyn Hello> -> this is a fat pointer right away
+//  *mut dyn Hello
+
+/*
+ * - This will not work, need pointer to vtable for hei and as_ref
+ * - as you add more trait, the size of ref just keeps growing and growing
+ * - cant it just generate for combination? in theory yes but it does not currently
+ *
+ * - could do something like this instead
+ * - pub trait HelloAsRef: Hei + AsRef<str> {} and then use that so it only generates one vtable
+fn baz(s: &dyn (Hello + AsRef<str>)) {
+    s.hello();
+    let s = s.as_ref();
+    s.len();
+}
+*/
 
 fn main() {
     let hello_str = "hello";
@@ -92,61 +141,8 @@ fn main() {
     // these calls will generate the two functions that we listed above
     strlen(hello_str);
     strlen(hello_string);
+
+    let x = Box::new(String::from("hello"));
+    let y: Box<dyn AsRef<str>> = x;
+    strlen_dyn(y);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

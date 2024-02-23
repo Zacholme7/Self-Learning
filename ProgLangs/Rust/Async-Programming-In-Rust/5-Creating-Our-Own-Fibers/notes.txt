@@ -1,0 +1,12 @@
+-----------------------------
+| 5: Creating Our Own Fibers|
+-----------------------------
+- Instruction set architecture (ISA): describes an abstract model of a CPU that defines how the cpu is controlled
+by the software it runs. The instruction set (x86-64)
+  - CISC (complex instruction set computers) and RISC (reduced instruction set computers)
+- Application binary interface (ABI): specifies a set of rules that the programmer has to adhere to for their programs to work correctly
+  - Ex: System V ABI specifies how stack should be set up, how you should call function, how to create file, ...
+- cpus implement an instruction set and the instruction set defines what instructions the cpu can execute and the infra
+it should provide to programmers
+
+

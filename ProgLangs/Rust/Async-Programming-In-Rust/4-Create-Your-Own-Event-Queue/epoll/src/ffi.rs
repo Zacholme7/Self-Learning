@@ -21,7 +21,6 @@ extern "C" {
     pub fn epoll_wait(epfd: i32, events: *mut Event, maxevents: i32, timeout: i32) -> i32;
 }
 
-
 // event used to communicate with the operating system in epoll_ctl
 // system expects packed Event Struct, hence the packed
 #[derive(Debug)]
