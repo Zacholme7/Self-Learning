@@ -42,8 +42,21 @@ fn bool_then<T>(b: bool, f: impl FnOnce() -> T) -> Option<T> {
 }
 
 // now lets get into dispatch...
-trait Hello {
+trait Hello /*where Self: Sized*/ {
+    // Self: Sized will say the entire trait cannot be turned into
+    // trait obj, rare to do but sometimes used for backwards
+    // compatibility reasons
     fn hello(&self);
+
+    // this means that it is fine it we dont call it through a trait object
+    // opt out of the vtable
+    // this function should not be placed in the vtable and should not be callable through a trait
+    // object
+    fn weird(&self)
+    where
+        Self: Sized,
+    {
+    }
 }
 
 impl Hello for &str {
@@ -134,6 +147,50 @@ fn baz(s: &dyn (Hello + AsRef<str>)) {
     s.len();
 }
 */
+
+use std::iter::Extend;
+/*
+ * - This will not compile because extend is not object safe
+ * -
+pub fn add_true(s: &mut dyn Extend<bool>) -> Vec<bool> {
+    s.extend(std::iter::once(true));
+}
+*/
+
+struct MyVec<T>(Vec<T>);
+impl<T> Extend<T> for MyVec<T> {
+    // there will be multiple copies of this function
+    // once extend function for every combination of iterator and item type
+    // what gets put into the vtable?
+    fn extend<I>(&mut self, iter: I)
+    where
+        I: IntoIterator<Item = T>,
+    {
+        //..
+    }
+}
+
+// fn clone(&self) -> Self
+/* - supposed to return self given a reference, so it should return dyn Clone
+ * but dyn clone is not sized, so the return value is also not sized, therefore
+ * this cannot work
+ * - cannot have method that returns self for it to be object safe
+pub fn clone(v: &dyn Clone) {
+    let x = v.clone(); // what is the size of x?
+}
+*/
+
+// drop is object safe
+pub fn say_hello(s: Box<dyn AsRef<str>>) {
+    // what happens when s goes out of scope?
+    // every vtable includes drop for the concrete type
+    // also includes size and alignment of the concrete type
+}
+
+// when behind a box
+// dyn Trait -> * -> (*mut data, *mut vtable)
+// [u8] -> * -> (*mut data, usize length)
+// str -> * -> (*mut data, usize length)
 
 fn main() {
     let hello_str = "hello";
