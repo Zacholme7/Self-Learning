@@ -46,7 +46,7 @@ fn main() {
 
 /*
  *
-- rust is pretty struct about where you can implement traits and what types you can implement them on
+- rust is pretty strict about where you can implement traits and what types you can implement them on
   - this is to preserver the coherence property: for any given type and method there is only one correct choice for which implemented of the method to use for that type
   - Ex: imagine if you could write your own Display trait for bool
 - orphan rule established the balance: you can implmenet a trait for a type only if the trait or the type is local to your crate
