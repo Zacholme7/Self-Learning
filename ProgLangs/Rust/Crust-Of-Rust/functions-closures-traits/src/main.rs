@@ -27,6 +27,41 @@ fn main() {
     // Fn(): takes a shared reference to self, can be called multiple times at same time
     // FnMut(): takes a exclusive reference to self, can only be called once at a time
     // FnOnce(): takes owned reference to self, can only be called once since it moves value
+    
+    // - function item coherces into function pointer and function pointer implements all three of
+    // the above traits
+    // - Fn and FnMut are subtraits of FnOnce, can be used where FnOnce is expected
+
+
+    // this is a closure
+    // takes arguments and returns a value
+    // can capture things from env and generate unique function
+    let f = || ();
+
+    // this does capture from the environment
+    // cannot represent a function pointer when it captures from env
+    let z = String::new();
+    let a = || {
+        let _ = z; // this captures z from the env
+    };
+
+    /*
+     * closure gets turned into something like this
+    struct FClosue<'scope> {
+        z: &'scope String
+    }
+    impl<'scope> Fn() for FClosure<'scope> {
+        fn call(&self) {
+            ...
+        }
+    }
+    */
+
+    let mut x = String::new();
+    let b = || {
+        x.clear();
+    };
+
 
 
 }
