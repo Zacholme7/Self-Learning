@@ -116,6 +116,7 @@ is partitioned from the host info in a corresponding ip address
   - contains ipv4 address within ipv6 address
 - ipv4/6 both support multicast address which identifies a group of host interfaces rather than just one
 - for ipv4, class D space reserved for multicast
+- 
 
 
 

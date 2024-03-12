@@ -1,0 +1,53 @@
+--------
+| Defi | 
+--------
+Into to defi -> link: https://www.youtube.com/watch?v=k9HYC0EJU6E
+- defi: decentralized finance
+- smart contracts are the main building blocks
+- lots of projects built on etherum, uses solidity
+- trying to create new permissionless financial ecosystem
+- lending and borrowing, stable coints, derivatives, margin trading
+- lending and borrowing
+  - ex: compound, aave
+- stable coints
+  - pegged to usd without having to store dollars in the real world
+  - ex: makerdao
+  - algorithmic and non algorithmic
+- dex
+  - exchange in crypto assets in decentralized and permissionless way
+  - w/o giving up customy
+  - liqudity pool based (uniswap, kyber, bancor) and orderbook based (loopring, idex)
+- derivatives
+  - derive value from underlying asset
+  - ex: syntehetix
+- margin trading
+  - using borrowed funds to increase position in an asset
+  - ex: dydx, fulcrum
+- insurance
+  - protection against smart contract failures
+  - ex: nexus mutual, opyn
+- oracles
+  - reliable data feeds from outside world into smart contracts
+  - ex: chainlink
+- can think of all of these as defi "legos"
+- defi vs cefi??
+- defi is permissionless, open, censorship resistant, cheaper, on blockchain
+- cefi is permissioned, close, can be censored, expensive, on old foundations
+
+What is liquidity staking -> link: https://diadao.notion.site/diadao/What-is-Liquid-Staking-ff1ea99573134c55bfc80e677d73ff8a
+- process where investors stake their crypto but retain liquidity
+  - can utlize staked assets through derivative tokens
+
+Ultimate Guide to DeFi -> link: https://coincodecap.com/the-ultimate-guide-to-defi-decentralized-finance
+- leverages 3 principals of ethereum blockchain
+1) interoperable
+2) programmable
+3) composable
+- assets are locked on protocols
+  - amount is a measure of things such as trust, measure of liquidity, growth/popularity, ...
+- stalecoins are assets that maintain a stable value against a target price (ex: us dollar)
+  - fiat collaterialized: backed by an individual currency or basket of currencies
+  - crypto collateralized: backed by cryptoassets
+  - resource backed: backed by another asset such as gold
+  - hybrid models: combine the above
+- 

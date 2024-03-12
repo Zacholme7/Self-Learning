@@ -1,0 +1,130 @@
+----------------------------
+| 2: Processes and threads | 
+----------------------------
+
+------------------
+| 2.1: Processes | 
+------------------
+- upon system boot, many processes are started at the same time
+- in multiprogramming system cpu switches from process to process very quickly
+- process model
+  - all runnable software on computer organized into sequential processes
+  - process: instance of an executing program
+  - each process has its own virtual cpu
+  - multiprogramming: switching back and forth quickly between processes
+  - process is activity of some kind. it has program, input, output, and state. program is something that may be stored on disk not doing anything
+  - 4 key events cause processes to be created
+    - System initialization
+    - Execution of process creation sys call by running process
+    - User request to create new process
+    - Initialization of a batch job
+- daemons: processes that stay in the background to handle some activity
+- fork will create an exact clone of the calling process in unix
+  - have same memory image, environment strings, and same open files
+  - child run execve to change its memory image and run a new program
+  - parent and child PROCESS have their own distinct address space
+- process terminates from one of the following conditions
+  - Normal exit (voluntary): finish their work 
+  - Error exit (voluntary): call exit
+  - Fatal error (involuntary): discover fatal error or bug
+  - Killed by another process (involuntary): kill command
+- processes form hierarchy, kind of like hydra
+  - init process after boot in first
+- three process states
+  - Running (actually using the cpu at that instant)
+  - Ready (runnable, temporarily stopped to let another process run)
+  - Blocked (unable to run until some other external event happens)
+- state changes possible
+  - running -> blocked : process blocks for input
+  - running -> ready: scheduler picks another process to run
+  - ready -> running: scheduler picks this process
+  - blocked -> ready: input becomes available
+- os maintains proces table with one entry per process
+  - contains important imformation about the processes state
+- each I/O class has location called interrupt vector that contains address of ISR (interrupt service routine)
+  - on interrupt, computer jumps to address in interrupt vector then run ISR
+- cpu utilization/degree of multiprogramming = 1 - p ** n
+
+----------------
+| 2.2: Threads | 
+----------------
+- threads are basically mini processes
+  - parallel entities share address space and data among themselves
+  - lighter weight than processes, faster to create and destory
+- concepts of a process
+  - resource grouping
+    - group together related resources such as addr space, open files, alarms, etc
+  - execution
+    - process is a thread of execution. has pc, registers, vars, stack, etc
+- processes are used to group resources together, threads are the entities scheduled for execution on the cpu
+- threads add to the process model by allowing multiple executions to take place in the same process environment
+- multithreading: allowing multiple threads in the same process
+  - cpu switches rapidly back and forth among threads
+- threads share the same address space, but each have their own stack
+- thread can be running, blocked, ready, terminated like a process
+- threads can be implemented in user space or kernel space
+- user space
+  - kernel knows nothing about them and just mamanges single threaded process
+  - run on top of run time system
+  - each process needs own thread table to keep track of threads in that process, managed by run time system
+  - thread switch very very fast
+  - process can have customized scheduling algorithm
+  - problems when implementing blocking calls and have to manually yield
+  - still have to trap to kernel to handle system call
+- in kerenel
+  - dont need a run time system
+  - kernel has single thread table that keeps track of all threads
+    - does creation and deletion here
+    - holds each threads registers, state, etc
+  - cost of sys call to make thread is very high
+- hybrid approach
+  - use kernel level threads and multiplex user level threads onto some or all of them
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

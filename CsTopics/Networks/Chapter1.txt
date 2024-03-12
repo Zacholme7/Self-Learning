@@ -1,0 +1,10 @@
+-----------------------------------------
+| 1: Computer Networks and the Internet |
+-----------------------------------------
+
+1.1: What is the Internet
+-------------------------
+- internet: computer network that interconnects billions of computing devices throughout the world
+- hosts: devices used to send or receive data packets
+
+

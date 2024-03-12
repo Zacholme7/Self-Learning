@@ -62,9 +62,11 @@ fn main() {
         x.clear();
     };
 
-
+    // this is a constant closure that can be evaluated at compile time
+    let x = || 0;
 
 }
+
 
 fn bar() {}
 
@@ -81,3 +83,49 @@ where
     F: Fn(),
 {
 }
+
+// can be used for dynamic dispatch
+fn hello(f: Box<dyn Fn()>) {
+    f()
+}
+
+
+
+// compile does not know if f can be called as const
+/*
+const fn fam<F: FnOnce()>(f: F) {
+    f()
+}
+*/
+
+
+// for any lifetime 'a f impl of F from str 'a to another &'a str
+// way to say that this needs to hold for any lifetime
+fn quo<F>(f: F)
+where
+    F: for<'a> fn(&'a str) -> &'a str,
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
