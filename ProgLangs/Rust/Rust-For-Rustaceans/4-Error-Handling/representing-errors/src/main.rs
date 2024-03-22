@@ -57,6 +57,26 @@ fn copy_streams(
     }
 }
 
+// opaque errors
+// - when you cant meaningfully recover, you may want to just provide one opaque error
+// - should impl Send, Debug, Display, and Error
+// - type erased errors compose nicely
+// - if return type is Box<dyn Error + ...>, can use % to propogate
+// - 'static bound on Box<dyn Error + Send + sync + 'static> allows you to access downcasting
+//  - downcasting is taking item of one type and casting it to one of a more specific type
+//  - turn a dyn error into the concrete underlying error type when the dyn Error was originally
+//  that type
+//  - Error::downcast_ref
+
+// special error cases
+// - Some functions are fallible but cannot return any meaningful error if they fail
+//  - return Result<T, ()> conceptually
+// - avoid simplifiying a Result<T, ()> to Option<T>
+//  - Err(()) indicates that operation failed and should be retried, reported, or handled
+//  - None converys that the function has nothing to return
+// - never type, written with ! syntax. represents value that can never be generated
+//  - Result<T, !>
+
 fn main() {
     println!("Hello, world!");
 }
