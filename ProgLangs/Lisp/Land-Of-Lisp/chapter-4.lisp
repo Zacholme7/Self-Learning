@@ -41,7 +41,48 @@
         'even-number) ; ODD-NUMBER
 ; *number-was-odd*: t
 
+; there are ways to do a implicit progn
+; if the conditions are the opposite they cannot do anything and just return nil
 
+; enclosed expressions are evaluated when the condition is ture
+(defvar *number-is-odd* nil)
+(when (oddp 5)
+        (setf *number-is-odd* t)
+        'odd-number) ; ODD-NUMBER
+; *number-is-odd*: t
+
+; enclosed expressions are evaluated when the condition is false
+(unless (oddp 4)
+        (setf *number-is-odd* nil)
+        'even-number) ; EVEN-NUMBER
+; *number-is-odd*: NIL
+
+; cond is the classic way of doing branching
+; implicit progn, multiple branches, eval several conditions
+(defvar *arch-enemy* nil)
+ (defun pudding-eater (person)
+        (cond ((eq person 'henry) (setf *arch-enemy* 'stupid-lisp-alien)
+                        '(curse you lisp alien – you ate my pudding))
+                    ((eq person 'johnny) (setf *arch-enemy* 'useless-old-johnny)
+                        '(i hope you choked on my pudding johnny))
+                    (t  '(why you eat my pudding stranger ?))))
+
+; can also use cases
+; uses eq for comparisons, branching on symbols
+; cannot be used to branch on string values and others
+(defun pudding-eater (person)
+        (case person   
+                ((henry) (setf *arch-enemy* 'stupid-lisp-alien)
+                                '(curse you lisp alien - you ate my pudding))
+                ((johnny) (setf *arch-enemy* 'useless-old-johnny)
+                                '(I hope you choked on my pudding johnny))
+                ((otherwise '(why you eat my pudding stranger? )))))
+
+; some tricks with and and or
+; can set global var to true if a condition
+; demonstrated short circuiting
+(defparameter *is-it-even* nil)
+(or (oddp 4) (setf *is-it-even* t))  
 
 
 
