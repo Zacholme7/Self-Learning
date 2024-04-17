@@ -1,0 +1,41 @@
+Notes
+-----------------
+- takes things that impl the future trait and reutrns what is in the output 
+- tokio just simply runs futures
+- runtime is the heart of tokio, gives futures too and it gives you back what it computes
+- scheduler take futures that come in and call the poll method on them
+- return of poll is either ready with the return value or pending which means that it is not finished
+- there is a multithreaded scheduler and a current thread scheduler
+  - almost always want to use mulithreaded one
+  - thread per cpu core, parallelism
+- current thread scheduler does not start any threads, just use current thread 
+  - blocks the current thread until the work is done
+
+- block_on: takes a future and returns the output
+  - do all work until that future returns ready
+- spawn: takes a future and puts it onto queue of tasks for the current runtime (current thread or multi)
+  - does not execute anything, just returns a joinhandle
+- every future that has been spawned onto a runtime is a task
+  - this does not mean that every future is a task
+  - futures can contain other futures
+- only top level future is a task, ones that are passed to spawn
+- tokio only sees the top level tasks
+- multithreaded scheduler is a work stealing scheduler, looks at other worker threads queues
+- when to use current thread scehduler?
+  - limit movement between threads, costly to move between cpus
+  - more control over what runs where but less of a general purpose
+- tokio::spawn give you a future thread::spawn gives os thread
+- os is not aware of different futures
+
+
+
+
+
+
+
+
+
+
+  
+
+
