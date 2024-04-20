@@ -1,0 +1,26 @@
+
+- the optimizer
+- frontend emits Ir for the input program
+- optimizer analyze the IR and discover facts about hte context
+    - can then use to rewrite the code so it computes the answer in a more efficient way
+- efficienty can have many meanings
+    - speed of code, size of compiler code, energy that processor uses to run code
+- loop invariant: value that does not chanve between iterators of aloop
+- optimization consists of analysis anf transformation
+    - analysis decides where compiler can apply transformation
+- backend traverses IR and emits code for target machine
+- solves three problems
+1) converts IR operations into equivalent operations of the underlying machine (instruction selection)
+- rewrites IR into target machine operations
+- uses virtual registers, symbolic reg name that indicates val can be stored in reg
+2) decide which vals shoudl reside in registers at each point in code (register allocation)
+- must take all of the virtual registers and map them to physical registers
+- then rewrites code to reflect the decision
+3) select execution order for operations (Instruction scheduling)
+- may need to reorder operations to reflect target machines specific performance constraints
+- minimize the number of cycles wasted waiting for operations
+- must ensure that the same reuslt is produced
+
+
+
+
