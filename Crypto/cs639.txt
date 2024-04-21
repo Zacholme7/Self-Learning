@@ -1,0 +1,6 @@
+01: Introduction to blockchain technologies
+------------------------
+- the problem is centralized systems
+  - all servers/nodes controlled by the same entitiy
+  - all nodes trust each other
+

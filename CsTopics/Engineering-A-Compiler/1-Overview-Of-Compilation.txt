@@ -1,0 +1,109 @@
+------------------------------
+| 1: Overview of Compilation |
+------------------------------
+
+1.1: Introduction
+-----------------
+- compiler: computer program that translates other computer programs and to prepare them for execution
+- needs to understand source/target language and the mapping between them
+  - front end deals with source langauge
+  - back end to deal with target language
+  - intermediate representation to connect front and back end
+- source language is usually some high level language (c++/c/...) 
+- target language is usually instruction set of a processor (risc-v, x86, ..)
+- source to source translator: compiler that targets programming languages rather than instruction set
+- interpreter: takes in executable specification and produces output result
+- 2 fundamental principals
+1) compiler must preserve the meaning of the input program
+2) the compiler must discernibly improve the input program
+
+Summary:
+A compiler is a program that translates other programs and prepares them for execution. The general structure
+is a frontend, optimizer, and backend. The frontend deals with the source language and the back end
+deals with the target language. The two main properties that a compiler must preserve is correctness and improving
+the source program in some way
+
+Memory cards:
+- Compiler: a program that translates other programs and prepares them for exeuction
+- Parts of a compiler: frontend, optimizer, backend
+- 2 properties compiler must preserve: correctness of the source program and must improve it in some way
+
+
+1.2: Compiler Structure
+-----------------------
+- front end focuses on understanding the source language program
+  - must encode src into itermeridate represenation for later use
+- back end focuses on mapping programs to target machine
+- IR must be correct
+- IR allows optimization phase between front and back end
+- Optimizaer is IR to IR transformer, tries to improve it in some way
+- optimization cannot be solved optimally
+- multipass vs singlepass
+- abstraction via seperation of concerts
+
+Summary: 
+- A intermediate representation is what links the front and back ends of the compiler together.
+This is a common form that the frontend produces and the backend translates. In this middle stage,
+optimizations are performed via the optimizer. An optmizer is a IR to IR transformer and there is 
+no one single best way to optimize a program.
+
+Memory cards:
+- Intermediate Representation: data structures that represents the code that the frontend processes
+
+1.3: Overview of Translation
+----------------------------
+- watch through translating a <- a x 2 x b x c x d 
+- compiler must understand form/syntax and meaning (semantics)
+  - if code is valid, create Ir, else throw error
+- front end scanner converts stream of characters from intput code into stream of words
+  - valid work recognized by spelling
+- front end parser fits words from scanner into rule based model of input languages syntax
+  - called a grammar
+  - calls scanner incrementally as it needs additional words
+- parser may call on elaborator to perform additional computation on the input program
+- syntax must be checked against the gramamr that defines the language
+- grammar defines a set of strings of words
+  - has set of rules, productions, defined over words in the language 
+  - set of syntactic variables introduced to provide structure
+- once it has words, compiler tries to match them to rules of the grammar
+- parsing: process of automatically finding derivations of words
+- semantic elaborations expand meaning of program from simple syntax to operational definition
+
+- the optimizer
+- frontend emits Ir for the input program
+- optimizer analyze the IR and discover facts about hte context
+    - can then use to rewrite the code so it computes the answer in a more efficient way
+- efficienty can have many meanings
+    - speed of code, size of compiler code, energy that processor uses to run code
+- loop invariant: value that does not chanve between iterators of aloop
+- optimization consists of analysis anf transformation
+    - analysis decides where compiler can apply transformation
+- backend traverses IR and emits code for target machine
+- solves three problems
+1) converts IR operations into equivalent operations of the underlying machine (instruction selection)
+- rewrites IR into target machine operations
+- uses virtual registers, symbolic reg name that indicates val can be stored in reg
+2) decide which vals shoudl reside in registers at each point in code (register allocation)
+- must take all of the virtual registers and map them to physical registers
+- then rewrites code to reflect the decision
+3) select execution order for operations (Instruction scheduling)
+- may need to reorder operations to reflect target machines specific performance constraints
+- minimize the number of cycles wasted waiting for operations
+- must ensure that the same reuslt is produced
+
+
+1.4: Engineering
+----------------
+- compiler construction has plenty of algorithms and design choices
+- have to weigh pros and cons carefully and not accumulate tech debt
+- 
+
+
+Memory cards:
+- Scanner: compiler pass that converts string of characters into stream of classified words
+- Parser: compiler pass that determines if input stream is a sentence in the source language
+
+
+
+
+

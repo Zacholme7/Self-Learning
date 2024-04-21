@@ -1,0 +1,13 @@
+---------------
+| 2: Scanners |
+---------------
+- scanner transforms stream of characters into stream of words in the input language
+- only pass to touch every character in input program
+
+2.1: Introduction
+-----------------
+- also called lexical analyzer or lexer
+- reads stream of characters and produces stream of words
+- aggregates characters into words and then determines if the word is valid in the src language
+  - each valid word assigned syntactic category
+
