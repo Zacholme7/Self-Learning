@@ -2,9 +2,9 @@
 | 2: Processes and threads | 
 ----------------------------
 
-------------------
-| 2.1: Processes | 
-------------------
+------------------------
+---- 2.1: Processes ----
+------------------------
 - upon system boot, many processes are started at the same time
 - in multiprogramming system cpu switches from process to process very quickly
 - process model
@@ -45,9 +45,35 @@
   - on interrupt, computer jumps to address in interrupt vector then run ISR
 - cpu utilization/degree of multiprogramming = 1 - p ** n
 
-----------------
-| 2.2: Threads | 
-----------------
+Summary: 
+Unix utilizes a process model in which all of the software eon the computer is organized into sequential processes. A process 
+is simply an instance of an execution program. Eveything on the computer is a process. They can be both created and destoryed.
+The cpu utilizes multiprocessing where multiple processes are all being executed by the cpu will switch between them quickly to 
+give the illusion that they are all executing at the same time. A process can either be running, ready to run, or blocked. The 
+os maintains a process table taht contaisn information about all the processes running on a system
+
+Memory notes:
+- Multiprogramming: multiple programs running simultaneously on one CPU, switches from process to process very quickly
+- Process: instance of executing program. It has a program, input, output, and a state
+- What is the process model: all runnable software organized into sequential processes
+- 4 events that cause a process to be created: System initialization, execution of process creation sys call by running process,
+user request to create new process, initialization of a batch job
+- Daemons: process that stays in background to handle some activity
+- Fork(): create exact clone of calling process. Same memory image, env, and open file. Parent and child process have distinct address 
+spaces
+- Process termination conditions: normal exit (voluntary): finished their work. Error exit (voluntary): call exit, Fatal error (involuntary): discover 
+fatal error or bug. Killed by another process (involuntary): kill command
+- 3 process running states: Running (actually being used by cpu at that instant), ready (runnable, temporarily stopped to let another process run),
+blocked (unable to run until some other external event happens)
+- How does os keep track of processes?: has process table with one entry per process, contains info about process state
+- Interrupt vector: contains address of ISR (instruction service routine) for each I/O class. Upon interrupt, computer jump to addr in interrupt vector 
+then runs the ISR
+
+
+
+----------------------
+---- 2.2: Threads ----
+----------------------
 - threads are basically mini processes
   - parallel entities share address space and data among themselves
   - lighter weight than processes, faster to create and destory

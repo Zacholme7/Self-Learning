@@ -1,6 +1,6 @@
 Notes
 -----------------
-- takes things that impl the future trait and reutrns what is in the output 
+- future takes things that impl the future trait and reutrns what is in the output 
 - tokio just simply runs futures
 - runtime is the heart of tokio, gives futures too and it gives you back what it computes
 - scheduler take futures that come in and call the poll method on them
@@ -32,10 +32,22 @@ make sure they do not take more than 100ms, if so use block in place or move to 
 - blocking thread pool: they are expected to block, can spawn own threads using spawn::blocking
   - tokio can reuse these threads so more efficient than std threads
 - only use block_in_place if you need to do blocking work that is not send
+
 - Localset: set of tasks that are guaranteed to be executed on the same thread
   - spawn_local to spawn onto local set, create new top level tasks
   - can then await Localset
   - can only be used as top level task
+
+- tokio mutex vs std::mutex
+- tokio mutex they are async
+- should you use them everywhere? no
+- tokio mutex, in order to make async is it fairly inefficient
+- std::mutex is very efficient, less overhead than tokio one
+- tokio mutex guard is send compared to std::mutex one which is not
+- when you call await on tokio mutex when lock is held it will put it to sleep rather than block
+- use std::mutex if you have short critical sections and there are no awaits, for anything else use tokio mutex
+
+
 
 
 

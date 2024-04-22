@@ -2,8 +2,9 @@
 | 1: Overview of Compilation |
 ------------------------------
 
-1.1: Introduction
------------------
+---------------------------
+---- 1.1: Introduction ----
+---------------------------
 - compiler: computer program that translates other computer programs and to prepare them for execution
 - needs to understand source/target language and the mapping between them
   - front end deals with source langauge
@@ -29,8 +30,9 @@ Memory cards:
 - 2 properties compiler must preserve: correctness of the source program and must improve it in some way
 
 
-1.2: Compiler Structure
------------------------
+---------------------------------
+---- 1.2: Compiler Structure ----
+---------------------------------
 - front end focuses on understanding the source language program
   - must encode src into itermeridate represenation for later use
 - back end focuses on mapping programs to target machine
@@ -50,11 +52,12 @@ no one single best way to optimize a program.
 Memory cards:
 - Intermediate Representation: data structures that represents the code that the frontend processes
 
-1.3: Overview of Translation
-----------------------------
-- watch through translating a <- a x 2 x b x c x d 
+
+--------------------------------------
+---- 1.3: Overview of Translation ----
+--------------------------------------
 - compiler must understand form/syntax and meaning (semantics)
-  - if code is valid, create Ir, else throw error
+  - if code is valid, create IR, else throw error
 - front end scanner converts stream of characters from intput code into stream of words
   - valid work recognized by spelling
 - front end parser fits words from scanner into rule based model of input languages syntax
@@ -68,10 +71,8 @@ Memory cards:
 - once it has words, compiler tries to match them to rules of the grammar
 - parsing: process of automatically finding derivations of words
 - semantic elaborations expand meaning of program from simple syntax to operational definition
-
-- the optimizer
-- frontend emits Ir for the input program
-- optimizer analyze the IR and discover facts about hte context
+- frontend emits IR for the input program
+- optimizer analyze the IR and discover facts about the context
     - can then use to rewrite the code so it computes the answer in a more efficient way
 - efficienty can have many meanings
     - speed of code, size of compiler code, energy that processor uses to run code
@@ -83,7 +84,7 @@ Memory cards:
 1) converts IR operations into equivalent operations of the underlying machine (instruction selection)
 - rewrites IR into target machine operations
 - uses virtual registers, symbolic reg name that indicates val can be stored in reg
-2) decide which vals shoudl reside in registers at each point in code (register allocation)
+2) decide which vals should reside in registers at each point in code (register allocation)
 - must take all of the virtual registers and map them to physical registers
 - then rewrites code to reflect the decision
 3) select execution order for operations (Instruction scheduling)
@@ -91,17 +92,55 @@ Memory cards:
 - minimize the number of cycles wasted waiting for operations
 - must ensure that the same reuslt is produced
 
+Summary:
+A compiler must understand both the syntax and the semantics of the code is is translating. This is the responsibility
+of the frontend with will validate the input program and if it is valid, produce an IR corresponding to the input program.
+This IR is then subject to the optimizer which is able to make multiple passes and transform the IR into an equal, but more
+efficient form. Efficenty here can have many understandings from an incresing in runtime speed, an reduction in executable size,
+upon various others. Lastly, the backend takes this optimized IR and constructs code for the target machine. The backend has to deal
+with instruction ordering, register allocation, and properly coverting the code for the instruction set of the target machine.
 
-1.4: Engineering
-----------------
+Memory cards:
+None here
+
+
+--------------------------
+---- 1.4: Engineering ----
+--------------------------
 - compiler construction has plenty of algorithms and design choices
 - have to weigh pros and cons carefully and not accumulate tech debt
-- 
 
+Summary:
+A compiler is a huge feat of engineering which faces many tradeoffs in design and construction. The engineer
+must weight all of these choice to design and build a compiler that best suits their needs.
 
 Memory cards:
 - Scanner: compiler pass that converts string of characters into stream of classified words
 - Parser: compiler pass that determines if input stream is a sentence in the source language
+
+
+Chapter Summary
+---------------
+A compiler is a huge feat of engineering that consists of extensive design and building. An engineer is able
+to mix and match various approaches to find something that best suits their needs. A compiler is spilt into 
+three parts: frontend, optimizer, backend. The frontend consists of a scanner and a parser that will read
+in all the characters of the program, ensure they are syntactially and semantically correct, and then output an 
+intermiediate representation. The IR is a common form which links the frontend and the backend. It is then the job of the 
+optimizer to take the IR and perform a arbitraty number of passes to improve the efficiency of the code. The efficieny
+may be understood as various metrics such as execution speed, executable size, etc. After optimization, it is the job
+of the backend to take the new IR and convert it into instruction set of the underlying cpu for execution. It has to deal with
+problems such as register allocation, instruction ordering, and outputting a equivalent program to the source program. All in all,
+a compiler is simply a program that performs the transaltion of another program into an executable form. 
+
+
+All memory cards
+----------------
+- Scanner: compiler pass that converts string of characters into stream of classified words
+- Parser: compiler pass that determines if input stream is a sentence in the source language
+- Intermediate Representation: data structures that represents the code that the frontend processes
+- Compiler: a program that translates other programs and prepares them for exeuction
+- Parts of a compiler: frontend, optimizer, backend
+- 2 properties compiler must preserve: correctness of the source program and must improve it in some way
 
 
 

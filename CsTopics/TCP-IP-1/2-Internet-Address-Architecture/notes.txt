@@ -1,7 +1,10 @@
 ------------------------------------------
 | 2: The Internet Address Architecture |
 ------------------------------------------
+
+---------------------------
 ---- 2.1: Introduction ----
+---------------------------
 - network layer addresses use IP addressing
 - every device connected to internet has IP address
 - often shielded from user by DNS

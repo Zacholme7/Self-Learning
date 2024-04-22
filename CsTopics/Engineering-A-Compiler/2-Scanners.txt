@@ -10,4 +10,11 @@
 - reads stream of characters and produces stream of words
 - aggregates characters into words and then determines if the word is valid in the src language
   - each valid word assigned syntactic category
+- compiler must understand lexical structure (spelling) and syntactic structure (grammar)
+- specify lexical structure of input language using set of regular expressions
+- produces pair <lexeme, category>, pair called a token
+  - lexeme: actual text for a word recognized by the scanner
+  - category: the syntactic category
+- microsyntax: the lexical structure of a language
+- start from specification of languages microsyntax
 
