@@ -47,6 +47,7 @@ make sure they do not take more than 100ms, if so use block in place or move to 
 - when you call await on tokio mutex when lock is held it will put it to sleep rather than block
 - use std::mutex if you have short critical sections and there are no awaits, for anything else use tokio mutex
 
+- when future blocked, resource level call is blocked/pending
 
 
 

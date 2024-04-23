@@ -70,7 +70,6 @@ blocked (unable to run until some other external event happens)
 then runs the ISR
 
 
-
 ----------------------
 ---- 2.2: Threads ----
 ----------------------
@@ -105,6 +104,102 @@ then runs the ISR
   - cost of sys call to make thread is very high
 - hybrid approach
   - use kernel level threads and multiplex user level threads onto some or all of them
+
+Summary:
+Within processes, there is the concept of threads. Threads can be thought of as mini processes. They are lightweight entitires
+that are fast to create and destory that share sources among themselves. Processes are used to group resources together while threads
+allow for multiple executions to take place in the same environemtn. Threads can be implemented in user space, the kernel, or a hybrid
+approach. 
+
+Memory Notes:
+- Thread: a lighweight process that shares data/address space among themselves. Allow multiple executions to take place in the 
+same environment. Have their own stack. 
+- Multithreading: allowing multiple threads to execute in the same process
+- User space thread impl: kernel is unaware of them and they run on top of a runtime system. Each process has a thread table that is managed by a 
+runtime system that keeps tracks of all of the threads. Switching is very fast and can have customized scheduling but still have to manually yield
+and trap to kernel for io
+- Kernel thread impl: threads implemented in the kernel, dont need a runtime system and there is a single thread table that keeps track of all
+running threads. higher overhead for thread switching and creation is expensive
+- Hybrid thread impl: usage of kernel level threads and multiplex multiple user level threads onto them
+
+
+-----------------------------------
+---- 2.3: Event Driven Servers ----
+-----------------------------------
+- Threads: parallelism: blocking system calls
+- Single threaded process: No parallelism, blocking system calls
+- Finite-state machine/event-driven: parallelism, nonblocking system calls, interrupts
+
+Summary:
+An event driver architecture is an alternative to threads/single threaded process where there is an implementation
+of a finite state machine taht responds to events and interacts with the os via nonblocking calls
+
+Memory notes:
+None
+
+
+-------------------------------------------------------------
+---- 2.4: Synchronization and Interprocess Communication ----
+-------------------------------------------------------------
+- Three problems with IPC
+1) How to pass info 
+2) How to make sure two or more process/threads to not get in each others way
+3) Sequencing when dependencies are present
+- Race conditions: when two or more processes are reading/writing to some shared data and the final result depends on who runs when
+  - need to prohibit more than one process from reading/writing shared data at same time, mutual exclusion
+- Critical section: part of program where shared memory is accessed
+- proposals for mutual exclusion
+1) Disabiling Interrupts
+- on single processor system, just disable interrupts after entering critical section and re-enable after leaving
+- means cpu will not switch processes
+- unwise to give user process power to turn off interrupts
+- if multiprocessor, only affts CPU that disabled it
+- disabiling interrupts only useful in OS itself
+2) Lock variables
+- lock variable set to zero and when process wants to enter CS, test then set
+- non atomic so still suffers race conditions
+3) Strict Alternation
+- keep track of whos turn it is via some variable
+- busy waiting, continuously testing variable
+- not good when one process is much slower
+4)Peterson's Solution
+- before using shred var, call enter_region with process num
+- call leave_region to leave and signal that it is safe to enter
+5) TSL Instruction
+- test and set lock, read contents of memory word lock and store nonzero value at memory address
+- atomic instruction
+- alternative instr is XCHG, which x86 use
+- requires busy waiting
+- sleep: system call that causes caller to block/be suspended until another process wakes it up
+- wakeup: takes process to be awakened and wakes it up
+- producer-consumer/bounded buffer problem
+  - producer puts stuff in buffer, consumer takes it out
+  - producer go to sleep if buffer is full, consumer go to sleep if buffer is empty
+  - race condition on the count variable that tracks amount of items in buffer, can screw up wakeups
+  - 
+
+
+
+
+
+Memory Notes:
+- Three problems with IPC: how to pass information, how to make sure two or more processes/threads do not get in each others way,
+sequencies when dependencies are present
+- Race conditions: when two or more processes are reading/writing to some shared data and the final result depends on who runs when
+- Critical section: part of program where shared memory is accessed
+- Mutual exclusion - pros/cons of disabiling interrupts: pros: provides mutual exclusion, cons: not wise to give user this power, only 
+affects single cpu
+- Mutual exclusion - pros/cons of lock variables: variable that is set to zero and changed to one upon entering crit section. 
+pros: none, cons: does not work as still suffers race conditions
+- Mutual exclusion - pros/cons of Strict Alternation: keep track of whos turn it is via some variable. pros: provides mutual exclusion. 
+cons: busy waiting wasts cpu cycles, not good when one process is much slower
+- Mutual exclusion - TSL instruction: test and set lock, read contents of memory work lock and store nonzero value there, it is an atomic 
+instr, it provides mutual exclusion, but it requires busy waiting
+- producer-consumer problem: produer puts stuff on queue, consumer takes off, num items tracked by couter and producer/consumer put to sleep
+when they cannot perform work. problem is when a wakeup call gets lost due to a race condition on the counter 
+
+
+
 
 
 

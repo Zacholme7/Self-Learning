@@ -1,18 +1,32 @@
-1: Introduction
-------------------------------
+---------------------------
+|---- 1: Introduction ----| 
+---------------------------
 - when a set of common behaviors is used with a common language, a protocol is being used
 - collection of related protocols is a protocol suit
 - the architecture of the protocol suit specifies how various protocols relate to each other and divide up tasks to be accomplished
 - TCP/IP is a protocol suit that implements the internet architecture
 
----------------------------------
-| 1.1: Architectural Principals |
----------------------------------
+---- Summary ----
+-----------------
+- The internet is governed, defined, and run by protocols. TCP/IP is the protocol suit that defines and implements
+the internet architecture
+
+---- Memory Notes ----
+----------------------
+- protocol suit: a collection of related protocols
+
+
+
+
+-----------------------------------------
+|---- 1.1: Architectural Principals ----|
+-----------------------------------------
 - internet: ability to provide communication between computers
 - WWW: application that uses internet for communication
 - "Interent architecture should be able to interconnect multiple distinct networks and muliple activites should be able to run simultaneously on the resulting network"
 
 ---- Packets, connections, and datagrams ----
+---------------------------------------------
 - packets switching is an important concept that was developed in the 1960s
   - chunks "packets" are carried though the network
   - can be mixed together (multiplexing)
@@ -24,33 +38,50 @@
 - 1960s datagram was developed: packet in which all identifiying info of source and final destination are in the packet
 
 ---- The End-To-End Argument and Fate Sharing ----
+--------------------------------------------------
 - end-to-end argument: main rules for taking care of data at endpoints, not in the middle
 - design "dumb" network with "smart" systems connected to it
 - fate sharing: all state to maintain active communication associate at same location with communicating endpoints (gets there in once piece or it doesnt)
 
 ---- Error Control and Flow Control ----
+----------------------------------------
 - circumstances where data gets damaged or lost in network, error control deals with it
 - various mathematical codes that can fix small errors mid transmission, retransmit with large errors
 - cost associated with reliable delivery, most apps just care that they get all the data
 - also best effort delivery where network does not put much work into ensuring data is delivered without errors or gaps
 - flow control can slow down senders
 
----- Takeaways ----
+---- Summary ----
+-----------------
 - Up to the 1960s, networks were largely based on telephone network which used circuit switching. There was then a shift to packet switching
 that broke down the information and sent it over the network via statistical multiplexing and time division multiplexing. Virtual circuits 
 preserved the nature of physical circuits but behave like packet switched networks. This is a connection oriented network as each switch has
 to maintain some state. Around the 1960s, a datagram was developed which contained all of the necessary information for routing. This lead to 
-a connectionless network in contract to VC. The end to end argument and fate sharing is very important in the design of TCP. End to end says
+a connectionless network in contrast to VC. The end to end argument and fate sharing is very important in the design of TCP. End to end says
 that rules to take care of data should be at endpoint and fate sharing says that either a system all works or none of it works. In terms of data 
 transfer, you can get reliable transport for a overhead or best effort delivery where you are not guaranteed to get all your data/correct. 
 
-----------------------------------
-| 1.2: Design and Implementation |
-----------------------------------
+
+---- Memory Notes ----
+----------------------
+- internet: ability to provide communication between computers
+- packet switching: data is divided up into packets that are are routed through various switches in the network. enables multiplexing and network resiliancy
+- packet switching scheduling algorithms: first in first out, time division multiplexing, statistical multiplexing
+- datagram: packet in which all identifying info of source and final destination are in the packet
+- end-to-end argument: main rules for taking care of data at endpoints, not in the middle
+- fate sharing: all state to maintain active communication associate at same location with communicating endpoints (gets there in once piece or it doesnt)
+
+
+
+
+------------------------------------------
+|---- 1.2: Design and Implementation ----|
+------------------------------------------
 - implementation architecture defines how the concepts in a protocl architecture may be rendered into existence
 - layering is the approach to implementing protocol suits
 
 ---- Layering ----
+------------------
 - each layer is responsible for different part of communication
 - can evolve each layer separately
 - OSI includes 7 layers while TCP is 5
@@ -63,6 +94,7 @@ transfer, you can get reliable transport for a overhead or best effort delivery 
 1: physical -> connections, data rates, bit encoding
 
 ---- Multiplexing, Demultiplexing, and Encapsulation in Layered Implementations ----
+------------------------------------------------------------------------------------
 - protocol multiplexing: allows multiple different protocols to coexist on the same infra and multiple instanciations of same protocol
   - can occur at diff layers and each has diff identifier to determine which protocol/stream belong together
 - each layer N encapsulates the packet with identifying information
@@ -70,18 +102,37 @@ transfer, you can get reliable transport for a overhead or best effort delivery 
 - a device does not need to implement all of the layers
 - the abstraction via layering is what makes the concept of the internet so powerful
 
----- Takeaways ----
+---- Summary ----
+-----------------
 - Layering is the main architectural approach used to structure the internet. It consists of 7 layers (from highest to lowest): application,
 presentation, session, transport, network, link, physical. This allows for a separation of concerns and clean interface between layers. As a
 packet is passed up and down the stack, headers/footers are added/taken off. This is identifying information that is used to determine the 
 protocol that is being used at that layer. A device does not usually need to implement all of the layers and the specific ones needed depends 
 on the use case.
 
------------------------------------------------------------
-| 1.3: The Architecture and Protocols of the TCP/IP Suite | 
------------------------------------------------------------
+---- Memory Notes ----
+----------------------
+- Layers of the OSI model: application, presentation, session, transport, network, link, physical
+- OSI application: specifies methods for accomplishing some user defined task
+- OSI presentation: methods for epxression data formats and translation rules for applications
+- OSI session: methods for multiple connections constituting a communication session
+- OSI transport: methods for connections or associated between multiple programs on one machine
+- OSI network: methods for communicating between different types of links
+- OSI link: methods for communicating across single link (DSL, WIFI, ETHERNET)
+- OSI physical: connections, data rates, bit encoding
+- protocol multiplexing: allows multiple different protocols to coexist on the same infra and multiple instanciations of same protocol
+- what is used to provider the proper info for multiplexing/demultiplexing: a header
+
+
+
+
+
+-------------------------------------------------------------------
+|---- 1.3: The Architecture and Protocols of the TCP/IP Suite ----| 
+-------------------------------------------------------------------
 
 ---- The ARPANET Reference Model ----
+-------------------------------------
 - TCP/IP adoped the ARPANET reference model
 7: application -> any internet compatible application
 4: transport -> provides exchange of data between abstract ports
@@ -91,6 +142,7 @@ on the use case.
 - three types of ip addresses: unicast, broadcast, multicast
 
 ---- Port Numbers ----
+----------------------
 - 16 bit nonnegative integers
 - do not refer to anything physical
 - used for determining the correct receiving application
@@ -99,14 +151,29 @@ on the use case.
   - 1024-49151 = registered
   - 49152-65535 = dynamic/private
 
----- Takeaways ----
+---- Summary ----
+-----------------
 - The tcp/ip suit has a slighltly different layering architecture than the OSI model. It is based off the ARPANET model and consists
 of the application, transport, network, and link layers. There are various protocols that take place in this layer and this is foundational
 to the internet. 
 
---------------------------------------------
-| 1.4: Internets, Intranets, and Extranets | 
---------------------------------------------
+---- Memory Notes ----
+----------------------
+- Layers of TCP/IP model: application, transport, network (adjunct), link
+- TCP application: any internet compatible application
+- TCP transport: provides exchange of data between abstract ports
+- TCP network (adjunct): unofficial layer that helps accomplish setup, management, and security for network layer
+- TCP network: defines abstract datagrams and provides routing
+- TCP link (adjunct): unofficial layer used to map addressed used at network to those used at link
+- three types of ip addresses: unicast, broadcast, multicast
+- port number: 16 bit nonnegative integers that do not refer to anything physical but are used to determine the correct receiving application
+
+
+
+
+----------------------------------------------------
+|---- 1.4: Internets, Intranets, and Extranets ----| 
+----------------------------------------------------
 - internet: multiple networks connected together using a a common protocol suite
 - Internet: collection of hosts around the world that can communcate with each other using TCP/IP
 - Internet is an interenet but the reverse is not true
@@ -116,16 +183,27 @@ to the internet.
 - intranet: private internetwork
 
 
----- Takeaways ---
+---- Summary ----
+-----------------
 - The interent is multiple networks connected together while the Internet is a collection of networks around the world that communicate 
 via TCP/IP. This came to be around the 1980s where there was a reliazation that interconnectedness was very powerful and this formed the basis 
 of Matcalfes law.
 
--------------------------------
-| 1.5: Designing Applications |
--------------------------------
+---- Memory Notes ----
+----------------------
+- internet: multiple networks connected together, using a common protocol suite
+- Internet: collection of hosts around the world that communicate via TCP/IP
+- Metcalfe's law: value of computer network is proportional to the square of the number of connected endpoints
+
+
+
+
+---------------------------------------
+|---- 1.5: Designing Applications ----|
+---------------------------------------
 
 ---- Designing Applications ----
+--------------------------------
 - network applications often designed with client at one end and server at the other
 - sever provides some type of service to clients
 1) iterative server
@@ -139,56 +217,92 @@ I2: start new server instance to handle the request. instance handles this one c
 I3: go back to I1
 
 ---- Peer to Peer ---- 
+----------------------
 - application acts as both a client and a server
 - capable of forwarding requests
 - form a network of networks called a overlay network
 
 ---- Application Programming Interfaces (APIs) ----
+---------------------------------------------------
 - desired network operations are expressed via an api
 
----- Takeaways ----
+---- Summary ----
+-----------------
 - Internet applications are designed in various ways. The two most common are server client configurations and peer to peer configuration.
 A server client structure is where two end devices, a client and a server, communicate between each other. A server can be iterative or concurrent.
 The other architecture is a peer to peer network where a host acts as both a client and a serer. These all express their desired network operations
 via an api. 
 
---------------------------------
-| 1.6: Standardization Process |
---------------------------------
+---- Memory Notes ----
+----------------------
+- Client-server: two end devices, client and server, communicate between each other
+- Peer-to-peer: host acts as both client and a server
+
+
+
+
+----------------------------------------
+|---- 1.6: Standardization Process ----|
+----------------------------------------
 - Internet Engineering Task Force (IETF)
   - meets three times each year to discuss/agree on standard for the interents core protocls
 - Interenet Research Task Force (IRTF)
   - explores protocols, architectures, and procedures that are not mature enough for standardization
 
 ---- Request for Comments (RFC) ----
+------------------------------------
 - every official standard in the Interent community is published as a Request for Comments (RFC)
 
----- Takeaways ----
+---- Summary ----
+-----------------
 - Request for comments (RFCs) describe the standard in for the interent.
 
----------------------------------------------------
-| 1.7: Implementations and Software Distributions |
----------------------------------------------------
+---- Memory Notes ----
+----------------------
+None
+
+
+
+
+-----------------------------------------------------------
+|---- 1.7: Implementations and Software Distributions ----|
+-----------------------------------------------------------
 - each popular operating system usually has own implementation but original was from Berkely
 - by mid 1990s, interenet and TCP/IP was well established
 
 ---- Takeaways ----
+-------------------
 - Berkely had the original tcp/ip implementation but popular operating systems have now branched off and implemented their 
 own. 
 
-----------------------------------------------------
-| 1.8: Attacks Involving the Internet Architectrue |
-----------------------------------------------------
+---- Memory Notes ----
+----------------------
+None
+
+
+
+
+------------------------------------------------------------
+|---- 1.8: Attacks Involving the Internet Architectrue ----|
+------------------------------------------------------------
 - spoofying: can insert whatever ip address choose into source ip address field of each ip datagram someone sends
   - delivered to destination but difficult to determine origin
 - denial of service: using so much of some important resource that legitimate users are denied service
 
 ---- Takeaways ---- 
+-------------------
 - There are various different attacks malicious users can preform against the interent
 
-----------------
-| 1.9: Summary | 
-----------------
+---- Memory Notes ----
+----------------------
+None
+
+
+
+
+------------------------
+|---- 1.9: Summary ----| 
+------------------------
 - interenet architecture was designed to interconnect different existing networks and provide a wide range of services and protocols operating simultaneously
 - use packet switching with datagrams
 - interent employs a layered architecutre and employs encapsulation
