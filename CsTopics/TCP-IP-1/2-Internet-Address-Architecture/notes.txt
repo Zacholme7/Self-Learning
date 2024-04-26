@@ -9,8 +9,20 @@
 - every device connected to internet has IP address
 - often shielded from user by DNS
 
+---- Summary ----
+-----------------
+- Ip addresses are a defining characteristic of the tcp/ip suite. They act as an identifier, similar to a
+telelphone number, that are not duplicated and used to identify where traffic is going
 
+---- Memory Notes ----
+- None
+
+
+
+
+--------------------------------------
 ---- 2.2: Expressing Ip Addresses ---- 
+--------------------------------------
 - IPv4 is most popular ip type
   - expressed in dotted decimal notation
   - ex: 165.195.130.107
@@ -25,15 +37,35 @@
   - Ex: 5f05:2000:80ad:5800:58:800:2023:1d71
 2) Blocks of all zeroes can be obmitted and replaced by ::.
   - Ex: 2001:0db8:0:0:0:0:0:2 -> 2001:db8::2
-3) Ipvj represented in Ipv6 form can use notation where block preceeding ipv4 portion has value FFFF
+3) Ipv4 represented in Ipv6 form can use notation where block preceeding ipv4 portion has value FFFF
   - Ex: ::ffff:10.0.0.1 represents ipv4 10.0.0.1
   - called IPv4 mapped IPv6 address
-4) low order 32 bits of ipv6 address can be written using dotted quand notiation
+4) low order 32 bits of ipv6 address can be written using dotted quad notiation
   - Ex: ipv6 addr ::0102:f001 -> ::1.2.240.1
   - called ipv4 compatible ipv6 address
   - this is no longer required
 
+---- Summary ----
+-----------------
+- Ip addressses are expressed in two forms: IPv4 and IPv6. IPv4 is the most common but there is a shift to IPv6. 
+IPv4 is 32 bits while IPv6 is 128 bits. There are various standardized simplifications for IPv6 to make them more
+readable, compatible with IPv4, and easier to read/reason about
+
+---- Memory Notes ----
+----------------------
+- How many bits is a IPv4 address: 32 bits
+- How many bits is a IPv6 address: 128 bits
+- What are the simplifications for IPv6 addresses: 1) the leading zeros do not need to be expressed in each block. 2) Blocks
+of all zeros can be omitted and replaced by ::. 3) Ipv4 mapped Ipv6 address -> ipv4 address preceeded by ::ffff. 4) Low order
+32 bits of ipv6 can be written using dotted quad notation
+
+
+
+
+
+-----------------------------------------
 ---- 2.3: Basic IP Address Structure ----
+-----------------------------------------
 - ipv4 has 4,294,967,269 possible combinations
 - ipv6 has 340,282,366,920,938,463,463,374,607,431,768,211,456 possible combinations
 - convenient to devide address space into chunks
@@ -42,6 +74,7 @@
 - historical evolution of ip addresses
 
 ----- classful addressing -----
+-------------------------------
 - when internet address originally defined, every unicast ip address has network portion
   - identified network on which the interface using the ip address was to be found
 - also had host portion
@@ -63,6 +96,7 @@ E) 1111: reversed: 32bits; 28 free (1111 = E)
 - this scheme was used till about the early 1980s unitl it began to have scaling problems
 
 ----- Subnet Addressing -----
+-----------------------------
 - inconvenience to have to allocate new network number for any new network segment attatched to the internet
 - alter network portion of ip address for local purpose at site, rest of network would see A,B,C paritions
   - subnet addressing
@@ -72,6 +106,7 @@ E) 1111: reversed: 32bits; 28 free (1111 = E)
   - allows for an easily configurable network:host ratio
 
 ----- Subnet Masks -----
+------------------------
 - subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
 is partitioned from the host info in a corresponding ip address
 - configured statically or dynamically
@@ -81,16 +116,19 @@ is partitioned from the host info in a corresponding ip address
 - subnet maks is purely a local matter at the site
 
 ----- Variable Length Subnet Masks (VLSM) -----
+-----------------------------------------------
 - it is possible to use a different length subnet mask applied to the same network numbers in different portions of the same site
 - adds flexibility since diff subnetworks can be set up with different number of ports
 - VLSM now supported by most hosts, routers, and routing protocols 
 
 ----- Broadcast Addresses -----
+-------------------------------
 - in ipv4 subnetwork, special address is the subnet broadcast address
 - formed buy setting network/subnetwork portion of ipv4 address to right value and then all bits in the host field to 1
   - invert subnet mask and perform OR with address of any computer on subnet
 
 ----- IPv6 addresses and Interface Identifiers -----
+----------------------------------------------------
 - ipv6 addrs are 4 times longer than ipv6
 - special prefixes indicate scope of address, indicate portion of network where address can be used 
   - node-local: address only valid for communication within the same device
@@ -101,7 +139,20 @@ is partitioned from the host info in a corresponding ip address
   - can be formed from mac address of nic using EUI-64 format
 - EUI-64 invovles 24 bit OUI and 40 bit extension
 
+---- Summary ----
+-----------------
+- 
+
+---- Memory Notes ----
+----------------------
+- 
+
+
+
+
+-----------------------------------
 ---- 2.4: CIDR and Aggregation ----
+-----------------------------------
 - in early 1990s there was serious scaling problem
 1) by 1994 onver half of all class B addresses allocated
 2) 32bit ipv4 inadequate size
@@ -112,14 +163,26 @@ is partitioned from the host info in a corresponding ip address
 - eliminate predefined separation of network and host number within ip address, makes finer grain allocation possible
 - prefix appended to end of ip address following /
 
+---- Summary ----
+-----------------
+-
+
+---- Memory Notes ----
+----------------------
+- 
+
+
+
+
+-----------------------------------
 ---- 2.5 Special-Use Addresses ----
+-----------------------------------
 - consult book for list of special addresses
 - may want to translate betwee ipv4 and ipv
   - makes use of ipv4 embeded ipv6 address
   - contains ipv4 address within ipv6 address
 - ipv4/6 both support multicast address which identifies a group of host interfaces rather than just one
 - for ipv4, class D space reserved for multicast
-- 
 
 
 

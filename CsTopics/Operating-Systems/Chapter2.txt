@@ -45,14 +45,16 @@
   - on interrupt, computer jumps to address in interrupt vector then run ISR
 - cpu utilization/degree of multiprogramming = 1 - p ** n
 
-Summary: 
+---- Summary ---- 
+-----------------
 Unix utilizes a process model in which all of the software eon the computer is organized into sequential processes. A process 
 is simply an instance of an execution program. Eveything on the computer is a process. They can be both created and destoryed.
 The cpu utilizes multiprocessing where multiple processes are all being executed by the cpu will switch between them quickly to 
 give the illusion that they are all executing at the same time. A process can either be running, ready to run, or blocked. The 
 os maintains a process table taht contaisn information about all the processes running on a system
 
-Memory notes:
+---- Memory notes ----
+----------------------
 - Multiprogramming: multiple programs running simultaneously on one CPU, switches from process to process very quickly
 - Process: instance of executing program. It has a program, input, output, and a state
 - What is the process model: all runnable software organized into sequential processes
@@ -68,6 +70,8 @@ blocked (unable to run until some other external event happens)
 - How does os keep track of processes?: has process table with one entry per process, contains info about process state
 - Interrupt vector: contains address of ISR (instruction service routine) for each I/O class. Upon interrupt, computer jump to addr in interrupt vector 
 then runs the ISR
+
+
 
 
 ----------------------
@@ -105,13 +109,15 @@ then runs the ISR
 - hybrid approach
   - use kernel level threads and multiplex user level threads onto some or all of them
 
-Summary:
+---- Summary ----
+-----------------
 Within processes, there is the concept of threads. Threads can be thought of as mini processes. They are lightweight entitires
 that are fast to create and destory that share sources among themselves. Processes are used to group resources together while threads
 allow for multiple executions to take place in the same environemtn. Threads can be implemented in user space, the kernel, or a hybrid
 approach. 
 
-Memory Notes:
+---- Memory Notes ----
+---------------------
 - Thread: a lighweight process that shares data/address space among themselves. Allow multiple executions to take place in the 
 same environment. Have their own stack. 
 - Multithreading: allowing multiple threads to execute in the same process
@@ -123,6 +129,8 @@ running threads. higher overhead for thread switching and creation is expensive
 - Hybrid thread impl: usage of kernel level threads and multiplex multiple user level threads onto them
 
 
+
+
 -----------------------------------
 ---- 2.3: Event Driven Servers ----
 -----------------------------------
@@ -130,12 +138,16 @@ running threads. higher overhead for thread switching and creation is expensive
 - Single threaded process: No parallelism, blocking system calls
 - Finite-state machine/event-driven: parallelism, nonblocking system calls, interrupts
 
-Summary:
+---- Summary ----
+-----------------
 An event driver architecture is an alternative to threads/single threaded process where there is an implementation
 of a finite state machine taht responds to events and interacts with the os via nonblocking calls
 
-Memory notes:
+---- Memory notes ----
+----------------------
 None
+
+
 
 
 -------------------------------------------------------------
@@ -176,13 +188,28 @@ None
   - producer puts stuff in buffer, consumer takes it out
   - producer go to sleep if buffer is full, consumer go to sleep if buffer is empty
   - race condition on the count variable that tracks amount of items in buffer, can screw up wakeups
-  - 
+- semaphores can be used to solve the producer consumer problem, prevents the lost wakeup
+- mutex semaphore is used for mutaul exclusion
+- full and empty semaphores are for synchronization
+- mutex is a semaphore that does not count
+  - shared variable tath can be in one of two states: locked or unlocked
+  - if thread fails to get a lock, it yields
+- futex: fast user space mutex
+  - implements locking but avoids going into kernel unless necessary
+  - consists of kernel service and user library
+  - kernel service has wait queue that allow smultiple processes to wait on a lock, kernel must explicitly unblock them
+- monitor: collections of prodecures, vars, and data structurs that are gropus together in special module/package
+  - process may call prodecures in monitor byt cannot directly access monitors intenral data structures
+  - a monitor is a language concept
+  - only one processes can be in a monitor at anytime
+- condition variables: signal and wait
+  - if signal done on cv where several processes are waiting, only one woken up
+- message passing: ipc using send and receive
 
 
 
-
-
-Memory Notes:
+---- Memory Notes ----
+----------------------
 - Three problems with IPC: how to pass information, how to make sure two or more processes/threads do not get in each others way,
 sequencies when dependencies are present
 - Race conditions: when two or more processes are reading/writing to some shared data and the final result depends on who runs when
