@@ -62,7 +62,6 @@ of all zeros can be omitted and replaced by ::. 3) Ipv4 mapped Ipv6 address -> i
 
 
 
-
 -----------------------------------------
 ---- 2.3: Basic IP Address Structure ----
 -----------------------------------------

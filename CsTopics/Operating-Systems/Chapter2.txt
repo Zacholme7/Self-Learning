@@ -206,6 +206,9 @@ None
   - if signal done on cv where several processes are waiting, only one woken up
 - message passing: ipc using send and receive
 
+---- Summary ----
+-----------------
+
 
 
 ---- Memory Notes ----
@@ -224,6 +227,61 @@ cons: busy waiting wasts cpu cycles, not good when one process is much slower
 instr, it provides mutual exclusion, but it requires busy waiting
 - producer-consumer problem: produer puts stuff on queue, consumer takes off, num items tracked by couter and producer/consumer put to sleep
 when they cannot perform work. problem is when a wakeup call gets lost due to a race condition on the counter 
+
+
+
+
+-------------------------
+---- 2.5: Scheduling ----
+-------------------------
+- if computer multiprogrammed, may processes/threads computing for cpu 
+- scheduler chooses which process to run next via a scheduling algorithm
+
+---- Introduction to Scheduling ----
+------------------------------------
+- for most users, scheduling is simple due to a lot of waiting around and only using on process at a time
+- context switch: switch from user more to kernel mode, save state of current process, restore state of other process
+  - context switches are expensive, cycle wise, to preform
+- processes alternative bursts of computing with bursts of I/O
+- compute bound: long cpu bursts and infrequent I/O waits
+- i/o bound: short cpu bursts and frequency i/o waits
+- when should a scheduling decision be made?
+1) when a new process is created
+2) when a process exits
+3) when process blocks
+4) when I/o interrupt occurs
+- nonpreemptive scheduling algorithm: picks process to run and lets it run until it blocks
+- preemptive scheduling algorithm: picks a process and lets it run for some max time,
+if still running at the end of the interval it will suspend it and pick a new process
+- scheduling algorithms should be fair, enforce the policy, and keep all parts of the system busy
+
+---- Schedling in Batch Systems ----
+------------------------------------
+- 
+
+---- Scheduling in Interactive Systems ----
+-------------------------------------------
+
+
+
+
+
+---- Memory Notes ----
+----------------------
+- scheduler chooses which process to run next via some scheduling algorithm
+- context switch: switch from user more to kernel mode, save state of current process, restore state of other process
+- compute bound: long cpu bursts and infrequent I/O waits
+- i/o bound: short cpu bursts and frequency i/o waits
+- nonpreemptive scheduling algorithm: picks process to run and lets it run until it blocks
+- preemptive scheduling algorithm: picks a process and lets it run for some max time,
+- when should scheduling decision be made?: when new process created, when process exists, when process blocks, when I/O
+interrupt occurs
+- goals of a scheduling algorithm? give each process fair share of cpu, make sure policy is carried out, keep all parts of the 
+system busy
+
+
+
+
 
 
 
