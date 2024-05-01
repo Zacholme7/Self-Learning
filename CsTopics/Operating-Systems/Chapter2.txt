@@ -257,10 +257,40 @@ if still running at the end of the interval it will suspend it and pick a new pr
 
 ---- Schedling in Batch Systems ----
 ------------------------------------
-- 
+1) first come first serve
+- nonpreemptive
+- processes assigned the cpu in the order they request it
+- remove from front and add to back
+- easy to understand and simple to implement but not good for heavy I/O
+2) shortet job first
+- nonpreemptive
+- when runtimes are known, can just pick shortest one
+- optimal only when all jobs are available simultaneously
+3) Shortest remaining time next
+- preemptive
+- choose process whose remaining time is the shortest
+- run time has to be known in advanced
+- allows short jobs to get good service
 
 ---- Scheduling in Interactive Systems ----
 -------------------------------------------
+1) Round Robin Scheduling
+- each process assigned time interval called quantum
+  - process allowed to run during its quantum
+- if still running at end of quantum, preempted
+- if block while quantum not up, preempted
+- choosing correct quantum very important
+  - too short -> too many context swtich 
+  - too high -> poor response to short req
+  - 20-50 msec is often reasonable
+2) Priority Scheduling
+- each process is assigned a priority
+- process with highest priority gets to run
+- scheudler may decrease priority to prevent it to run idenfinitely
+- could also use a time quantum
+- can group processes into priority classes
+  - use priority scheduling among classes
+  - use round robin within class
 
 
 
@@ -278,6 +308,15 @@ if still running at the end of the interval it will suspend it and pick a new pr
 interrupt occurs
 - goals of a scheduling algorithm? give each process fair share of cpu, make sure policy is carried out, keep all parts of the 
 system busy
+- first come first serve: nonpreemptive processes assigned the cpu in the order they request it , remove from front 
+and add to back, easy to understand and simple to implement but not good for heavy I/O
+- shortet job first: nonpreemptive ,when runtimes are known, can just pick shortest one , optimal only when all jobs are available simultaneously
+- Shortest remaining time next: preemptive, choose process whose remaining time is the shortest,run time has to be known in advanced, allows short jobs to get good service
+- Round Robin Scheduling: each process assigned time interval called quantum, process allowed to run during its quantum, if still running 
+at end of quantum, preempted, if block while quantum not up, preempted, choosing correct quantum very important, too short -> too many context swtich 
+too high -> poor response to short req, 20-50 msec is often reasonable
+- Priority Scheduling: each process is assigned a priority, process with highest priority gets to run, scheudler may decrease priority to prevent it to 
+run idenfinitely, could also use a time quantum, can group processes into priority classes, use priority scheduling among classes, use round robin within class
 
 
 
