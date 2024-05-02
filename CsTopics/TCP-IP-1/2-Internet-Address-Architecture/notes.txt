@@ -94,6 +94,7 @@ E) 1111: reversed: 32bits; 28 free (1111 = E)
 - address range (240.0.0.0–255.255.255.255), reserved, 1/16
 - this scheme was used till about the early 1980s unitl it began to have scaling problems
 
+
 ----- Subnet Addressing -----
 -----------------------------
 - inconvenience to have to allocate new network number for any new network segment attatched to the internet
@@ -103,6 +104,7 @@ E) 1111: reversed: 32bits; 28 free (1111 = E)
 - divide host potion of its base address allocation into subnet number and a host number
 - administrator is free to change subnet number and host number allocation as they saw fit
   - allows for an easily configurable network:host ratio
+
 
 ----- Subnet Masks -----
 ------------------------
@@ -114,11 +116,13 @@ is partitioned from the host info in a corresponding ip address
 - 0 in subnet maks means corresponding bit position should be considered part of the host portion
 - subnet maks is purely a local matter at the site
 
+
 ----- Variable Length Subnet Masks (VLSM) -----
 -----------------------------------------------
 - it is possible to use a different length subnet mask applied to the same network numbers in different portions of the same site
 - adds flexibility since diff subnetworks can be set up with different number of ports
 - VLSM now supported by most hosts, routers, and routing protocols 
+
 
 ----- Broadcast Addresses -----
 -------------------------------
@@ -144,7 +148,13 @@ is partitioned from the host info in a corresponding ip address
 
 ---- Memory Notes ----
 ----------------------
-- 
+- classful addressing: first internet ip scheme till about 1980s, ip broken down into net number and host, each class (A,B,C <- unicast , D <- multicast, 
+E <- reserved) has different amount of nets and hosts it could support for different network strucutre. A having smallest network but 
+most hosts, B haing more networks less hosts, etc...
+- subnet addressing: internet see A,B,C partition, but site can further diving host porition into subnetwork number and host number, this 
+allows site admin to trade off num of subnetworks vs num of host, need to use subnet mask
+- subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
+is partitioned from the host info in a corresponding ip address, local to the site
 
 
 

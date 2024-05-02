@@ -291,8 +291,58 @@ if still running at the end of the interval it will suspend it and pick a new pr
 - can group processes into priority classes
   - use priority scheduling among classes
   - use round robin within class
+3) Multiple queues
+- setup priority classes with different quantum levels
+- move down a class each time quantum expires
+4) Guaranteed Schedling
+- with n processes, each get 1/n cpu
+- system tracks how my cpu each process has had
+5) Lottery Scheduling
+- give processes lottery tickets for various system resources
+- upon scheduling decision, lottery ticket chosen at random and process w/ ticket gets the resource
+- can give processes multiple tickets based on priority
+- "all processes are equal, but some processes are more equal"
+6) Fair-Share Scheduling
+- some systems take into account which user owns a process before scheduling it
+- each user allocated some fraction of cpu
+
+---- Scheduling in Real Time Systems ----
+-----------------------------------------
+- external system generates stimuli in which device must resonse
+- hard real time: absolute deadlines that must be met
+- soft real time: missing occasional deadline is tolerable
+- events can be periodic or aperiodic
+- static scheduling makes scheduling decisions before system starts running
+  - must have perfect information
+- dynamic schedling makes scheduling decision at run time
 
 
+---- Policy vs Mechanism ----
+-----------------------------
+- scheduler parameterized in some way, but params can be filled in by user process 
+  - ex: syscall to change process priority
+
+---- Thread Scheduling ----
+---------------------------
+- may have many processes each running many threads
+  - two levels of parallelism: processes and threads
+- scheduling different in user level threads or kernel level threads
+1) user level threads
+- kernel not aware of the threads and schedules processes like normal
+- runtime makes thread scheduling decisions
+- absence of clock to interrupt thread
+- fast context switch
+- I/O suspends the entire process
+2) kernel level threads
+- kernel picks a thread to run
+- does not care which thread the process belongs to
+- slow context switch
+- I/O does not suspend the entire process
+
+
+
+---- Summary ----
+-----------------
 
 
 
@@ -317,6 +367,26 @@ at end of quantum, preempted, if block while quantum not up, preempted, choosing
 too high -> poor response to short req, 20-50 msec is often reasonable
 - Priority Scheduling: each process is assigned a priority, process with highest priority gets to run, scheudler may decrease priority to prevent it to 
 run idenfinitely, could also use a time quantum, can group processes into priority classes, use priority scheduling among classes, use round robin within class
+- Multiple queues scheduling: setup priority classes with different quantum levels, move down a class each time quantum expires
+- Guaranteed Schedling: with n processes, each get 1/n cpu, system tracks how my cpu each process has had
+- Lottery Scheduling: give processes lottery tickets for various system resources, upon scheduling decision, lottery ticket chosen 
+at random and process w/ ticket gets the resource, can give processes multiple tickets based on priority, "all processes are 
+equal, but some processes are more equal"
+- Fair-Share Scheduling: some systems take into account which user owns a process before scheduling it, each user allocated 
+some fraction of cpu
+
+
+
+-------------------------
+---- Chapter Summary ----
+-------------------------
+- Operaing system provide a conceptual model of sequential processes running in parallel taht his interrupts. One key feature about processes
+is that they all have their own address space independant of each other. Within processes, the os enables you to have multiple threads of control.
+Threads are lighweight processes that have their own control context/information but share an address space. Threads can be implemented in user
+space or kernel space. Processes must synchronize between each other to prevent concurrent access to shared data. This is done via various concurrency
+primitives that prevent threads from creating deadlocks, race conditions, and various other concurrency realted bugs. Since there are multiple threads and
+multiple processes running on a cpu, they have to be scheduled in a fair and consistent way. There are various different scheduling algorithms with their own
+pros and cons that seek to balance the amount of cpu time each process gets on based on different factors such as process prirority
 
 
 
