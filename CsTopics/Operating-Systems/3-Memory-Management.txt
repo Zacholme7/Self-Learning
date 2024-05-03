@@ -1,0 +1,54 @@
+------------------------
+| 3: Memory Management | 
+------------------------
+- "programs expand to fill memory available to them"
+- 
+
+------------------------------------
+---- 3.1: No Memory Abstraction ----
+------------------------------------
+- 1980s and before every program just say entire physical memory
+
+---- Running Multiple Programs without a memory abstraction ----
+---------------------------------------------------------------- 
+- have to save memory to file and bring in other program
+
+---- Summary ----
+-----------------
+- Early computers didnt have any abstraction over memory and just ran
+all processes in the same physical memory space.
+
+---- Memory Notes ----
+----------------------
+- None
+
+
+
+
+--------------------------------------------------
+---- 3.2: A Memory Abstraction: Address space ----
+--------------------------------------------------
+
+---- The Notion of an address space ----
+----------------------------------------
+- to allow multiple application in memory, protection and relocation have to be solved
+- address space: set of addresses that a process can use to address memory
+  - created kind of abstract memory for programs to use
+- each process has its own address space
+- simple solution to address space
+  - dynamic relocation
+  - map each processes address space onto different part of physical memory
+  - cpu has base and limit reg
+  - base reg has addr of start of program, limit loaded with length of program
+  - add addr loc to base reg and make sure within limit
+  - disadvantage is additional comparison for each memory reference
+
+---- Swapping ----
+------------------
+- 
+
+
+---- Memory Notes ----
+----------------------
+- address space: set of addresses that a process can use to address memory
+
