@@ -45,10 +45,30 @@ all processes in the same physical memory space.
 
 ---- Swapping ----
 ------------------
-- 
+- total amount of RAM needed often much more than what can fit in mem
+- swapping: bringing in each process, running it for a while, then moving it to nonvolatile storage
+- creates holes in memory but can use memory compaction to fill in
+- allocate initial program and room to grow
+
+---- Managing Free Memory ----
+------------------------------
+- can use bitmaps and free lists to keep track of memory usage
+1) bitmap: memory divded into allocation units in size from a few words to several kilobytes
+  - each allocation unit has bit, 0 for free and 1 for occupied
+  - searching bit map is slow
+2) linked list: linked list of allocated and free memory segements
+  - segement either process or empty hole between two processes
+  - several algorithms for allocation. first fit, next fit, best fit, quick fit, ...
+
 
 
 ---- Memory Notes ----
 ----------------------
 - address space: set of addresses that a process can use to address memory
+- addr space swapping: bringing in each process, running it for a while, then moving it to nonvolatile storage
+- mem mgmt w/ bitmap: memory divded into allocation units in size from a few words to several kilobytes, each allocation unit 
+has bit, 0 for free and 1 for occupied, searching bit map is slow
+- mem mgmt w/ linked list: linked list of allocated and free memory segements, segement either process or 
+empty hole between two processes, several algorithms for allocation. first fit, next fit, best fit, quick fit, ...
+
 
