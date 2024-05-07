@@ -156,6 +156,8 @@ allows site admin to trade off num of subnetworks vs num of host, need to use su
 - subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
 is partitioned from the host info in a corresponding ip address, local to the site
 
+- variable length subnet mask: allow the application of different subnet masks to the same network for the purpose of subnetting
+
 
 
 
@@ -166,11 +168,20 @@ is partitioned from the host info in a corresponding ip address, local to the si
 1) by 1994 onver half of all class B addresses allocated
 2) 32bit ipv4 inadequate size
 3) entries in global routine table was growing fast
+
+---- Prefixes ----
+------------------
 - Introduction of classless inter domain routing
   - address range is not predefined as being part of a class, instead requires a mask
   - called network prefix
 - eliminate predefined separation of network and host number within ip address, makes finer grain allocation possible
 - prefix appended to end of ip address following /
+  - this is the number of bits used for the network portion
+
+---- Aggregation ----
+---------------------
+- 
+
 
 ---- Summary ----
 -----------------
@@ -178,7 +189,8 @@ is partitioned from the host info in a corresponding ip address, local to the si
 
 ---- Memory Notes ----
 ----------------------
-- 
+- classless inter domain routing (CIDR): removes strick boundaries of classful, ip addr followed by / and num indicating the number of bits
+used for the network portion of address
 
 
 

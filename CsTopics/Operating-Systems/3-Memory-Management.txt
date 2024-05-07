@@ -43,12 +43,14 @@ all processes in the same physical memory space.
   - add addr loc to base reg and make sure within limit
   - disadvantage is additional comparison for each memory reference
 
+
 ---- Swapping ----
 ------------------
 - total amount of RAM needed often much more than what can fit in mem
 - swapping: bringing in each process, running it for a while, then moving it to nonvolatile storage
 - creates holes in memory but can use memory compaction to fill in
 - allocate initial program and room to grow
+
 
 ---- Managing Free Memory ----
 ------------------------------
@@ -61,6 +63,14 @@ all processes in the same physical memory space.
   - several algorithms for allocation. first fit, next fit, best fit, quick fit, ...
 
 
+---- Summary ----
+-----------------
+- The most basic memory abstration is the concept of an address space which is just
+a set of addresses that a process can use to address its memory. Each process has its own address
+space, so we need to have some way to fit all of the address spaces in memory when there are multiple processes
+running. There are various algorithms to achieve this but none of them presented here are optimal, but the
+concept of swapping is important in the final solution
+
 
 ---- Memory Notes ----
 ----------------------
@@ -70,5 +80,69 @@ all processes in the same physical memory space.
 has bit, 0 for free and 1 for occupied, searching bit map is slow
 - mem mgmt w/ linked list: linked list of allocated and free memory segements, segement either process or 
 empty hole between two processes, several algorithms for allocation. first fit, next fit, best fit, quick fit, ...
+
+
+
+
+-----------------------------
+---- 3.3: Virtual Memory ----
+-----------------------------
+- there is a need to run programs that are too large to fit in memory
+- virtual memory: program has its own addr space that is broken into pages
+  - page: a contiguous range of addresses mapped onto physical memory
+  - not all pages have to be present
+
+
+---- Paging ----
+----------------
+- virtual addresses: program generated addresses that form the virtual address space
+  - go to the mmu
+- memory management unit: maps virtual addresses onto physical memory addresses
+- virtual address space: all virtual addresses divided into pages
+- pages: fixed size units of virtual addresses
+- page frame: corresponding physical memory to a page
+- present/absent bit keeps track of which pages are physically present in memory
+
+
+
+---- Memory Notes ----
+- virtual memory: program has its own addr space that is broken into pages
+- memory management unit: maps virtual addresses onto physical memory addresses
+- virtual addresses: program generated addresses that form the virtual address space
+- virtual address space: all virtual addresses divided into pages
+- pages: fixed size units of virtual addresses
+- page frame: corresponding physical memory to a page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
