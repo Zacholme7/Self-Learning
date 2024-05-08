@@ -102,6 +102,34 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 - pages: fixed size units of virtual addresses
 - page frame: corresponding physical memory to a page
 - present/absent bit keeps track of which pages are physically present in memory
+- if MMU sees page is unmapped, page fault occurs
+  - writes unused page to disk and brings in needed page
+- page number used as index into page table, other bits used as offset
+- process
+1) program issue adress to access byte in page
+2) mmu checks page table to see if page is mapped to physical frame
+  - if mapped, retrieve data
+3) if not mapped, issue page fault bc it needs to load the page into memory
+4) select little used page to write to disk, then fetch needed page
+5) set old page to unmapped and new page to mapped
+6) restart the instruction
+
+
+---- Page Tables ----
+---------------------
+- virtual address split into virtual page number (high order bits) and offset (low order bits)
+- virtual page number used as index into page table to find entry for that virtual page
+  - if found, page frame number attatched to offset to form physical address for memory
+- purpose of page table it so map virtual pages onto page frames
+- structure of a page table entry
+  - varies but general form is consistent
+  - page frame number
+  - present/absent bit: indicates wherther entry is valid and can be used
+  - protection: tells what kind of actions are permitted
+  - supervisor: indicates whether page is accessible to only privilged code
+  - modified: tracks if page was modified, must be written back if so
+  - referenced: keeps track of references, needed to decided which to exict
+  - 
 
 
 
@@ -112,6 +140,16 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 - virtual address space: all virtual addresses divided into pages
 - pages: fixed size units of virtual addresses
 - page frame: corresponding physical memory to a page
+
+- what happens if mmu tries to access unmapped page? page fault, trap in os, write unused page to disk and bring
+in needed page
+- process of an address fetch w/ virtual memory: 1) program issue adress to access byte in page, 2) mmu checks page table to see if page is mapped to physical frame, 
+if mapped, retrieve data, 3) if not mapped, issue page fault bc it needs to load the page into memory 4) select little used page to write to disk, then fetch needed page
+5) set old page to unmapped and new page to mapped 6) restart the instruction
+- virtual add split into? virtual page number and offset
+- what is virtual page number used for? index into page table, if page found, page frame attatched to offset to form physical addr
+- purpose of page table? map virtual pages onto page frames
+
 
 
 
