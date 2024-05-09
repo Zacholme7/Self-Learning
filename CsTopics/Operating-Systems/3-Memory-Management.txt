@@ -129,7 +129,32 @@ empty hole between two processes, several algorithms for allocation. first fit, 
   - supervisor: indicates whether page is accessible to only privilged code
   - modified: tracks if page was modified, must be written back if so
   - referenced: keeps track of references, needed to decided which to exict
-  - 
+  - cache disable: can turn off caching
+- page table only holds info the hardware needs to tranlsate virtual addr into physical
+
+---- Speeding up Paging ----
+------------------------------
+- 2 issues must be addresses
+  1) mapping from virtual -> physical must be fast
+  2) even if virtual addr space very large, page table must not be large
+- mapping has to be done on every memory reference
+- most programs tend to make a large number of references to a small number of pages
+  - only fraction of pte are heavily read, rest barely used
+- Translation Lookaside Buffer: hardware device for mapping virtual addresses to physical addresses without going through page table
+  - usually inside the mmu
+- when address presented to mmu for tranlsation
+1) hardward checks to see if virtual page number in TBL (done in parallel via hardware)
+2) if valid match found and access does not violate protection, page frame taken from TLB w/o going to page table in memory
+3) if no match found, does ordinary page table lookup and evicts page from TLB
+- soft miss: page referenced is not in the TLB, but is in memory, 10 - 20 machine instrs to handle
+- hard miss: page itself is not in memory, can be a million times slower than soft miss
+- segmentation fault: program accessed invalid address 
+
+---- Page Tables for Large Memories ----
+----------------------------------------
+1) Multilevel page tables
+
+
 
 
 
@@ -149,6 +174,16 @@ if mapped, retrieve data, 3) if not mapped, issue page fault bc it needs to load
 - virtual add split into? virtual page number and offset
 - what is virtual page number used for? index into page table, if page found, page frame attatched to offset to form physical addr
 - purpose of page table? map virtual pages onto page frames
+
+- what is the purpose of virtual memory? create an abstraction over the address space, which is an abstraction of physical memory
+- Translation Lookaside Buffer: hardware device for mapping virtual addresses to physical addresses without going through page table, inside the mmu
+- process when address presented to mmu for tranlsation: 1) hardward checks to see if virtual page number in TBL (done in parallel via hardware), 
+2) if valid match found and access does not violate protection, page frame taken from TLB w/o going to page table in memory, 3) if no match found, 
+mmu does ordinary page table lookup and evicts page from TLB
+- soft miss: page referenced is not in the TLB, but is in memory, 10 - 20 machine instrs to handle
+- hard miss: page itself is not in memory, can be a million times slower than soft miss
+- segmentation fault: program accessed invalid address 
+
 
 
 

@@ -180,7 +180,9 @@ is partitioned from the host info in a corresponding ip address, local to the si
 
 ---- Aggregation ----
 ---------------------
-- 
+- network topology arranged as a tree
+- addresses asigned based uponw here router is located in tree
+- route aggregation: joining multiple numerically adjacent IP prefixed into single shorter prefix, called aggreagte/summary
 
 
 ---- Summary ----
@@ -191,6 +193,7 @@ is partitioned from the host info in a corresponding ip address, local to the si
 ----------------------
 - classless inter domain routing (CIDR): removes strick boundaries of classful, ip addr followed by / and num indicating the number of bits
 used for the network portion of address
+- route aggregation: joining multiple numerically adjacent IP prefixed into single shorter prefix, called aggreagte/summary
 
 
 
@@ -204,6 +207,8 @@ used for the network portion of address
   - contains ipv4 address within ipv6 address
 - ipv4/6 both support multicast address which identifies a group of host interfaces rather than just one
 - for ipv4, class D space reserved for multicast
+- route aggregation: joining multiple numerically adjacent IP prefixed into single shorter prefix, called aggreagte/summary
+
 
 
 
