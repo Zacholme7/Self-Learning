@@ -153,10 +153,14 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 ---- Page Tables for Large Memories ----
 ----------------------------------------
 1) Multilevel page tables
-
-
-
-
+- multiple levels of page tables
+- addr broken into indexes, pt1, pt2, ...
+- can keep nesting levels
+2) inverted page tables
+- one entry per page frame in real memory rather than one entry per page of virtual addr space
+- entry keeps track of which (process, virtual page) is located in page frame
+- downside is that it must search entire table
+  - TLB and hashing can speed up
 
 ---- Memory Notes ----
 - virtual memory: program has its own addr space that is broken into pages
@@ -174,7 +178,6 @@ if mapped, retrieve data, 3) if not mapped, issue page fault bc it needs to load
 - virtual add split into? virtual page number and offset
 - what is virtual page number used for? index into page table, if page found, page frame attatched to offset to form physical addr
 - purpose of page table? map virtual pages onto page frames
-
 - what is the purpose of virtual memory? create an abstraction over the address space, which is an abstraction of physical memory
 - Translation Lookaside Buffer: hardware device for mapping virtual addresses to physical addresses without going through page table, inside the mmu
 - process when address presented to mmu for tranlsation: 1) hardward checks to see if virtual page number in TBL (done in parallel via hardware), 
@@ -183,6 +186,10 @@ mmu does ordinary page table lookup and evicts page from TLB
 - soft miss: page referenced is not in the TLB, but is in memory, 10 - 20 machine instrs to handle
 - hard miss: page itself is not in memory, can be a million times slower than soft miss
 - segmentation fault: program accessed invalid address 
+- multilevel page table: hierarchical page table structure, poritions of virtual addr used to index into various levels of page table, used for handling
+large address spaces while minimizing the memory required for the page table itself
+- inverted page table: optimize amount of memory used by page table itself, single table for all physical memory frames, each entry corresponds to physical frame and
+stores info about which virtual frame it holds
 
 
 
