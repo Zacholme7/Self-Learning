@@ -169,7 +169,6 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 - virtual address space: all virtual addresses divided into pages
 - pages: fixed size units of virtual addresses
 - page frame: corresponding physical memory to a page
-
 - what happens if mmu tries to access unmapped page? page fault, trap in os, write unused page to disk and bring
 in needed page
 - process of an address fetch w/ virtual memory: 1) program issue adress to access byte in page, 2) mmu checks page table to see if page is mapped to physical frame, 
@@ -193,15 +192,22 @@ stores info about which virtual frame it holds
 
 
 
+------------------------------------------
+---- 3.4: Page Replacement Algorithms ----
+------------------------------------------
 
+---- The Optimal Page Replacement Algorithm ----
+------------------------------------------------
+- easy to describe impossible to implement
+- at moment of page fault, evict page that will be used farthest away
+- can do in two passes, not one
 
-
-
-
-
-
-
-
+---- The Not Recently Used Page Replacement Algorithm ----
+----------------------------------------------------------
+- two status bits, R and M
+  R: set whenever page is referenced (read or written)
+  M: set whenever the page was modified
+- 
 
 
 
