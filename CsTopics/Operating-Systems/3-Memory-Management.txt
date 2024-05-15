@@ -207,9 +207,57 @@ stores info about which virtual frame it holds
 - two status bits, R and M
   R: set whenever page is referenced (read or written)
   M: set whenever the page was modified
+- must be updated on every memory reference
+- when process started up, both page bits for all pages set to 0 by os
+- periodically clearly R bit to indicate not referenced
+- on page fault, pages divided into categories
+Class 0: not referenced, not modified
+Class 1: not referenced, modified
+Class 2: referenced, not modified
+Class 3: referenced, modified
+- remove a page at random from lowest numbered nonempty class
+
+---- The First in First out Page Replacement Algorithm ----
+-----------------------------------------------------------
+- os maintains list of all pages in memory
+  - most recent arrival at tail
+  - least recent arrival at head
+- on page fault, remove from head and add to tail
+
+---- The Second Change Page Replacement Algorithm ----
+------------------------------------------------------
+- modification to FIFO that insepct R bit of oldest page
+- if 0, evicted and replaced
+- if 1, clear bit and put page onto end of list
+  - keep looking for page with 0 R to evict
+
+---- The Clock Page Replacement Algorithm ----
+----------------------------------------------
+- keep pages in circular list in form of clock
+- same algo as second change occurs
+- page pointed to by hand inspected
+- if R is 0, evicted and new page inserted
+- if R is 1, clear R and advance hand
+
+---- The Least Recently Used Page Algorithm ----
+------------------------------------------------
+- observation that page that have been used in last few instructions will be used again
+- observation that pages that have not been used in a while will continue not to be used
+- maintain list that must be updated on every memory reference
+  - this is expensive and requires hardware support to be feasible
+
+---- Simulating LRU in Software ----
+------------------------------------
+- software counter with each page 
+- on interrupts, os scan all page and R bit added to counter for page
+- page with lowest counter chosen for replacement
+- modifications to make it work better
+
+---- The Working Set Page Replacment Algorithm ----
+---------------------------------------------------
+- processes started up with no pages and brought in as needed
+- demand paging: pages are loaded only on demand, not in advanced
 - 
-
-
 
 
 
