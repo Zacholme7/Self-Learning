@@ -2,7 +2,6 @@
 | 3: Memory Management | 
 ------------------------
 - "programs expand to fill memory available to them"
-- 
 
 ------------------------------------
 ---- 3.1: No Memory Abstraction ----
@@ -43,14 +42,12 @@ all processes in the same physical memory space.
   - add addr loc to base reg and make sure within limit
   - disadvantage is additional comparison for each memory reference
 
-
 ---- Swapping ----
 ------------------
 - total amount of RAM needed often much more than what can fit in mem
 - swapping: bringing in each process, running it for a while, then moving it to nonvolatile storage
 - creates holes in memory but can use memory compaction to fill in
 - allocate initial program and room to grow
-
 
 ---- Managing Free Memory ----
 ------------------------------
@@ -62,7 +59,6 @@ all processes in the same physical memory space.
   - segement either process or empty hole between two processes
   - several algorithms for allocation. first fit, next fit, best fit, quick fit, ...
 
-
 ---- Summary ----
 -----------------
 - The most basic memory abstration is the concept of an address space which is just
@@ -70,7 +66,6 @@ a set of addresses that a process can use to address its memory. Each process ha
 space, so we need to have some way to fit all of the address spaces in memory when there are multiple processes
 running. There are various algorithms to achieve this but none of them presented here are optimal, but the
 concept of swapping is important in the final solution
-
 
 ---- Memory Notes ----
 ----------------------
@@ -92,7 +87,6 @@ empty hole between two processes, several algorithms for allocation. first fit, 
   - page: a contiguous range of addresses mapped onto physical memory
   - not all pages have to be present
 
-
 ---- Paging ----
 ----------------
 - virtual addresses: program generated addresses that form the virtual address space
@@ -113,7 +107,6 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 4) select little used page to write to disk, then fetch needed page
 5) set old page to unmapped and new page to mapped
 6) restart the instruction
-
 
 ---- Page Tables ----
 ---------------------
@@ -162,6 +155,9 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 - downside is that it must search entire table
   - TLB and hashing can speed up
 
+---- Summary ----
+-----------------
+
 ---- Memory Notes ----
 - virtual memory: program has its own addr space that is broken into pages
 - memory management unit: maps virtual addresses onto physical memory addresses
@@ -189,6 +185,7 @@ mmu does ordinary page table lookup and evicts page from TLB
 large address spaces while minimizing the memory required for the page table itself
 - inverted page table: optimize amount of memory used by page table itself, single table for all physical memory frames, each entry corresponds to physical frame and
 stores info about which virtual frame it holds
+
 
 
 
@@ -257,8 +254,31 @@ Class 3: referenced, modified
 ---------------------------------------------------
 - processes started up with no pages and brought in as needed
 - demand paging: pages are loaded only on demand, not in advanced
-- 
+- most processes exibit locality so only using a small number of pages
+- set of pages processes currently using is its working set
+- thrashing: program causing page faults every few instructions
+- working set model: keep track of processes working set and prepage them in
+- evict pages not in the working set (k most recent pages)
+- can track age of page in time
 
+---- The WSClock Page Replacement Algorithm ----
+------------------------------------------------
+- widely used in practice
+- circular list of page frames
+- each entry contains time of last use, R bit, M bit
+- if R bit is zero and time of last use is greater than some threshold, evict
+  - if page dirty, write to storage scheduled but hand advanced to look for another page
+
+---- Summary of Page Replacement Algorithms ----
+------------------------------------------------
+-
+
+---- Summary ----
+-----------------
+-
+
+---- Memory Notes ----
+----------------------
 
 
 
