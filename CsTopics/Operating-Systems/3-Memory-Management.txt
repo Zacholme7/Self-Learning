@@ -271,7 +271,16 @@ Class 3: referenced, modified
 
 ---- Summary of Page Replacement Algorithms ----
 ------------------------------------------------
--
+- Optimal: Not implementable, but useful as a benchmark
+- NRU (Not Recently Used): Very crude approximation of LRU
+- FIFO (First-In, First-Out): Might throw out important pages
+- Second chance: Big improvement over FIFO
+- Clock: Realistic
+- LRU (Least Recently Used): Excellent, but difficult to implement exactly
+- NFU (Not Frequently Used): Fairly crude approximation to LRU
+- Aging: Efficient algorithm that approximates LRU well
+- Working set: Somewhat expensive to implement
+- WSClock: Good efficient algorithm
 
 ---- Summary ----
 -----------------
@@ -279,11 +288,32 @@ Class 3: referenced, modified
 
 ---- Memory Notes ----
 ----------------------
+- 
 
 
 
 
+-----------------------------------------------
+---- 3.5: Design Issues For Paging Systems ----
+-----------------------------------------------
 
+---- Local versus Global Allocation Policies ----
+-------------------------------------------------
+- how should memory be allocated among competing runnable processes???
+- Local algorithm: allocating every process fixed fraction of memory
+- Global algorithm: allocating memory dynamically among runnable processes
+- can allocate pages in proportion to process size, with some minimum
+- PFF (Page fault frequency): tells when to increase or decrease a process' page allocation
+  - fault rate decreases as more pages are assigned
+- trade offs between local and global, comes down to amount of page faults
+
+---- Load Control ----
+----------------------
+- working set of all processes exceed memory, but one process may need more and none need less
+  - no way to give more memory
+- OS has process called OOM (out of memory killer) that becomes active when system low on memory
+  - score processes based on "badness" and kill ones with highest scores
+- can also swap process to nonvolitaile storage to free mem, compress, and compact
 
 
 
