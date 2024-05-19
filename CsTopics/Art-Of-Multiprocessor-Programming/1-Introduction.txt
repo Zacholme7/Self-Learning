@@ -1,4 +1,32 @@
--------------------
+-------------------------
 | 1: Introduction | 
+-------------------------
+- multicore chips make computing faster by exploiting parallelism
+- concerenece about safety and liveness
+        - safety: "bad things" never happen
+        - liveness: a particular good thing will happen
+
+
+------------------------------------------------------------------
+---- 1. 1: Shared objects and synchronization ----
+------------------------------------------------------------------
+- equal ranges of input do not always produce equal parts of work
+- mutual exclusion
+
+---- Summary ----
+-----------------------
+- Access to shared objects via shared memory must be coordinated via synchronization
+to prevent deadlocks and race conditions
+
+---- Memory Notes ----
 -------------------
+- None
+
+
+
+
+---------------------------
+---- 1. 2: A Fable  ----
+---------------------------
+- 
 
