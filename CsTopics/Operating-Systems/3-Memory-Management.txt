@@ -315,6 +315,41 @@ Class 3: referenced, modified
   - score processes based on "badness" and kill ones with highest scores
 - can also swap process to nonvolitaile storage to free mem, compress, and compact
 
+---- Cleaning Policy ----
+-------------------------
+- paging daemon: sleeps most of time but periodically awakened to insepct state of memory
+  - if too few page frames are free, selets pages to evict
+- makes sure free frames are clean and do not need to be written when required
+- two handed clock: one hand writing dirty pages and other for replacement
+
+---- Page Size ----
+-------------------
+- on average, half of final page will be empty
+  - extra wasted space called internal fragementation
+  - n segements, size of p bytes, n * p / 2 wasted
+  - reason for smaller page size
+- small pages mean need many pages and larger page table
+  - same time read/write to disk as large page
+- small pages use up valuable space in tlb
+
+---- Separate Instruction and Data Spaces ----
+----------------------------------------------
+- most computers have addr space that holds program and data
+  - if addr space is not large enough, problems arise
+- can seperate program text (I space) and data (D space)
+  - although, each need own page table and mapping
+  - used for L1 cache today
+
+---- Shared Pages ----
+----------------------
+- sharing pages is straightfoward with I&D pages
+  - two+ processes shared same I space and use different D space
+- harder with single addr space
+  - if two processes sharing, evicting one process & its pages will cause other to page fault
+  - if one process terminates, have to figure out which pages can be cleaned up
+
+---- Shared Libraries ----
+--------------------------
 
 
 

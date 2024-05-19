@@ -1,0 +1,21 @@
+------------------------------------------------
+| 1: Introduction to Consistency and Coherence | 
+------------------------------------------------
+- shared memory systmes, each processor core may r/w to single shared addr space
+- memory consistency: rules and guarantees about the order in which memory operations are 
+executed and observed
+- with concurrenct execution many legal interleavings
+- microarchitecture must enforce the consistency model
+- cache coherence: consistency of shared resource data that is stored in multiple cache locations
+  - change in one cach reflected in all other caches w/ that memory location
+  - means of supporting consistency model
+
+
+---- Memory Notes ----
+----------------------
+
+
+
+------------------------------------
+---- 3.1: No Memory Abstraction ----
+------------------------------------
