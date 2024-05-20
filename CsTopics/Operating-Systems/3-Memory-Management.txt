@@ -350,6 +350,24 @@ Class 3: referenced, modified
 
 ---- Shared Libraries ----
 --------------------------
+- in modern systems, many systems have to share large libraries
+- when program linked with shared library, small stud routine that binds to called function at runtime
+included
+  - functions paged in when needed
+
+---- Mapped Files ----
+----------------------
+- process can issue syscall to map file onto portion of its virtual addr space
+- alternate model to I/O
+  - file accessed as big character array in memory
+
+
+---- Summary ----
+-----------------
+
+---- Memory Notes ----
+----------------------
+- 
 
 
 
