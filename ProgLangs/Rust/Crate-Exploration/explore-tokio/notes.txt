@@ -1,0 +1,71 @@
+tokio::task -> provides tools for working wtih tasks
+-----------------------------
+- task: nonblocking lightweight unit of execution
+  - they are managed by the tokio runtime and not the OS
+  - like green threads
+- lightweight since created by runtime and not os
+  - dont need context switch
+- scheduled cooperatively
+  - task is allowed to run until it yields at which point scheudler will run new task
+- tasks are non blocking, must yield when it cannot do more work
+
+task::spawn_blocking
+- spawns blocking function on dedicated thread pool for blocking tasks
+
+
+- tokio has explicit yield points in a number of library functions to prevent
+one future that is under heavy load and always ready to starve everything else
+
+tokio::task::JoinSet
+- collection of tasks spawned on a tokio runtime
+- await completion of some or all tasks in the set
+- all tasks must have the same return type
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tokio::sync -> provides synchronization promitives
+tokio::time -> provides utilities for tracking time and scheduling work
+tokio::runtime -> provides more options for configuring and managing runtime
+tokio::io -> provides asynchronous core I/O primitives
+tokio::net -> provides non blocking versions of TCP, UDP, Sockets
+tokio::fs -> similar to std::fs but nonblocking
+tokio::signal -> asynchronous handling of unix singals
+tokio::process -> spawning and managing child processes
+
+
+tokio has two kinds of threads: core threads and blocking threads
+- core threads: where asynchronous code runs, default spawn one for each core
+- blocking threads: spawned on demand to run code that would block other tasks
