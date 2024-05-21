@@ -157,6 +157,14 @@ empty hole between two processes, several algorithms for allocation. first fit, 
 
 ---- Summary ----
 -----------------
+- Virtual memory is an abstraction over memory that provides each process with the illusion of having nearly unlimited access
+to memory in a contiguous sequence. The virtual address spaces is broken up onto multiple pages, which each contain a section 
+of the virtual address space. When a process tries to access an address in its virtual address space, that address is send to the 
+memory management unit to be transformed into a physical address that can be used to access the value at that location. If the current
+virtual address's page is not in memory, a page currently in memory needs to be evicted and the new one brought in. Eviction is handled 
+thorugh various algorithms. Paging can be slow. You must map from a virutal address to a physical address and then have to find the associated 
+page very quyickly. The translation lookaside buffer is a hardware cache that caches mappings so you can avoid a page table lookup. This helps 
+speed up paging. As for the structure of page tables, the two main approaches are multilevel page tables and inverted pages tables
 
 ---- Memory Notes ----
 - virtual memory: program has its own addr space that is broken into pages
@@ -221,12 +229,13 @@ Class 3: referenced, modified
   - least recent arrival at head
 - on page fault, remove from head and add to tail
 
----- The Second Change Page Replacement Algorithm ----
+---- The Second Chance Page Replacement Algorithm ----
 ------------------------------------------------------
 - modification to FIFO that insepct R bit of oldest page
 - if 0, evicted and replaced
 - if 1, clear bit and put page onto end of list
   - keep looking for page with 0 R to evict
+
 
 ---- The Clock Page Replacement Algorithm ----
 ----------------------------------------------
@@ -236,6 +245,7 @@ Class 3: referenced, modified
 - if R is 0, evicted and new page inserted
 - if R is 1, clear R and advance hand
 
+
 ---- The Least Recently Used Page Algorithm ----
 ------------------------------------------------
 - observation that page that have been used in last few instructions will be used again
@@ -243,12 +253,14 @@ Class 3: referenced, modified
 - maintain list that must be updated on every memory reference
   - this is expensive and requires hardware support to be feasible
 
+
 ---- Simulating LRU in Software ----
 ------------------------------------
 - software counter with each page 
 - on interrupts, os scan all page and R bit added to counter for page
 - page with lowest counter chosen for replacement
 - modifications to make it work better
+
 
 ---- The Working Set Page Replacment Algorithm ----
 ---------------------------------------------------
@@ -284,11 +296,23 @@ Class 3: referenced, modified
 
 ---- Summary ----
 -----------------
--
+- When a page fault occurs, the new page must be brought into memory. It is often the case that memory is already full of pages from other proess. When this
+occurs we need to evict a page from memory to include the newly accessed page. There are various algorithms proposed for this which each have their tradeoffs. 
+Ideally, we want an algorithm that will replace a page that will be used farthest in the future but this is not possible to implement in one pass. We cant reach
+optimal, but there are efficient algorithms that perform this job reasonably sufficiently. 
 
 ---- Memory Notes ----
 ----------------------
-- 
+- What is the optimal, but impossible to implement page replacement algorithm? At moment of page fault, you evict the page that will be used farthest away in the future, not implementable
+- Not Recently used page replacement: R bit -> set whenever page references, M bit -> set whenever page modified. Pages divided into categories. Class 0: not references or modified.
+Class 1: not referenced, modified. Class 2: references, not modified. Class 3: referenced, modified. Remove page at random from lowest numbered nonempty class, crude approx of LRU
+- First in First out Page Replacement: Linked list of pages, most recent arrival at tail and oldest at head. on fault, remove from head and add to tail, might throw out important pages
+- Second Chance Page Replacment: Modified FIFO, linked list like fifo but on page fault inspect R bit of oldest page (head). If 0, evict, else move it to end of list and keep looking 
+- Clock Page Replacement: Keep pages in circular list. Same algorithm as second chance. If R is 0, evice and insert new page, if R is one, clear R and advance hand, realistic
+- Least Recently used page replacement: page not used recently will likely not be used again soon, maintain list of references and remove least recently used page, Excellent, difficult to impl
+- Working set page replacement: set of pages process using is working set, keep track of process working set and evict pages not in working set, expensive to impl
+- Workign set clock page replacement: Circular list of pages, R bit = 0 and time of last use greater than some threadshold, evict, good and efficient
+- demand paging: pages are loaded only on demand
 
 
 
@@ -364,6 +388,7 @@ included
 
 ---- Summary ----
 -----------------
+- 
 
 ---- Memory Notes ----
 ----------------------
@@ -371,6 +396,32 @@ included
 
 
 
+
+------------------------------------
+---- 3.6: Implementation Issues ----
+------------------------------------
+
+---- Operating System Involvement with Paging ----
+--------------------------------------------------
+- has to decide how large program & data will be initially and create page table
+- space needs to be allocated
+- page table needs to be ready to go
+- MMU rest and TLB flushed
+- clean up page table
+- various other duties
+
+---- Page Fault Handling ----
+-----------------------------
+1) hardware trap to kernel, pc saved on stack and cpu information saved
+2) ISR started to save regs and other volatile info, then call page fault handler
+3) os try to discover which virtual page needed
+4) once have virtual addr which casued fault, validate addr and look for free page frame
+5) if page frame dirty, write to nonvolatile
+6) when page frame clean, bring in needed page
+7) update page table when page arrives
+8) instruction backed up to state it had when it began, pc reset too
+9) process is rescheduled
+10) registers and otehre state information restored, return to user space
 
 
 
