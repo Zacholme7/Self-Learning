@@ -208,8 +208,11 @@ None
 
 ---- Summary ----
 -----------------
-
-
+- For processes to be able to interact effectively, they need to be cooridnated and synchronize with each other to prevent invalid memory accesses
+or the incorrect changing of shared memory. This is called interprocess communication. The problems of IPC are how to pass into, how to make
+sure that two threads do not get in each others way, and what the sequencing is when dependencies are presents. There must be mutual exclusion
+that says that only one thread can be in a critical section at the same time. Communication mechanisms for IPC include message passing, pipes, sockets
+, signals, and semaphores/mutexes. 
 
 ---- Memory Notes ----
 ----------------------
@@ -316,7 +319,6 @@ if still running at the end of the interval it will suspend it and pick a new pr
   - must have perfect information
 - dynamic schedling makes scheduling decision at run time
 
-
 ---- Policy vs Mechanism ----
 -----------------------------
 - scheduler parameterized in some way, but params can be filled in by user process 
@@ -339,12 +341,14 @@ if still running at the end of the interval it will suspend it and pick a new pr
 - slow context switch
 - I/O does not suspend the entire process
 
-
-
 ---- Summary ----
 -----------------
-
-
+- In a computer, there are many processs/thread competing for usage of the cpu. This is where a part of the operating system
+called a scheulder comes into play. The role of the scheduler is to decide which process to run next based on a list of currently
+waiting processes. There are two flavours of schedulinga algorithms. Nonpreemptive scheduling, also called cooperative, is when
+a thread is picked to run and it is allowed to run until it either blocks of manually yields. Preemptive on the other hand will pick
+a thread and will let it run until the os suspends it and swtiches to a new process. There are various scheduling algorithms each with
+their own trade offs and seek to give all processes a fair share of the cpu, prevent starvation, and try to always keep the cpu busy.
 
 ---- Memory Notes ----
 ----------------------
@@ -377,6 +381,7 @@ some fraction of cpu
 
 
 
+
 -------------------------
 ---- Chapter Summary ----
 -------------------------
@@ -387,59 +392,3 @@ space or kernel space. Processes must synchronize between each other to prevent 
 primitives that prevent threads from creating deadlocks, race conditions, and various other concurrency realted bugs. Since there are multiple threads and
 multiple processes running on a cpu, they have to be scheduled in a fair and consistent way. There are various different scheduling algorithms with their own
 pros and cons that seek to balance the amount of cpu time each process gets on based on different factors such as process prirority
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

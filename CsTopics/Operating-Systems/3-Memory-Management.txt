@@ -331,6 +331,7 @@ Class 1: not referenced, modified. Class 2: references, not modified. Class 3: r
   - fault rate decreases as more pages are assigned
 - trade offs between local and global, comes down to amount of page faults
 
+
 ---- Load Control ----
 ----------------------
 - working set of all processes exceed memory, but one process may need more and none need less
@@ -345,6 +346,7 @@ Class 1: not referenced, modified. Class 2: references, not modified. Class 3: r
   - if too few page frames are free, selets pages to evict
 - makes sure free frames are clean and do not need to be written when required
 - two handed clock: one hand writing dirty pages and other for replacement
+
 
 ---- Page Size ----
 -------------------
@@ -388,11 +390,17 @@ included
 
 ---- Summary ----
 -----------------
-- 
-
+- There are many tradeoffs to consider when you are implementing paging algorithms. One choice can have results that trickle down to other
+parts of the systems and have impacts of performance. 
+ 
 ---- Memory Notes ----
 ----------------------
-- 
+- What are design issues for paging systems? 1) local vs global allocation: local -> allocate every process fixed fraction of memory. Global: allocating memory dynamically among runnable processes.
+2) Load Control: working set of all processes may exceed memory and a process may need more. OOM (out of memory killer) rank processes and kill ones, can also compact and compress. 3) cleaning policy:
+paging daemon sleeps most of time but periodically awakened to select pages to evict or write to memory. 4) page size: on average half of final pages will be empty. Dont want page size too small so we 
+do a ton of swaps but also dont want too bit so we waste too much memory. 5) Seperate instruction and data spaces: can sepearate to save/share space but need own page table. 6) Shared pages: easy with
+seperate I&D spaces but if not seperate have to manage how to share when one process killed. 
+
 
 
 
