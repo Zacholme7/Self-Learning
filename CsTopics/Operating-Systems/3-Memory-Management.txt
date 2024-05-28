@@ -429,7 +429,80 @@ seperate I&D spaces but if not seperate have to manage how to share when one pro
 7) update page table when page arrives
 8) instruction backed up to state it had when it began, pc reset too
 9) process is rescheduled
-10) registers and otehre state information restored, return to user space
+10) registers and other state information restored, return to user space
+
+
+---- Instruction Backup ----
+----------------------------
+- must determine where first byte of instruction is 
+
+---- Locking Pages in Memory ----
+---------------------------------
+- I/O must still occur
+- chance that page containing I/O buffer will be chosen and removed from memory
+- can lock/pin a page to make sure that it is not removed
+
+---- Backing Store ----
+-----------------------
+- allocating space on nonvolatile storage uses swap parition
+- new processes assigned chunks of swap parition
+  - associated w/ it is the address of its nonvolatile storage area
+- other algorithms for this
+
+---- Summary ----
+-----------------
+- Along with paging comes various implementation issues. Some of these issues include configuration based issues such as how to decide the initial
+size of the page table and other are implementation issues such as designing a mechanism to keep pages hot while doing I/O. This issues are often
+hidden in the background but must be addresses for proper paging to occur
+
+---- Memory Notes ----
+----------------------
+- Process of page fault handling?: 1) hardware trap to kernel, pc saved on stack and cpu information saved,  2) ISR started to save regs and other volatile info, then call page fault handler,
+3) os try to discover which virtual page needed, 4) once have virtual addr which casued fault, validate addr and look for free page frame
+5) if page frame dirty, write to nonvolatile, 6) when page frame clean, bring in needed page, 7) update page table when page arrives
+8) instruction backed up to state it had when it began, pc reset too, 9) process is rescheduled, 10) registers and other state information restored, return to user space
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
