@@ -431,7 +431,6 @@ seperate I&D spaces but if not seperate have to manage how to share when one pro
 9) process is rescheduled
 10) registers and other state information restored, return to user space
 
-
 ---- Instruction Backup ----
 ----------------------------
 - must determine where first byte of instruction is 
@@ -463,6 +462,30 @@ hidden in the background but must be addresses for proper paging to occur
 8) instruction backed up to state it had when it began, pc reset too, 9) process is rescheduled, 10) registers and other state information restored, return to user space
 
 
+
+
+----------------------------
+---- 3.7: Segementation ----
+----------------------------
+- having two or more seperate virtual address spaces could be better
+- can provide many completely independent addr spaces: segements
+- if segements ind, can grow/shrink easily
+- program must supply two part address
+  - segement number and addr in segment
+- segements can be shared or have different protections
+
+---- Implementation of Pure Segementation ----
+----------------------------------------------
+- pages are fixed size but segements are not
+- allow programs and data to be broken up into logically ind addr spaces and aid sharing/protection
+
+---- Segementation with Paging: MULTICS ----
+--------------------------------------------
+- only pages of segement that are actually needed have to be around
+- treated each segemetn as virtual memory and page it
+- segement table w/ one desciptor per segement
+  - segement table itself was segemented and paged
+- descriptor said if segement was in memory or not
 
 
 
