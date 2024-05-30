@@ -486,7 +486,37 @@ hidden in the background but must be addresses for proper paging to occur
 - segement table w/ one desciptor per segement
   - segement table itself was segemented and paged
 - descriptor said if segement was in memory or not
+- address has two parts: segement and address within segement
+  - address within segement further divided into page number and word within page
 
+---- Segementation with Paging: The Intel x86 ----
+--------------------------------------------------
+- fewer segements but larger ones
+- many programs need large segements
+
+---- Summary ----
+-----------------
+- You can further expand upon virtual memory by assigning each process a set of segements 
+rather than splitting the existing address space up into sections. This allows each segement
+to grow and shrink independendly from each other and split it up logically
+
+---- Memory Notes ----
+----------------------
+- None
+
+
+
+
+--------------------------------------------
+---- Chapter summary ----
+--------------------------------------------
+- The simplest and earliest form of memory management is no page swapping at all. A progress is just run to completion.
+You can expand on this by moving the entire process memory image onto novolatile storage and then loading in another process.
+This was still not enough and hence virtual memory was designed. It provides a process with the illusion that it has nearly 
+infinite contiguous memory but this is handled via pages and swapping mechanisms. A process will issue a virtual address which
+will be translated by the MMU via the page table. This results in a physical address which is then used to address into memory.
+All pages cannot be in memory at the same time so paging algorithms were designed to most effectivley keep pages in memory that are 
+needed and replace them in the best manner. 
 
 
 
