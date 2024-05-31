@@ -1,0 +1,14 @@
+-------------------
+| 4: File Systems | 
+-------------------
+- computer systems need to store and retrieve information
+- requirements for long term info storage
+1) Must be possible to store very large amount of info
+2) Information must survive the termination of the process using it
+3) Multiple processes must be able to access info at once
+- File: logical units of information created by processes
+  - info in files is persistent
+  - managed by OS
+
+---- Memory Notes ----
+- File: logical units of information created by processes
