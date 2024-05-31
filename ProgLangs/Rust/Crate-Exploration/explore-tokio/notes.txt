@@ -21,6 +21,30 @@ tokio::task::JoinSet
 - await completion of some or all tasks in the set
 - all tasks must have the same return type
 
+tokio::task::LocalSet
+- a set of tasks that are executed on the same thread
+- may need to run one or more futures that are !send
+        - schedule one or more !send futures
+- tokio::spawn requires that the future implements !Send
+- run with run_until
+- spawn tasks on with spanw_local
+- localset itself is a future so it must be awaited
+        - it completes when all tasks on the set are completed
+- can spawn several tasks on local set and run them all to completion
+- can only be awaited in #tokio::main, or inside call to block_on
+        - cannot be used within tokio::spawn
+- What if we want to spawn !Send futures within tokio::spawn?
+        - create local set somewhere else and communicate with it using mpsc
+
+
+
+
+
+
+
+
+
+
 
 
 
