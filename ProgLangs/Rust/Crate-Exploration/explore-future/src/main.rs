@@ -23,5 +23,7 @@ impl Future for SimpleFuture {
 
 
 fn main() {
+        
     println!("Hello, world!");
+
 }

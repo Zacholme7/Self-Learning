@@ -23,6 +23,10 @@ fn bar() -> impl Future<Output = usize> {
 }
 
 
+// pinning guarantees that an object wont be moved
+
+
+
 
 struct SharedState {
         completed: bool,

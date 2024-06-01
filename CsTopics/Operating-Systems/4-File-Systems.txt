@@ -12,3 +12,28 @@
 
 ---- Memory Notes ----
 - File: logical units of information created by processes
+
+
+
+| 4.1: Files
+---------------------------
+
+---- File Naming ----
+---------------------------
+- a file is an abstraction mechanism to store and load info
+- file name and file extension (indicates something about the file)
+
+---- File Structure ----
+-----------------------------
+- file can be structured as byte sequence, record sequence, or as a tree
+- byte sequence
+        - unstructured
+        - os does not know or care what is in the file, just sees the butes
+        - used by unix and windows
+        - provides a lot of flexibility
+- record sequence      
+        - sequence of fixed length records
+        - read operations return one record and write operations overwrite/append one record
+- tree based
+        - file consists of tree of records, each contain key field in fixed position on the record
+        - get the record with a specific key
