@@ -11,29 +11,66 @@
   - managed by OS
 
 ---- Memory Notes ----
+----------------------
 - File: logical units of information created by processes
 
 
 
-| 4.1: Files
----------------------------
+--------------
+| 4.1: Files | 
+--------------
 
 ---- File Naming ----
----------------------------
+---------------------
 - a file is an abstraction mechanism to store and load info
 - file name and file extension (indicates something about the file)
 
 ---- File Structure ----
------------------------------
+------------------------
 - file can be structured as byte sequence, record sequence, or as a tree
 - byte sequence
-        - unstructured
-        - os does not know or care what is in the file, just sees the butes
-        - used by unix and windows
-        - provides a lot of flexibility
+  - unstructured
+  - os does not know or care what is in the file, just sees the butes
+  - used by unix and windows
+  - provides a lot of flexibility
 - record sequence      
-        - sequence of fixed length records
-        - read operations return one record and write operations overwrite/append one record
+  - sequence of fixed length records
+  - read operations return one record and write operations overwrite/append one record
 - tree based
-        - file consists of tree of records, each contain key field in fixed position on the record
-        - get the record with a specific key
+  - file consists of tree of records, each contain key field in fixed position on the record
+  - get the record with a specific key
+
+---- File Types ----
+--------------------
+- regular files: contain user information
+  - ascii/binary files
+  - can easily edit
+- directories: system files for maintaining structure of file system
+- character special files: related to input/output
+- block special files: used to model disks
+
+---- File Access ----
+---------------------
+- random access files
+- read operation can give position where to start reading
+- seek can be used to set the current position
+- can then read sequentially
+
+---- File Attributes ----
+-------------------------
+- metadata describing properties of the file
+  - protection, creator, time stats, ...
+
+---- File Operations ----
+- create, delete, open, close, read, write, append, seek, get attrs
+set attrs, rename
+
+---- Summary ----
+- Files are a key primitive in operating systems. They are an abstraction over sequence of bytes
+that provide convinent access without exposing the underlying hardware. There are various types of file
+that you can create and each file has a bunch of attributes/metadata associated with it to describe important 
+information about the file
+
+--- Memory Notes ----
+---------------------
+- None
