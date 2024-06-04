@@ -1,0 +1,64 @@
+-------------------
+| 1: Introduction |
+-------------------
+
+
+
+
+--------------------------------------
+| 1.1: The Era of multicore machines |
+--------------------------------------
+- transistors increasing exponentially, not operaing frequency
+- Ghz = 1 billion cycles/second
+- emergence of GPGPU computing -> general purpose computing w/ gpu
+  - superiod GFlop/watt performance where energy resources are dwindling
+
+---- Summary ----
+-----------------
+- Multicore machines are becoming more and more imporant as moores law is reaching its end. Modern 
+cpu's are heat bound and gains in performance are being seeked out via more cores in the cpu. There 
+was also the emergence of computing on a gpu that opened a new realm for high performance computing.
+
+---- Memory Notes ----
+----------------------
+- How many cycles is a Ghz: 1 billion
+
+
+
+
+----------------------------------------
+| 1.2: A taxonomy of parallel machines |
+----------------------------------------
+- Michael Flynn: machine classified on how many data items they can process concurrently and
+how many diff instrs they can execute at same time
+  - single or multiple
+- single instruction, single data (SISD): sequential machine that executes on instr at a time
+- single instruction, multiple data: (SIMD): instr applied on colletion of items
+- multiple instruction, single data (MISD): data can be processed by multiple machines and decision made on majority
+- multiple instruction, multiple data (MIMD): most versatile cateogy, multicore machines & gpus follow this
+  - subcategories
+    - Shared memory MIMD: universally accessible shared memory space
+      - bottleneck on scalability
+      - can parition local portion for each cpu, but can still access non local portion
+        - called NUMA (non uniform memory access)
+      - further subcategory
+        - Master-worker:some processors dedicated for execution of specialized software
+        - Symmetric multiprocessing platforms: cpu idential/capable of executing any program on system
+    - Distributed memory/shared nothing MIMD: process communicate by exchanging messages
+      - high communication cost but able to scale
+
+---- Memory Notes ----
+----------------------
+- SISD: sequential machine executes one instr at a time
+- SIMD: single instruction multiple data, instruction applied on a collection of items
+- MISD: multiple instruction single data, data process by multiple machines, decision based on majority
+- MIMD: multiple instruction multiple data, most versatile, multicore & gpu
+- Two categoires of MIMD: Shared memory MIMD and distributed memory/shared nothing MIMD
+- Shared Memory MIMD: universally accessible shared memory space, low scalability
+- Distributed memory/shared nothing MIMD: process communicate by exchanging message, high comm cost high scalability
+- Two categories of shared memory MIMD: master-worker and symmetric multiprocessing platform
+- Master-worker shared memory MIMD: some processors are dedicated for execution of specialized software
+- Symmetric multiprocessing platforms: cpu idential/capable of executing any program on System
+
+
+
