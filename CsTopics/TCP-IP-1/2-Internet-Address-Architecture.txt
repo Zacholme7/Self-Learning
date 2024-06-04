@@ -105,7 +105,6 @@ E) 1111: reversed: 32bits; 28 free (1111 = E)
 - administrator is free to change subnet number and host number allocation as they saw fit
   - allows for an easily configurable network:host ratio
 
-
 ----- Subnet Masks -----
 ------------------------
 - subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
@@ -116,13 +115,11 @@ is partitioned from the host info in a corresponding ip address
 - 0 in subnet maks means corresponding bit position should be considered part of the host portion
 - subnet maks is purely a local matter at the site
 
-
 ----- Variable Length Subnet Masks (VLSM) -----
 -----------------------------------------------
 - it is possible to use a different length subnet mask applied to the same network numbers in different portions of the same site
 - adds flexibility since diff subnetworks can be set up with different number of ports
 - VLSM now supported by most hosts, routers, and routing protocols 
-
 
 ----- Broadcast Addresses -----
 -------------------------------
@@ -144,7 +141,9 @@ is partitioned from the host info in a corresponding ip address
 
 ---- Summary ----
 -----------------
-- 
+- When internet addresses were originally defined, they were split into classes (A,B,C,D,E) which each gave a tradeoff between the
+number of networks and the number of hosts it could support. Eventually this was too restricting and subnetting was developed which 
+allowed a sit to further divide their ip address into more host and base addresses. A subnet mask is used to determine how it is partitioned.
 
 ---- Memory Notes ----
 ----------------------
@@ -155,7 +154,6 @@ most hosts, B haing more networks less hosts, etc...
 allows site admin to trade off num of subnetworks vs num of host, need to use subnet mask
 - subnet mask: assignment of bits used by host or router to determine how the network and subnetwork info
 is partitioned from the host info in a corresponding ip address, local to the site
-
 - variable length subnet mask: allow the application of different subnet masks to the same network for the purpose of subnetting
 
 
@@ -184,10 +182,10 @@ is partitioned from the host info in a corresponding ip address, local to the si
 - addresses asigned based uponw here router is located in tree
 - route aggregation: joining multiple numerically adjacent IP prefixed into single shorter prefix, called aggreagte/summary
 
-
 ---- Summary ----
 -----------------
--
+- Classless inter domain routing was introduced to eliminate the predefined separation of network and host numbers. You can also reduce
+ip address usage via route aggregation and join together multiple numericall adjacnet IP prefixed into single shorter prefix.
 
 ---- Memory Notes ----
 ----------------------
@@ -209,6 +207,14 @@ used for the network portion of address
 - for ipv4, class D space reserved for multicast
 - route aggregation: joining multiple numerically adjacent IP prefixed into single shorter prefix, called aggreagte/summary
 
+---- Addressing Ipv4/IPv6 Translators ----
+------------------------------------------
+- Ipv4 embeded ipv6 addresses
+  - ipv4 inside ipv6
+- 
+
+
+FINISH THIS CHAPTER
 
 
 

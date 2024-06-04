@@ -507,9 +507,9 @@ to grow and shrink independendly from each other and split it up logically
 
 
 
---------------------------------------------
+-------------------------
 ---- Chapter summary ----
---------------------------------------------
+-------------------------
 - The simplest and earliest form of memory management is no page swapping at all. A progress is just run to completion.
 You can expand on this by moving the entire process memory image onto novolatile storage and then loading in another process.
 This was still not enough and hence virtual memory was designed. It provides a process with the illusion that it has nearly 

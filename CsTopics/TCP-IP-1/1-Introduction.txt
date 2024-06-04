@@ -18,9 +18,9 @@ the internet architecture
 
 
 
------------------------------------------
-|---- 1.1: Architectural Principals ----|
------------------------------------------
+---------------------------------------
+---- 1.1: Architectural Principals ----
+---------------------------------------
 - internet: ability to provide communication between computers
 - WWW: application that uses internet for communication
 - "Interent architecture should be able to interconnect multiple distinct networks and muliple activites should be able to run simultaneously on the resulting network"
@@ -61,7 +61,6 @@ a connectionless network in contrast to VC. The end to end argument and fate sha
 that rules to take care of data should be at endpoint and fate sharing says that either a system all works or none of it works. In terms of data 
 transfer, you can get reliable transport for a overhead or best effort delivery where you are not guaranteed to get all your data/correct. 
 
-
 ---- Memory Notes ----
 ----------------------
 - internet: ability to provide communication between computers
@@ -74,9 +73,9 @@ transfer, you can get reliable transport for a overhead or best effort delivery 
 
 
 
-------------------------------------------
-|---- 1.2: Design and Implementation ----|
-------------------------------------------
+----------------------------------------
+---- 1.2: Design and Implementation ----
+----------------------------------------
 - implementation architecture defines how the concepts in a protocl architecture may be rendered into existence
 - layering is the approach to implementing protocol suits
 
@@ -127,9 +126,9 @@ on the use case.
 
 
 
--------------------------------------------------------------------
-|---- 1.3: The Architecture and Protocols of the TCP/IP Suite ----| 
--------------------------------------------------------------------
+-----------------------------------------------------------------
+---- 1.3: The Architecture and Protocols of the TCP/IP Suite ---- 
+-----------------------------------------------------------------
 
 ---- The ARPANET Reference Model ----
 -------------------------------------
@@ -171,9 +170,9 @@ to the internet.
 
 
 
-----------------------------------------------------
-|---- 1.4: Internets, Intranets, and Extranets ----| 
-----------------------------------------------------
+--------------------------------------------------
+---- 1.4: Internets, Intranets, and Extranets ---- 
+--------------------------------------------------
 - internet: multiple networks connected together using a a common protocol suite
 - Internet: collection of hosts around the world that can communcate with each other using TCP/IP
 - Internet is an interenet but the reverse is not true
@@ -198,9 +197,9 @@ of Matcalfes law.
 
 
 
----------------------------------------
-|---- 1.5: Designing Applications ----|
----------------------------------------
+-------------------------------------
+---- 1.5: Designing Applications ----
+-------------------------------------
 
 ---- Designing Applications ----
 --------------------------------
@@ -241,9 +240,9 @@ via an api.
 
 
 
-----------------------------------------
-|---- 1.6: Standardization Process ----|
-----------------------------------------
+--------------------------------------
+---- 1.6: Standardization Process ----
+--------------------------------------
 - Internet Engineering Task Force (IETF)
   - meets three times each year to discuss/agree on standard for the interents core protocls
 - Interenet Research Task Force (IRTF)
@@ -264,9 +263,9 @@ None
 
 
 
------------------------------------------------------------
-|---- 1.7: Implementations and Software Distributions ----|
------------------------------------------------------------
+---------------------------------------------------------
+---- 1.7: Implementations and Software Distributions ----
+---------------------------------------------------------
 - each popular operating system usually has own implementation but original was from Berkely
 - by mid 1990s, interenet and TCP/IP was well established
 
@@ -282,9 +281,9 @@ None
 
 
 
-------------------------------------------------------------
-|---- 1.8: Attacks Involving the Internet Architectrue ----|
-------------------------------------------------------------
+----------------------------------------------------------
+---- 1.8: Attacks Involving the Internet Architectrue ----
+----------------------------------------------------------
 - spoofying: can insert whatever ip address choose into source ip address field of each ip datagram someone sends
   - delivered to destination but difficult to determine origin
 - denial of service: using so much of some important resource that legitimate users are denied service
@@ -300,9 +299,9 @@ None
 
 
 
-------------------------
-|---- 1.9: Summary ----| 
-------------------------
+----------------------
+---- 1.9: Summary ---- 
+----------------------
 - interenet architecture was designed to interconnect different existing networks and provide a wide range of services and protocols operating simultaneously
 - use packet switching with datagrams
 - interent employs a layered architecutre and employs encapsulation

@@ -5,9 +5,9 @@
 
 
 
----------------------
-| 1.1: Introduction |
----------------------
+---------------------------
+---- 1.1: Introduction ----
+---------------------------
 - N/A
 
 ---- Summary ----
@@ -17,3 +17,50 @@
 ---- Memory Notes ----
 ----------------------
 - N/A
+
+
+
+
+
+---------------------------------------------------------
+---- 1.2: Seven great ideas in computer architecture ----
+---------------------------------------------------------
+- use abstraction to simplify design
+- make the common case fast
+- performance via parallelism
+- performance via pipelining
+- performance via prediction
+- hierarchy of memories
+- dependability via redundancy
+
+---- Summary ----
+-----------------
+- N/A
+
+---- Memory Notes ----
+----------------------
+- 7 great ideas in comp arch: use abstraction to simplify design, make the common case fast, performance via parallelism, performance via pipelining, performance via prediction, hierarchy of memories, dependability via redundancy
+
+
+
+
+---------------------------------
+---- 1.3: Below your program ----
+---------------------------------
+- os and compiler esential
+- most primitive unit is binary digit (on/off)
+- instructions are collection of bits (binary digits) that computers understand
+  - numbers used for both instructions and data
+- assembler: translates symbolic version of instructions into binary version
+  - add A, B -> 1001010100101110
+
+---- Summary ----
+-----------------
+- The most primitive unit of a computer system is a binary digit, on/off, which is the basis for all processing to occur.
+A program starts as a high level language, which is a convinient, human readable, machine indepdend, and efficient way to write programs.
+This is then translated by a compiler into assembly language  which is then taken by the assembler and converted into 
+machine language for the cpu to execute. A important part of this is that binary digits represent both instructions and data
+
+---- Memory Notes ----
+----------------------
+- assembler: translates symbolic version of instructions into binary version

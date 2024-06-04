@@ -1,0 +1,42 @@
+-----------------
+| 3: Link Layer |
+-----------------
+
+---------------------------
+---- 3.1: Introduction ----
+---------------------------
+- purpose is to send/receive ip datagrams
+- support ethernet, dsl, wifi
+
+
+---- Summary ----
+-----------------
+- N/a
+
+---- Memory Notes ----
+----------------------
+- N/a
+
+
+
+
+----------------------------------------------------------
+---- 3.2: Ethernet and the IEEE 802 LAN/MAN Standards ----
+----------------------------------------------------------
+- first common form of ethernet adoped in IEEE standard 802.3
+- stations on shared ethernet segment
+- carrier sense, multiple access with collision detection (CSMA/CD): mediate which system can access shared medium
+  - (carrier sense) look if someone sender, only send when line is free
+  - if collision detected, each machine wait random time before sending again
+- Access methods more formally called media access control (MAC) protocols
+- nowadays, typically dedicated ethernet lines from a central ethernet switch
+- wireless introducted in 802.11
+
+
+---- Memory Notes ----
+----------------------
+- carrier sense, multiple access with collision detection (CSMA/CD): mediate which system can access shared medium, look if someone is sending
+and only send when line is free, if collision detected wait random time and send again. 
+
+
+

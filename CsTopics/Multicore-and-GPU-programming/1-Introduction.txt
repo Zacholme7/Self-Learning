@@ -5,9 +5,9 @@
 
 
 
---------------------------------------
-| 1.1: The Era of multicore machines |
---------------------------------------
+--------------------------------------------
+---- 1.1: The Era of multicore machines ----
+--------------------------------------------
 - transistors increasing exponentially, not operaing frequency
 - Ghz = 1 billion cycles/second
 - emergence of GPGPU computing -> general purpose computing w/ gpu
@@ -26,9 +26,9 @@ was also the emergence of computing on a gpu that opened a new realm for high pe
 
 
 
-----------------------------------------
-| 1.2: A taxonomy of parallel machines |
-----------------------------------------
+----------------------------------------------
+---- 1.2: A taxonomy of parallel machines ----
+----------------------------------------------
 - Michael Flynn: machine classified on how many data items they can process concurrently and
 how many diff instrs they can execute at same time
   - single or multiple
@@ -47,6 +47,13 @@ how many diff instrs they can execute at same time
     - Distributed memory/shared nothing MIMD: process communicate by exchanging messages
       - high communication cost but able to scale
 
+---- Summary ----
+-----------------
+- Michael Flynn devised a scheme to classify computing systems based on how much data and instructions
+they could utilize concurrently. The division is SISD, SIMD, MISD, MIMD. You can further break MIMD into 
+shared memory MIMD and distributed memory MIMD. Again, you can separate Shared memory mimd into master-worker
+or Symmetric multiprocessing paltform
+
 ---- Memory Notes ----
 ----------------------
 - SISD: sequential machine executes one instr at a time
@@ -61,4 +68,27 @@ how many diff instrs they can execute at same time
 - Symmetric multiprocessing platforms: cpu idential/capable of executing any program on System
 
 
+
+
+----------------------------------------------------------
+---- 1.3: A Glimpse of influential computing machines ----
+----------------------------------------------------------
+- trends to either increase on chip core count or combine heterogenous cores
+- gpu developed to processes massive amounts of graphics data
+  - small on chip cache, lots of simple parallel ALUs, wide & fast memory buses
+
+---- The Cell BE processor ----
+-------------------------------
+- 2007, powered PS3
+- master-worker, heterogenous, MIMD
+- super hard to program but was a huge deal at the time
+
+---- Nvidias Ampere ----
+------------------------
+- cores arranged in groups called Streaming Multiprocessors
+  - each have 64 SIMD cores
+- can hit 19.5 TFlops -> 19.5 trillion floating point ops per second
+- special functions called kernels
+- send data to gpu -> launch a kernel -> wait to collect results
+- more computation less energy
 
