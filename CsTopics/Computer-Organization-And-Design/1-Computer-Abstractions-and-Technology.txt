@@ -2,9 +2,6 @@
 | 1: Computer Abstractions and Technology |
 -------------------------------------------
 
-
-
-
 ---------------------------
 ---- 1.1: Introduction ----
 ---------------------------
@@ -17,7 +14,6 @@
 ---- Memory Notes ----
 ----------------------
 - N/A
-
 
 
 
@@ -64,3 +60,73 @@ machine language for the cpu to execute. A important part of this is that binary
 ---- Memory Notes ----
 ----------------------
 - assembler: translates symbolic version of instructions into binary version
+
+
+
+-------------------------------
+---- 1.4: Under the Covers ----
+-------------------------------
+- 5 classic components of computer: input, output, memory, datapath, control 
+- datapath perform arithmetic and control tells datapath, memory, I/O what to do
+- SRAM and DRAM make up memory hierarchy
+- instruction set architecutre: interface between hardware and low level software
+
+---- Summary ----
+-----------------
+- This chapter gave a high level overview some of the parts of a processor. It talked about how 
+memory is important and there is SRAM and DRAM that makes up the memory hierarchy. There is also 
+volatile and nonvolatile memory that is not persitant and persistant. 
+
+---- Memory Notes ----
+----------------------
+- 5 classic components of computer: input, output, memory, datapath, control 
+- instruction set architecutre: interface between hardware and low level software
+
+
+--------------------------
+---- 1.5: Technologies for 
+
+
+
+
+- NOTHING good in this chapter, finish at a later date for completeness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
