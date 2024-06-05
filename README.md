@@ -1,11 +1,9 @@
-# Readings
+# Self Learning
 
-This repository is my personal space for learning and experimenting with different programming languages. Here, you'll find various directories with all the textbooks that I am going through. Topics vary but can be broadly categorizied into computer science related readings and programming language readings. 
+This repository is my space for documenting my learning in various aspects of computer science. I enjoy learning in the open as it helps me document my progress and demonstrates my discipline for improving my skillset and knowledge base.
 
 ## Structure
-The repository is organized into language-specific directories:
-- `/CsTopics` - Contains general computer science topics
-- `/ProgLangs` - Contains general programming language topics
+The repository is organized into l
+- `/CsTopics` - Contains general computer science topics from popular textbooks. 
+- `/ProgLangs` - Contains general programming language topics from programming language textbooks. 
 
-## Goals
-The primary aim of this repository is to track my progress as I delve into different programming paradigms/computer science topics and enhance my knowledge and skillset
