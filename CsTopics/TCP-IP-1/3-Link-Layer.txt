@@ -30,13 +30,28 @@
   - if collision detected, each machine wait random time before sending again
 - Access methods more formally called media access control (MAC) protocols
 - nowadays, typically dedicated ethernet lines from a central ethernet switch
+
+---- The IEEE 802 LAN/MAN Standard ----
+--------------------------------------
+- 802 prefix deinfe operations of LANs and MANs
+- ethernet introduced in 802.3
 - wireless introducted in 802.11
+- locigal link control (LLC) frame header in 802.2
+
+---- The Ethernet Frame Format ----
+-----------------------------------
+- ethernet is an asynchronous LAN
+- begins with preamble (7 bytes) area used by the receiving interfaces circuity to determine when a frame is arriving
+and to determine the amount of time between encoded bits (clock recovery)
+  - recognizable pattern which receiver can use to "recover the clock" by the time the start frame delimited (SFD = 0xAB) is found
+- 48 bit (6 byte) Destination (DST) and Source (SRC) address fields, also known as MAC address/Link layer address/physical address/hardware address
+  - DST can also address more than one station (broadcast/multicast)
+- Type/length field (2 bytes). Ipv4 (0x0800), Ipv6(0x86DD), ARP (0x0806)
 
 
 ---- Memory Notes ----
 ----------------------
 - carrier sense, multiple access with collision detection (CSMA/CD): mediate which system can access shared medium, look if someone is sending
 and only send when line is free, if collision detected wait random time and send again. 
-
 
 

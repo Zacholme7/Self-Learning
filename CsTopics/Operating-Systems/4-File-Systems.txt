@@ -118,6 +118,26 @@ files and directories whereever you want to group common information together
 ---- 4.3: File System Implementation ----
 -----------------------------------------
 
+---- 4.3.1: File System Layout ----
+-----------------------------------
+- file system stored on disks
+- can divide disk into partitions w/ diff file systems on each partitions
+- on older systems, the sector 0 of disk called MBR (master book record), used to boot computer
+  - end of MBR contains parition table, starting/ending addrs for each parition
+  - locate active partition and read in boot block, execute
+  - program in book block loads os
+  - superblock: contains all key parameters about file system
+- next school as unified extensible firmeare interface
+  - UEFI is now most popular way to boot personal computer system
+  - fast booting, different architectures, disk size up to 8ZiB
+  - looks for location of partition table in second block of device
+  - first block is reserved as special market for software that expects MBR here
+  - GPT (GUID Partition Table) contains info about location of various partitions on disk
+    - contains the start and end of each parition
+  - UEFI keeps backup of GPT in last block
+  - firmware should support atleast FAT file system
+  - EFI system partition (ESp) contains file system, boot process can use which contains programs, config files, etc 
+
 
 
 
