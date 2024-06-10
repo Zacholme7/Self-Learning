@@ -123,11 +123,60 @@ increased in speed and processing power and continue to do so via various groudb
 
 
 
+- speedup covers the efficacy of a parallel solution: is it beneficial or not
+- efficiency is measure of resrouce utilization, how mcuh of the potential affored by the computing resrouces we commit is actually ysed
+- scalability: ability of system to handle a growing amount of wrok efficiently
+        - solve bigger probmes or incorporate more computing resources
+- strong scaling efficient: = t_seq / ( N * t_par)
+        - function of number N of processors employed
+- weak scaling efficienty = t_seq / t'_par 
+        - t'_par is time to solve problem that is N times bigger than the one the single machine is solving in time t_seq
+
+
+
+1.5
+- development of parallel solution to a problem starts wtih the dvelopment of its sequential variant
+        - bench mark against, see if output correct, find most time consumping part, how much gain can be expected
+- has to be sequential impl of same algo that is being parallized
+- profiler collects info about how frequently parts of program are called, how long duration is, how much memory is unstructured
+- 
+
+amdahls law
+- assumptions
+        - sequential application that requres T time to execute on single cpu
+        - application constsif of 0 <= a <= 1 parts that can be parallelized
+        - parallel execution incurs no communication overhead, can be easily divided
+- speedup = t_seq / t_par = T / (1 - a) T + (a * T) / n = 1 / (1 - a + a/n)
+- lim n approach infinity (speedup) = 1 / 1 - A
+        - solved, how much faster can aproblem be solved by a paralle progrem? 
+- gustafson barsis rebuttal, amdhal failed to explain when parallel programs routinely exceed the predicted speedup limits
+- praallel platform speeds up execution of sequenetial program and accomadtes bigger problem instance
+- 
 
 
 
 
 
+2: multicore and parallel program design
+-----
+- objectives are correctness and performance
+- 
+
+
+2.2: the pcam methodology
+- partitioning, communication, agglomeration, and mapping
+1) partitioning: breakup of computation into asmany divisible pieces as possible
+        - can be function (functional decomposition) or data (data decomposition) oriented
+        - the number of pieces should be one to two order of magnitude bigger than the number of compute nodes
+2) commuication: ideally tasks are indepdeny, but usually some indepedencies
+        - nay have to pass data between each other, the volume of data
+        - results int ehc reation of the task dependeyc graph, nodes are tasks and edges comm volume
+3) agglomeration: can reduce cost of communication by grouping tasks together
+        - each group assigned to single computational node, comm within group eliminated
+        - nuber of groups should as one order of magnitude bigger than the number of compute nodes
+4) mapping: task groups must be assigned/mapped to avaliable nodes     
+        - load balane the nodes
+        - reduce communcation overhead 
 
 
 
