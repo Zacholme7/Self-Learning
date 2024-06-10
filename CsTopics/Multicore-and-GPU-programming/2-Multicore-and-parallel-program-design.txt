@@ -1,0 +1,38 @@
+--------------------------------------------
+| 2: multicore and parallel program design | 
+--------------------------------------------
+
+---------------------------
+---- 2.1: Introduction ----
+---------------------------
+- objectives are correctness and performance
+- parallel execution may require a completely new algorithm
+
+---- Summary ----
+-----------------
+- When moving from sequential to parallel execution, you want to maintain correctness and 
+have some performance improvement. 
+
+---- Memory Notes ----
+- None
+
+
+
+
+-----------------------------------
+---- 2.2: The PCAM Methodology ----
+-----------------------------------
+- PCAM: partitioning, communication, agglomeration, and mapping
+1) partitioning: breakup of computation into asmany divisible pieces as possible
+  - can be function (functional decomposition) or data (data decomposition) oriented
+  - the number of pieces should be one to two order of magnitude bigger than the number of compute nodes
+2) commuication: ideally tasks are independant, but usually some indepedencies
+  - nay have to pass data between each other, the volume of data
+  - results int the creation of task dependancy graph, nodes are tasks and edges are communication volume
+3) agglomeration: can reduce cost of communication by grouping tasks together
+  - each group assigned to single computational node, communication within group eliminated
+  - nuber of groups should as one order of magnitude bigger than the number of compute nodes
+4) mapping: task groups must be assigned/mapped to avaliable nodes     
+  - load balane the nodes
+  - reduce communcation overhead 
+
