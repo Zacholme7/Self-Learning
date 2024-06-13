@@ -138,8 +138,33 @@ files and directories whereever you want to group common information together
   - firmware should support atleast FAT file system
   - EFI system partition (ESp) contains file system, boot process can use which contains programs, config files, etc 
 
-
-
+---- 4.3.2: Implementing Files ----
+-----------------------------------
+- need to keep track of which disk blocks go with which file
+1) Contiguous allocation
+- store each file as contiguous run of disk blocks
+- each file starts w/ brand new block
+- simple to implement, just need disk addr of first block and num of blocks in file
+- read performance is excellent, read in a single operation
+- disk becomes very fragmented over time!!
+  - need to compact which is way to expensive or maintain list of free spaces
+2) Linked list allocation
+- file is linked list of disk blocks
+- first part of each block used as pointer to next one, rest of block for data
+- no space is lost due to fragmentation
+- random access is very slow, have to start from head and go through all prior blocks 
+- storage no longer power of 2 since pointer takes up a few bytes
+3) Linked-List Allocation Using a Table in memory
+- can use prior approach and take pointer work from each block and put it in table in memory
+- chain is terminaed with special market
+- called FAT (file allocation table)
+- chain still has to be followed for random access but it is in memory so it is much faster
+- although, entire table must be in memory at all times 
+4) I-Nodes (index node)
+- lists the attributes and disk addresses of the files blocks
+- given i-node, possible to find all blocks of the file
+- i-node needs to be in memory only when file is open
+- size proportional the maximum number of files that may be opened
 
 
 
