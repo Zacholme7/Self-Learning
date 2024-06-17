@@ -23,7 +23,7 @@ have some performance improvement.
 ---- 2.2: The PCAM Methodology ----
 -----------------------------------
 - PCAM: partitioning, communication, agglomeration, and mapping
-1) partitioning: breakup of computation into asmany divisible pieces as possible
+1) partitioning: breakup of computation into as many divisible pieces as possible
   - can be function (functional decomposition) or data (data decomposition) oriented
   - the number of pieces should be one to two order of magnitude bigger than the number of compute nodes
 2) commuication: ideally tasks are independant, but usually some indepedencies
@@ -35,4 +35,13 @@ have some performance improvement.
 4) mapping: task groups must be assigned/mapped to avaliable nodes     
   - load balane the nodes
   - reduce communcation overhead 
+
+---- Summary ----
+-----------------
+- PCAM is a method for designing parallel programs. It consists of Partitioning, Communication, 
+agglomeration, mapping. 
+
+---- Memory Notes ----
+----------------------
+- None
 

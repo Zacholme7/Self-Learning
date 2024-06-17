@@ -10,8 +10,34 @@
 ----------------------------------------------
 ---- 2.2: Operations of Computer Hardware ----
 ----------------------------------------------
+- assembly language is the operations of computer hardware
+  - broken into a set of primitive instructions
 - all assembly language included in chart in book, not gonna write it all out
 Ex: add a, b, c -> add b and c and put result in a
+
+---- Summary ----
+- Computer hardware runs on assembly instructions defined by the instruction set architecture
+
+---- Memory Notes ----
+----------------------
+- None
+
+
+
+
+-------------------------------------------
+---- Operands of the Computer Hardware ----
+-------------------------------------------
+- operands of arithmetic instructions must be from registers
+- RISC-V registers are 32 bits (word)
+- a word is just a natural unit of access for a computer, either 32 or 64 bits
+- there are 32 registers
+- it is the compilers job to associate variables with registers
+- data transfer instructions use memory addresses to bring data into registers
+
+
+
+
 
 
 
