@@ -31,27 +31,42 @@
 - Access methods more formally called media access control (MAC) protocols
 - nowadays, typically dedicated ethernet lines from a central ethernet switch
 
----- The IEEE 802 LAN/MAN Standard ----
+---- 3.2.1: The IEEE 802 LAN/MAN Standard ----
 --------------------------------------
 - 802 prefix deinfe operations of LANs and MANs
 - ethernet introduced in 802.3
 - wireless introducted in 802.11
 - locigal link control (LLC) frame header in 802.2
 
----- The Ethernet Frame Format ----
+---- 3.2.2: The Ethernet Frame Format ----
 -----------------------------------
-- ethernet is an asynchronous LAN
+- ethernet is an asynchronous LAN, space between encoded bits may differ from one interface card to the next
 - begins with preamble (7 bytes) area used by the receiving interfaces circuity to determine when a frame is arriving
 and to determine the amount of time between encoded bits (clock recovery)
-  - recognizable pattern which receiver can use to "recover the clock" by the time the start frame delimited (SFD = 0xAB) is found
+  - recognizable pattern (10101010 (0xAA) repeated 7 times) which receiver can use to "recover the clock" by the time the start frame delimited (SFD = 0xAB) is found
 - 48 bit (6 byte) Destination (DST) and Source (SRC) address fields, also known as MAC address/Link layer address/physical address/hardware address
   - DST can also address more than one station (broadcast/multicast)
-- Type/length field (2 bytes). Ipv4 (0x0800), Ipv6(0x86DD), ARP (0x0806)
+- Type/length field (2 bytes). Ipv4 (0x0800), Ipv6(0x86DD), ARP (0x0806), value >= 1536 indicate type, value <= 1500 indicate length
+- Tags: contain various protocol fields defined by other IEEE standards
+- Payload data: 48-1500 bytes, where higher layer PDUs are placed
+- Frame check sequence: 4 bytes at end of frame, used for error/corruption detection, generated using cyclic redundancy check algorithm
+- minimum ethernet frame size is 64 bytes, need payload length of minimum 48 bytes
+  - padded with zeros if payload length not achieved
+- Interpacket gap: 12 byte times, ensure proper data recovery and provides opporunity for other traffic
 
 
 ---- Memory Notes ----
 ----------------------
 - carrier sense, multiple access with collision detection (CSMA/CD): mediate which system can access shared medium, look if someone is sending
 and only send when line is free, if collision detected wait random time and send again. 
-
+- ethernet preamble: 7 bytes used by receiving intrface to determine when a frame is ariving, 0xAA repeated 7 times used to recover the clock by time start
+frame delimiter arrives (SFD = 0xAB)
+- destination MAC address: 6 bytes, destination address, can address more that one station (broadcast/multicast)
+- source MAC address: 6 bytes, source address
+- type field: 2 bytes, can also be length field, typically identifies type of data that follows the header, Ipv4 (0x0800), Ipv6(0x86DD), ARP (0x0806),
+value >= 1536 indicate type, value <= 1500 indicate length
+- payload data: 48-1500 bytes where higher layer pdus are placed
+- Frame check sequence: 4 bytes at end of frame, used for error/corruption detection, generated using cyclic redundancy check algorithm
+- Components of an ethernet frame: preamble, start frame delimiter, desitnation mac, source mac, type/length, payload, frame check sequence
+- Interpacket gap (IPG) : 12 byte times, ensure proper data recovery and provides opporunity for other traffic
 

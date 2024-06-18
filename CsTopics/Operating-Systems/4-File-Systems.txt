@@ -166,6 +166,23 @@ files and directories whereever you want to group common information together
 - i-node needs to be in memory only when file is open
 - size proportional the maximum number of files that may be opened
 
+---- 4.3.3: Implementing Directories ----
+-----------------------------------------
+- directory entry provides info needed to find disk blocks
+  - map ASCII name of file onto info needed to locate the data
+- two ways to structure: inline and in heap
+1) Inline: file entry length, attributes, filename
+2) Heap: pointer to file name, file attributes
+
+---- 4.3.4: Shared Files ----
+-----------------------------
+- two solutions
+1) disk blocks are not listed in directories
+  - they are listed in little data structures associated with the file
+  - ds could be something like an i-node
+2) create a new file of type link
+  - os just reads the original file
+
 
 
 
