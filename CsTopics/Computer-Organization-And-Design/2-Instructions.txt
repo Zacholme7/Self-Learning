@@ -34,6 +34,10 @@ Ex: add a, b, c -> add b and c and put result in a
 - there are 32 registers
 - it is the compilers job to associate variables with registers
 - data transfer instructions use memory addresses to bring data into registers
+- RISC-V is little endian
+- ISA must have enough registers and make use of them extremely efficiently
+- constant/immediate value operations are common and should be used frequently
+  - x0 register is always zero
 
 
 

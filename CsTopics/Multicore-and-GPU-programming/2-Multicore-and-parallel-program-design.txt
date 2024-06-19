@@ -45,3 +45,39 @@ agglomeration, mapping.
 ----------------------
 - None
 
+
+
+
+-------------------------------------
+---- 2.3: Decomposition patterns ----
+-------------------------------------
+- determining which parts of the computation can be done concurrently
+
+                                 -> Linear    -> Task Parallelism
+      -> functional decomposition|
+      |                          -> Recursive -> Divide & Conquer
+      |
+      |                          -> Linear    -> Geometric Decomposition
+start -> domain decomposition    |
+      |                          -> Recursive -> Recursive Data Decomposition
+      |
+      |                          -> Regular   -> Pipeline 
+      -> data flow decomposition |
+                                 -> Irregular -> Event Based coordination
+
+---- 2.3.1: Task Parallelism ----
+---------------------------------
+- break up modules and assign each to a different compute node
+- use barrier to ensure synchronization
+- does not scale well with the number of compute nodes
+
+---- 2.3.2: Dividie & Conquer ----
+----------------------------------
+- a lot of sequential algorithms can be expressed recursively
+- have base case, split into subproblems, solve each subproblem, return
+- dynamic generation of tasks at runtime
+- *pseudocode for generic div and conquer parallelized given on page 39*
+
+
+
+
