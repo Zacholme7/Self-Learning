@@ -183,6 +183,39 @@ files and directories whereever you want to group common information together
 2) create a new file of type link
   - os just reads the original file
 
+---- 4.3.5: Log-Structured File System ----
+-------------------------------------------
+- seek time is not improving
+  - Log structured file system designed to alleivate this problem
+- structure entire disk as a log
+- periodically, all pending writes buffered in memory and written to disk as single contiguous segmenet
+at end of the log
+- at start of each segement is a segement summary
+- cleaner thread for compacting
+- bookkeeping is non trivial
+
+---- 4.3.6: Journaling File Systems ----
+----------------------------------------
+- keep log of what file system is going to do before it does it
+- first write log entry to disk, listing actions to be completed
+- after written, can perform operations
+- after operations done, log is erased
+- idemopotent and atomic properties
+
+---- 4.3.7: Flash based file systems ----
+-----------------------------------------
+- SSDs use flash memory, NAND based flash
+- no moving parts so seek time and rotational delay do not exists
+- access in microseconds, not milliseconds
+- reads are (10s of microseconds) much faster than writes (100s of microseconds)
+- read/write in unit of I/O (page/flash page) erase in unit of erase (block/flash block)
+- to write
+  - must first erase flash block, expensive (100s microseconds)
+  - then write sequentially
+- flash memory suffers wear
+- Program/erase cycle (P/E cycle), erase then write, max endurance 1000s to few 100000s cycles 
+  - spread out wear via Flash translation unit (FTL)
+
 
 
 
