@@ -215,7 +215,14 @@ at end of the log
 - flash memory suffers wear
 - Program/erase cycle (P/E cycle), erase then write, max endurance 1000s to few 100000s cycles 
   - spread out wear via Flash translation unit (FTL)
-
+- FTL connected to flash pacakges which ultimately contain the flash pages/flash blocks
+- to access specific page, need to address corresponding die on flash package
+  - on the die then the right plane, block, and page (complicated hierarchical address)
+- FTL uses translation tables to translate addresses
+  - has two types of mappings: per page and per block
+- ocasionally does garbage collection to free up space
+  - TRIM command helps SSD be certain some flash pages are now free
+- log structured file systems are good for flash based storage
 
 
 
