@@ -225,6 +225,15 @@ at end of the log
 - log structured file systems are good for flash based storage
 
 
+---- 4.3.8: Virtual File Systems ----
+-------------------------------------
+- convept to try to integrate multiple file systems into an orderly structure
+  - abstract out common part and put it in separate layer that calls the underlying systems
+- syscalls directed to VFS for initial processing then sent to concrete file system (VFS interface)
+- on system boot, VFS registers root file system and other file systems are mounted when they are loaded
+  - register = provider list of adds of functions VFS requires
+
+
 
 
 
