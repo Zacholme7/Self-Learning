@@ -78,6 +78,72 @@ start -> domain decomposition    |
 - dynamic generation of tasks at runtime
 - *pseudocode for generic div and conquer parallelized given on page 39*
 
+---- 2.3.3: Geometric decomposition ----
+---------------------------------------
+- many algos have repetative seq of steps on collection of data
+- if there are no dependancies between the data, then we have "embarrassingly parallel problem"
+
+---- 2.3.4: Recusive data decomposition ----
+--------------------------------------------
+- recurisve data structures are hard to partition
+- modification of the oriignal algorithm
+
+---- 2.3.5: Pipeline decomposition ----
+---------------------------------------
+- pipeline is software/hardware equivalent of assembly line
+  - item pass through pipeline made up of several stages
+- cpu architecture, signal proessing, graphics rendering, ...
+
+---- 2.3.6: Event based coordination decomposition ----
+-------------------------------------------------------
+- communication flow is not always fiexed
+- tasks/groups may interact dynamically by making decisions at runt ime
+
+---- Summary ----
+-----------------
+- 
+
+---- Memory Notes ----
+----------------------
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

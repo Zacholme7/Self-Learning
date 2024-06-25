@@ -25,9 +25,9 @@ Ex: add a, b, c -> add b and c and put result in a
 
 
 
--------------------------------------------
----- Operands of the Computer Hardware ----
--------------------------------------------
+------------------------------------------------
+---- 2.3: Operands of the Computer Hardware ----
+------------------------------------------------
 - operands of arithmetic instructions must be from registers
 - RISC-V registers are 32 bits (word)
 - a word is just a natural unit of access for a computer, either 32 or 64 bits
@@ -39,8 +39,30 @@ Ex: add a, b, c -> add b and c and put result in a
 - constant/immediate value operations are common and should be used frequently
   - x0 register is always zero
 
+---- Summary ----
+-----------------
+- 
 
 
+---- Memory Notes ----
+----------------------
+- 
+
+
+
+------------------------------------------
+---- 2.4: Signed and Unsigned Numbers ----
+------------------------------------------
+- numbers kept in computers as high and low electronic signals
+  - binary numbers, base 2 numbers
+- all information composed of binary digits
+- value of ith digit = d x base ** i (i starts at zero)
+- twos complement is used to represent negative and positive numbers
+  - leading 1 = negative, leading 0 = positive
+  - sign bit tells if num if negative or positive
+- negation: invert evey 0 to 1 and every 1 to 0, then add one to result
+   2 = 00000000 00000000 00000000 00000010
+  -2 = 11111111 11111111 11111111 11111110
 
 
 
