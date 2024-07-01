@@ -65,6 +65,59 @@ Ex: add a, b, c -> add b and c and put result in a
   -2 = 11111111 11111111 11111111 11111110
 
 
+---- Summary ----
+-----------------
+- 
+
+
+---- Memory Notes ----
+----------------------
+- 
+
+
+--------------------------------------------------------
+---- 2.4: Representing Instructions in the Computer ----
+--------------------------------------------------------
+- instrutions kept as series of high/low electronic signals/binary numbers
+- opcode: basic operation of the instruction
+- rd: the register destination operand
+- funct3: additional opcode field
+- rs1: first register source
+- rs2: second register source
+- funct7: additional opcode field
+- R-Type -> Register type 
+  - used for operations involving two source registers and one destination register
+    -------------------------------------------------------------------
+  - |func7 (7) | rs2 (5) | rs1 (5) | funct3 (3) | rd (5) | opcode (7) | 
+    -------------------------------------------------------------------
+- I-Type -> immediate type
+  - used for store operations, wtih two source registers and immediate offset
+    ---------------------------------------------------------------
+  - | immediate (12) | rs1 (5) | funct3 (5) | rd (5) | opcode (7) |
+    ---------------------------------------------------------------
+- S-Type -> store type
+  - used in store operations, two source registers and immediate offset
+    --------------------------------------------------------------------------------------------
+  - | immediate [11:5] (7) | rs2 (5) | rs1 (5) | funct3 (3) | immediate [4:0] (5) | opcode (7) |
+    --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

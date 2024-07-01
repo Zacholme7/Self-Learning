@@ -227,11 +227,43 @@ at end of the log
 
 ---- 4.3.8: Virtual File Systems ----
 -------------------------------------
-- convept to try to integrate multiple file systems into an orderly structure
+- concept to try to integrate multiple file systems into an orderly structure
   - abstract out common part and put it in separate layer that calls the underlying systems
 - syscalls directed to VFS for initial processing then sent to concrete file system (VFS interface)
 - on system boot, VFS registers root file system and other file systems are mounted when they are loaded
   - register = provider list of adds of functions VFS requires
+
+
+---- Memory Notes ----
+----------------------
+- 
+
+
+---- Summary ----
+-----------------
+- 
+
+
+
+
+------------------------------------------------------
+---- 4.4: File System Management and Optimization ----
+------------------------------------------------------
+
+---- 4.4.1: Disk Space Management ----
+--------------------------------------
+- can store as n consecutive bytes of disk space, or split up into a number of blocks
+- files are stored in fixed sized blocks, but how big should those blocks be?
+  - candidates are page size or size of flash page
+  - common convention is 4kb
+  - conflict between page size, data rate, and disk space utilization
+- two methods to keep track of free blocks
+1) linked list of disk blocks, each block holds as man<F3> free disk block numbers as it will fit
+  - free blocks are used to hold free list, so storage is essentially free
+2) bitmap, disk with n blocks requires bitmap with n bits
+  - freeblock = 1, allocated = 0
+- the correct solution is often just a game of tradeoffs
+
 
 
 
