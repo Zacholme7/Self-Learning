@@ -263,6 +263,17 @@ at end of the log
 2) bitmap, disk with n blocks requires bitmap with n bits
   - freeblock = 1, allocated = 0
 - the correct solution is often just a game of tradeoffs
+- mechanims for enforcing disk quotas
+  - administrator assigns each user max allotment of files/blocks
+  - table containing quota record for every user w/ open file
+
+---- 4.4.2: File System Backup ----
+-----------------------------------
+- file system recovery expensive, time consuming, and can be impossible
+- backs handle recovery from disaster and recovery from user mistakes
+1) physical dump: start at block 0, write all blocks to backup in order, stop when it has copied last one
+2) logical dump: start at one or more specified directories, recursively dumps all files/dirs found there that have changed
+
 
 
 
