@@ -275,6 +275,41 @@ at end of the log
 2) logical dump: start at one or more specified directories, recursively dumps all files/dirs found there that have changed
 
 
+---- 4.4.3: File System Consistency ----
+----------------------------------------
+- if system crashes before all modified blocks are written, it is left in inconsistent state
+- programs to check for consistency (fsck on unix)
+  - verify each file system independently of the other ones
+- two kinds of consistency checks
+1) blocks
+  - two tables to count each block 
+  - one count for number present in files and one in free list
+  - if consistent, each block will have a 1 in one of the tables
+  - block may be missing or duplicated in free/data 
+2) files
+  - scan and store usage count and then compare to value in inode
+
+---- 4.4.4: File System Performance ----
+----------------------------------------
+- block cache/buffer cache
+  - blocks that are kept in memory for performance reasons
+  - check if block in memory first
+  - hash device/disk addr and look up result in hash table to access block in memory
+    - same hash value chained together on linked list
+  - now need good cache replacement algorithm
+  - sync() system call, running every 30 seconds to force all modified blocks to disk
+  - (page cache and buffer cache)
+- block ahead read
+  - try to get blocks to cache before they are needed
+  - optimistically hope a block is needed
+- reducing disk arm motion
+  - put blocks that are likely to be accessed in sequence next to each other
+  - keep track of blocks as groups
+
+
+
+
+
 
 
 
