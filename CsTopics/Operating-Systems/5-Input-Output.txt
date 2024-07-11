@@ -1,0 +1,36 @@
+-------------------
+| 5: Input/Output | 
+-------------------
+
+-----------------------------------------
+---- 5.1: Principles of I/O Hardware ----
+-----------------------------------------
+- EE look at in term of chips/wries/power supplies/...
+- Programmers look at interfaces presented to software
+
+---- 5.1.1: I/O Devices ----
+----------------------------
+- block devices: stores information in fixed size blocks
+  - each has own address, 512 - 65536 bytes
+  - transfer in units of one or more blocks
+  - *can read/write each block independently*
+- character device: delivers or accepts a stream of characters
+  - not addressable and does not have seek operation
+
+---- 5.1.2: Device Controllers ----
+-----------------------------------
+- Electronic component (device controller/adapter)
+  - usually a chip
+- Mechanical component
+  - in the device itself
+- generally the job of the controller is to facilitate the flow of bites/bytes between computer and i/o device
+  - makes life easier for the programmer
+
+---- 5.1.3: Memory-Mapped I/O ----
+----------------------------------
+- each controller has registers that are used for communicating with cpu
+- by writing to registers, os can command device to perform certain actions and deliver/accpet data
+- many devices also have data buffer that os can read and write
+
+
+

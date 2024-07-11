@@ -306,8 +306,33 @@ at end of the log
   - put blocks that are likely to be accessed in sequence next to each other
   - keep track of blocks as groups
 
+---- 4.4.5: Defragmenting Disks ----
+------------------------------------
+- as time goes on disk gets filled with holes/gaps
+  - blocks spread all over giving poor performance
+- can restore performance by moving files to make them contiguous and group free space
+- in linux (ext3 and ext4) less fragmentation so rarely required
+- SSD do not suffer fragmentation at all
+
+---- 4.4.6: Compression and Deduplication ----
+----------------------------------------------
+- can compress data via looking for repeating sequences of data and encoding it 
+- deduplication to eliminate duplicate copies
+  - done inline or post process
+1) inline: hash calculated for every chunk it is about to write and compared to existing ones
+  - just add reference if it already exists
+2) post process: writes out data nd performs hashing/comparisons in background
+  - does not slow down the file operation
+
+---- 4.4.7: Secure File Deletion and Disk Encryption ----
+---------------------------------------------------------
+- it is very hard to truly delete all data without completely demolisting the disk
+  - usually overwriting entire disk with 3-7 passes alternating 0 and random numbers will securly erase it though
+- can use full disk encryption
+  - advanced encryption standard (AES)
 
 
+----- FINISH THIS CHAPTER ----
 
 
 
