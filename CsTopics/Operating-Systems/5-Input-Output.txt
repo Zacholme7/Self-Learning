@@ -31,6 +31,21 @@
 - each controller has registers that are used for communicating with cpu
 - by writing to registers, os can command device to perform certain actions and deliver/accpet data
 - many devices also have data buffer that os can read and write
+- issues with how CPU communicates with control registers and device data buffers
+  - 1) each control reg has I/O port number, all form I/O port space, special I/O instr is used to read/write form I/O
+    - addr space for memory and I/O are different
+  - 2) map control registers into memory space, each has unique memory address where no memory is assigned 
+    - this is memory-mapped I/O
+    - have to disable cachine for memory region
+- when CPU wants to read word, puts addr on bus and asserts READ signal
+  - second control line used to signal I/O or memory space
+
+---- 5.1.4: Direct Memory Access ----
+-------------------------------------
+- DMA (direct memory access) used to get data from I/O controller
+  - has memory addr register, byte count register, 1+ control registers. can all be read/written by cpu
+- acts as a big brain
+
 
 
 
