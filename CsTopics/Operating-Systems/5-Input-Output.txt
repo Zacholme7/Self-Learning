@@ -45,7 +45,23 @@
 - DMA (direct memory access) used to get data from I/O controller
   - has memory addr register, byte count register, 1+ control registers. can all be read/written by cpu
 - acts as a big brain
+- can operate in word at a time mode and block mode
+- cycle stealing: device controller can steal occasional bus cycles from CPU once in a while
+- burst mode: DMA controller tells device to acquire the bus and issues a series of transfers then release the bus
+- fly-by mode: DMA controller tells device controller to transfer data direclty to main memory
+- most DMA controllers use phyical memory addreses for their transfers
 
+---- 5.1.5: Interrupts Revisited ----
+-------------------------------------
+- trap: deliberate action by program code (trap into kernel for sys call)
+- fault/exception: similar to trap but not deliberate (segfault)
+- hardware interrupt: interrupt send by hardware such as printer, network, ...
+- when I/O Device finished, causes an interrupt by asserting signal on bus line.
+  - signal detected by interrupt controller chip which decides what to do 
+  - controller puts number on addr line specifying which devices and asserts signal to interrupt CPU
+  - number on addr line is used to index into interrupt vector which then runs interrupt service routine
+  - ISR acknowledges I/O by writing value to controllers I/O port, tells it that it can issue another interrupt
+  - current process info is saved on the stack
 
 
 
