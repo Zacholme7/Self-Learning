@@ -1,0 +1,39 @@
+--------
+| 2: Semaphores |
+------
+- semaphore is data strucutre useful for solving synchronization problems     
+        - invented by edsgar dijkstra
+
+---- 
+---- 2.1: Definition
+----
+- An integer with 3 definitions
+        1) when created, can init to any value 
+                - can only increment and decrement, cannot read current value
+        2) when thread decrement and res is negative, thread blocks and cannot continue until another thread increments
+        3) when thread increments, if other threads are waiting one gets unblocked
+- block here means thread notifies scheduler it cannot proceed
+- no way to know before a thread decrements a semaphore if it will block or not
+- after incrementing and another thread woken up, no way to know which will continue immediately
+- when you signal semaphore, you dont know if another is waiting. awoken threads may be zero or one
+
+----
+---- 2.2: Syntax
+----
+* syntax varies, the following is genearl psudolike syntax, refer to examples
+- 'Semaphore(integer)' is a constructor, creates and returns new semaphore
+- explain what they do
+        - 'increment()' 
+        - 'decrement()' 
+- explain how they are used
+        - 'signal()'
+        - 'wait()'
+
+----
+---- 2.3: Why semaphores?
+----
+- impose deliberate constraints
+- solutions often clean and organized
+- can be implemented efficiently on many systems, so they are portable
+
+

@@ -1,0 +1,100 @@
+------
+| Hello, world of concurrency in C++ |
+----
+- cpp11 featured multithreading for the first time
+
+
+
+-----
+---- 1.1: What is concurrency ----
+-----
+- two or more seperate activites starting at the same time
+
+---- 1.1.1: concurrency in computer systems ----
+----- 
+- single system performing multiple independent activites in parallel
+    - quickly switching (context switch) between them (task switching)
+    - this provides the illusion of true concurrency/parallelism
+- true concurrency can occur on multicore machine, program run on each core 
+    - also hardware threads, which can each run its own task independently
+
+
+---- 1.1.2: Approaches to concurrency ----
+----
+1) Multiple single threaded processes
+    - multiple, sepearte single threaded processes that are run at the same time
+    - pass messages via ipc, complicated to setup/slow (os has protections between processes)
+    - overhead in running multiple processes
+    - protections and high level comm makes it easier to write safe concurrent code
+2) Multiple threads in a single process
+   - threads are like lightweight processes
+   - run indepdentently of each other but share same address space
+   - shared addr space and lack of protection makes overhead much less vs processes
+   - flexibility comes at price of consistency issues/harder to write same and correct code
+
+---- 1.1.3: Concurrency vs parallelism
+---- 
+- parallelism: primary concern taking advances of hardware to increase perofmrance of data processing
+- concurrency: primary concern is separation of concerns and responsivness
+
+---- Memory Notes ----
+----
+- 
+
+---- Summary ----
+---
+-
+
+
+----
+---- 1.2: Why use concurrency ----
+----
+- separation of concerns and performance
+
+---- 1.2.1: Using concurrency for separation of concerns ---- 
+----
+- ex: be responsive to user input (such as hitting q to quit) while running some program
+    - gives the illusion of responsiveness
+- also good for tasks that must run in the background
+- number of threads used based on conceputal design rather than to increase throughput
+
+---- 1.2.2: using concurrency for performance: task and data parallelism ----
+----
+- need to run multiple tasks concurrently
+1) divide a task into parts and run each in parallel
+    - this is task parallelism
+2) use pallelism to solve bigger problems
+    - perform same operation on multiple sets of data
+
+---- 1.2.3: When not to use concurrency
+----
+- when benefit is not worth the cost
+- concurrent code is harder to write, understand, and debug
+- performance has to be worht it, threads still have overheads to spawn/manage and are not infinite
+
+---- Memory Notes ----
+----
+- 
+
+---- Summary ----
+---
+-
+
+
+---- 
+---- 1.3: Concurrency and multithreading in c++
+---- 
+- history blah blah go back to this
+
+
+
+---- 
+---- 1.4: Getting started
+----
+- 
+
+
+
+
+
+
