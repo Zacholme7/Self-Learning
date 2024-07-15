@@ -62,6 +62,50 @@
   - number on addr line is used to index into interrupt vector which then runs interrupt service routine
   - ISR acknowledges I/O by writing value to controllers I/O port, tells it that it can issue another interrupt
   - current process info is saved on the stack
+- precise interrupt: leaves machine in well defined state
+  - Pc is saved to known place
+  - all instrs before the one pointed to by pc have completed
+  - no instrs beyond one pointed to by PC has finished
+  - execution state of instr pointed to by the PC is known
+
+
+
+-----------------------------------------
+---- 5.2: Principles of I/O Software ----
+-----------------------------------------
+
+
+---- 5.2.1: Goals of the I/O Software ----
+------------------------------------------
+- device independence: should be able to write programs that can access any I/O device without 
+having to specify it in advanced
+- uniform naming: name of device should not depend on device in any way
+- errors should be handled as close to the hardware as possible
+- synchronous (blocking) vs asynchronous (interrupt driven) I/O
+  -physical I/O is async
+
+---- 5.2.2: Programmed I/O ----
+-------------------------------
+- programmed I/O: just have the cpu do all the work
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

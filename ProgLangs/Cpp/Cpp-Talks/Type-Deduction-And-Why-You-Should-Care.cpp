@@ -68,7 +68,7 @@ void f(T &param) {
 
 // decltype(name) = declared type of name
 // never strips const/volatile references
-int x = 10;        // decltype(x) = int
+int x = 10;         // decltype(x) = int
 const auto &rx = x; // decltype(rx) = const int &
 
 // function return type deduction
@@ -80,24 +80,3 @@ const auto &rx = x; // decltype(rx) = const int &
 // rules of thumb
 // use auto if a reference type would never be correct
 // use decltype(auto) only if a reference type could be correct
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
