@@ -1,0 +1,16 @@
+------------------------------------------
+| 4: Synchronizing Concurrent Operations |
+------------------------------------------
+- not only do you need to protect data, but you need to synchronize actions
+
+------------------------------------------------------
+---- 4.1: Waiting for an event or other condition ----
+------------------------------------------------------
+- if one thread waiting for another, it has a few options...
+  - keep checking protected flag for a change
+  - have waiting thread sleep for set durations
+  - wait for event to be trigged by another thread, use condition variable
+
+---- 4.1.1: Waiting for a condition with condition variables ----
+-----------------------------------------------------------------
+- 'std::condition_variable' and 'std::condition_variable_any'
