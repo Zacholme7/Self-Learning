@@ -14,3 +14,18 @@
 ---- 4.1.1: Waiting for a condition with condition variables ----
 -----------------------------------------------------------------
 - 'std::condition_variable' and 'std::condition_variable_any'
+
+
+------------------------------------------------------
+---- 4.2: Waiting for one off events with futures ----
+------------------------------------------------------
+- future can be used to represent a one off event
+- unique future, 'std::future<>' (unique_ptr)
+- shared future, 'std::shared_future<>' (shared_ptr)
+- <void> used when there is no data
+
+---- 4.2.1: returning values from background tasks ----
+-------------------------------------------------------
+- 'std::async' to start an asynchronous task
+  - return a 'std::future'
+  - call 'get()' on the future to get the value when it is ready
