@@ -1,0 +1,65 @@
+---------------------------------------
+| 1: Introduction to the Linux Kernel |
+---------------------------------------
+
+-------------------------
+---- History of Unix ----
+-------------------------
+- unix grew out of multics
+- design principles
+  - simple compared to other operating systems
+  - "everything is a file"
+  - kernel and other utilities written in C
+  - fast process creation time
+  - simple and robust IPC
+- Linux is unix like, but it is not unix
+  - implements the Unix API (defined by POSIX) but is not direct descendant of unix
+
+
+- unix is an operaing system that was developed at Bell labs in the 1970s. On the other hand
+linux is a Unix like operating system, but it is not unix. it was insprired by a lot of its features 
+and it implementd ths Poxis standsanrd (Portable opearing system interface). 
+
+
+-------------------------
+---- Overview of Operating Systems and Kernels of Unix ----
+-------------------------
+- parts of the system responsible for basic use and admistration, includes kernel and device drivers, 
+bootloader, command shell, other user interface, basic file system, .... its the stuff you need
+- typical components of kernel are interrupt handlesr, scheduler, mem mgmt systems, networking, ipc, ...
+- kernel space (kernel mode) and user space (user mode)
+- applications communicate with kernel via systems calls
+ - call function in a library which in turn rely on system call interface to interact with kernel
+    - print() -> write(), open() -> open()
+- when application executes sytem call, kernel is executing on behalf on teh application
+- hardware communicated with system via interrupts
+- processor is always doing one of three things
+1) user space executing user code in a process
+2) kernel space in a process context executing on behalf of a process
+3) kernel space in interrupt context handling an interrupt
+
+
+
+- How does user space interact with kernel? via system calls, print() -> write, kernel executes on behalf
+of the application
+- How does hardware communicate with the system? via interrupts. Interrupts processor which in turn 
+interrupts kernel. Interrupt associated with number which kernel uses to figure out what to run. run
+in an interrupt context
+- In general, what are the three a processor may be doing? user space executing user code in a process, kernel space in
+a process context executing on behalf of a process, kernel space in interrupt context handling an interrupt
+
+
+-------------------------------------------
+---- Linux Versus Classic Unix Kernels ----
+-------------------------------------------
+- unix is monolithic static binary, single large executable image that runs in single addr spacek
+  - requres a mmu
+- linux is able to run without a mmu but it usually uses it 
+- monolithic kernel: implemented entirely as a single process running in single addres space
+- microkernel: functionality broken down into servers, run necessary servers in kernel  and rest in user space.
+in different address spaces so have to communicate via message passing
+- linux is monolithic with inspriartion from microkernsl
+
+
+
+- monolithic kernel: implemented entirely as a single process running in single addres space
