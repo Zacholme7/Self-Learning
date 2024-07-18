@@ -1,1 +1,0 @@
-/Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Rust-Atomics-And-Locks/02-Atomics/load_and_store/target/debug/load_and_store: /Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Rust-Atomics-And-Locks/02-Atomics/load_and_store/src/main.rs
