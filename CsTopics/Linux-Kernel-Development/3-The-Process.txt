@@ -1,0 +1,67 @@
+------------------
+| 3: The Process |
+------------------
+---------------------
+---- The Process ----
+---------------------
+- process: an instance of an executing program/program in the midst of execution
+  - set of resources. program code, open files, pending signals, state, addr space, threads, ...
+  - "living result of running program code"
+- theads: objects of activity within a process
+  - program counter, process stack, process registers
+- kernel schedules individual threads, not processes
+  - linux does not differentiate between threads and processes, "thread is just a special kind of process"
+- proceses can consist of multiple threads (multithreaded)
+- processes provide two virtualizations
+  - virtualized processor: illusion that process has sole access/monopolizes system
+  - virtual memory: process allocate and memory as if it has access to the entire system
+- threads share the virtual memory abstraction but receives own virtualized processor
+- program != process. process is active program and related resources
+- fork() created new child process, exact cloen of parent
+  - fork() returns twice, once for parent and once for child
+  - can then call exec() to create new address space and load program into it
+  - fork() actually implemented via clone()
+  - exit() sys call used to exit a program, terminate process and free all resources
+
+
+---------------------------------------------------
+---- Process Descriptor and the Task Structure ----
+---------------------------------------------------
+- kernel stores list of processes in circular doubly linked list called "task_list"
+- links are maintained in the "tasks" field
+- each element in task list is a process descriptor of type "struct task_struct", 1.7 kilobytes
+  - contains all the information about the specific process
+
+---- Allocating the process descriptor ----
+-------------------------------------------
+- task_struct allocated via slab allocator, provides object reuse and cache coloring
+- "task_info" is the first element of the task struct
+asdf Figure out why task info has task struct
+
+---- Storing the Process Descriptor ----
+----------------------------------------
+- system identifies processes by unique processor identification value (PID)
+- numerical value represented by pit_t (int)
+- tasks typically referenced directly by pointer to their task_struct
+
+
+
+
+-------------------------
+---- Chapter Writeup ----
+-------------------------
+A process is a key component of an opearting system. It can be roughly defined as an instance of an executing
+program and all related resources. One key mistake is that people make a 1 to 1 associated between a process and a
+program. In reality, a process contains not only the program code that does get executed, but it also contains information
+aobut things such as open files, pending signals, state, the address space, threads, and so on. We can now introduce threads.
+Threads are simply objects of activity within a process. They contain state such as a program counter, process stack, and process registers.
+It is key to note that the kernel does not schedule processes, it schedules threads!. It does not differentiate between a process and a thread.
+To the kernel, a thread is just a special kidn of process. Processes used to be just associated with a single threads, but with the rise 
+of multithreading processes are often associated with multiple threads. The processor provides two virtualizations. One is a virtual processor and 
+the other is virtual memory. Virtualized processor gives each thread the illusion that it has sole access to all computing resources on the system
+and virtual memory gives it the illusion that it has a monopoloy on all the memory in the system. Threads will share the virtual memory, but
+they each get their own virtual processor. 
+
+The kernel maintains all tasks in a circular doubly linked list. This list is comprised of structs of the type "task_struct". Each element
+is a process descriptor that contains all the information needed about a specific process. These are allocated via a slab allocator that provides
+object reuse and cache coloring. Each process here can be uniquily identified via a process identification number (PID). 

@@ -1,7 +1,6 @@
 ----------------------------
 | 2: Processes and threads | 
 ----------------------------
-
 ------------------------
 ---- 2.1: Processes ----
 ------------------------
@@ -45,34 +44,6 @@
   - on interrupt, computer jumps to address in interrupt vector then run ISR
 - cpu utilization/degree of multiprogramming = 1 - p ** n
 
----- Summary ---- 
------------------
-Unix utilizes a process model in which all of the software eon the computer is organized into sequential processes. A process 
-is simply an instance of an execution program. Eveything on the computer is a process. They can be both created and destoryed.
-The cpu utilizes multiprocessing where multiple processes are all being executed by the cpu will switch between them quickly to 
-give the illusion that they are all executing at the same time. A process can either be running, ready to run, or blocked. The 
-os maintains a process table taht contaisn information about all the processes running on a system
-
----- Memory notes ----
-----------------------
-- Multiprogramming: multiple programs running simultaneously on one CPU, switches from process to process very quickly
-- Process: instance of executing program. It has a program, input, output, and a state
-- What is the process model: all runnable software organized into sequential processes
-- 4 events that cause a process to be created: System initialization, execution of process creation sys call by running process,
-user request to create new process, initialization of a batch job
-- Daemons: process that stays in background to handle some activity
-- Fork(): create exact clone of calling process. Same memory image, env, and open file. Parent and child process have distinct address 
-spaces
-- Process termination conditions: normal exit (voluntary): finished their work. Error exit (voluntary): call exit, Fatal error (involuntary): discover 
-fatal error or bug. Killed by another process (involuntary): kill command
-- 3 process running states: Running (actually being used by cpu at that instant), ready (runnable, temporarily stopped to let another process run),
-blocked (unable to run until some other external event happens)
-- How does os keep track of processes?: has process table with one entry per process, contains info about process state
-- Interrupt vector: contains address of ISR (instruction service routine) for each I/O class. Upon interrupt, computer jump to addr in interrupt vector 
-then runs the ISR
-
-
-
 
 ----------------------
 ---- 2.2: Threads ----
@@ -109,27 +80,6 @@ then runs the ISR
 - hybrid approach
   - use kernel level threads and multiplex user level threads onto some or all of them
 
----- Summary ----
------------------
-Within processes, there is the concept of threads. Threads can be thought of as mini processes. They are lightweight entitires
-that are fast to create and destory that share sources among themselves. Processes are used to group resources together while threads
-allow for multiple executions to take place in the same environemtn. Threads can be implemented in user space, the kernel, or a hybrid
-approach. 
-
----- Memory Notes ----
----------------------
-- Thread: a lighweight process that shares data/address space among themselves. Allow multiple executions to take place in the 
-same environment. Have their own stack. 
-- Multithreading: allowing multiple threads to execute in the same process
-- User space thread impl: kernel is unaware of them and they run on top of a runtime system. Each process has a thread table that is managed by a 
-runtime system that keeps tracks of all of the threads. Switching is very fast and can have customized scheduling but still have to manually yield
-and trap to kernel for io
-- Kernel thread impl: threads implemented in the kernel, dont need a runtime system and there is a single thread table that keeps track of all
-running threads. higher overhead for thread switching and creation is expensive
-- Hybrid thread impl: usage of kernel level threads and multiplex multiple user level threads onto them
-
-
-
 
 -----------------------------------
 ---- 2.3: Event Driven Servers ----
@@ -137,17 +87,6 @@ running threads. higher overhead for thread switching and creation is expensive
 - Threads: parallelism: blocking system calls
 - Single threaded process: No parallelism, blocking system calls
 - Finite-state machine/event-driven: parallelism, nonblocking system calls, interrupts
-
----- Summary ----
------------------
-An event driver architecture is an alternative to threads/single threaded process where there is an implementation
-of a finite state machine taht responds to events and interacts with the os via nonblocking calls
-
----- Memory notes ----
-----------------------
-None
-
-
 
 
 -------------------------------------------------------------
@@ -205,33 +144,6 @@ None
 - condition variables: signal and wait
   - if signal done on cv where several processes are waiting, only one woken up
 - message passing: ipc using send and receive
-
----- Summary ----
------------------
-- For processes to be able to interact effectively, they need to be cooridnated and synchronize with each other to prevent invalid memory accesses
-or the incorrect changing of shared memory. This is called interprocess communication. The problems of IPC are how to pass into, how to make
-sure that two threads do not get in each others way, and what the sequencing is when dependencies are presents. There must be mutual exclusion
-that says that only one thread can be in a critical section at the same time. Communication mechanisms for IPC include message passing, pipes, sockets
-, signals, and semaphores/mutexes. 
-
----- Memory Notes ----
-----------------------
-- Three problems with IPC: how to pass information, how to make sure two or more processes/threads do not get in each others way,
-sequencies when dependencies are present
-- Race conditions: when two or more processes are reading/writing to some shared data and the final result depends on who runs when
-- Critical section: part of program where shared memory is accessed
-- Mutual exclusion - pros/cons of disabiling interrupts: pros: provides mutual exclusion, cons: not wise to give user this power, only 
-affects single cpu
-- Mutual exclusion - pros/cons of lock variables: variable that is set to zero and changed to one upon entering crit section. 
-pros: none, cons: does not work as still suffers race conditions
-- Mutual exclusion - pros/cons of Strict Alternation: keep track of whos turn it is via some variable. pros: provides mutual exclusion. 
-cons: busy waiting wasts cpu cycles, not good when one process is much slower
-- Mutual exclusion - TSL instruction: test and set lock, read contents of memory work lock and store nonzero value there, it is an atomic 
-instr, it provides mutual exclusion, but it requires busy waiting
-- producer-consumer problem: produer puts stuff on queue, consumer takes off, num items tracked by couter and producer/consumer put to sleep
-when they cannot perform work. problem is when a wakeup call gets lost due to a race condition on the counter 
-
-
 
 
 -------------------------
@@ -341,54 +253,83 @@ if still running at the end of the interval it will suspend it and pick a new pr
 - slow context switch
 - I/O does not suspend the entire process
 
----- Summary ----
------------------
-- In a computer, there are many processs/thread competing for usage of the cpu. This is where a part of the operating system
-called a scheulder comes into play. The role of the scheduler is to decide which process to run next based on a list of currently
-waiting processes. There are two flavours of schedulinga algorithms. Nonpreemptive scheduling, also called cooperative, is when
-a thread is picked to run and it is allowed to run until it either blocks of manually yields. Preemptive on the other hand will pick
-a thread and will let it run until the os suspends it and swtiches to a new process. There are various scheduling algorithms each with
-their own trade offs and seek to give all processes a fair share of the cpu, prevent starvation, and try to always keep the cpu busy.
+-------------------------
+---- Chapter Writeup ----
+-------------------------
+Processes and threads are the workhorses of an operating system. All runnable software on a computer
+are organized into sequential processes. A process can be thought of an as an instance of an executing program,
+but it is not just the running program. It also consists of a set of resources that contain things such 
+as open files, execution state, pending signals, address space, etc. A thread can be thought of as a lightweight process.
+While a process does not share address space with other processes, threads do. Although, they do maintain some
+of their own state such as the program counter, stack, etc. A new process is created via the fork() system call.
+In summary, processes are used to group resources together and threads are scheduled for execution. 
 
----- Memory Notes ----
+Scheduling is a core functionality of an operating system. Given a set of threads, it must schedule each one onto
+physical hardware to be executed. When there are less threads than available hardware threads, scheduling is easy.
+When there are more threads then hardware threads, the scheduler must use some algorithm to ensure fair and efficient
+use of computer resources that is distributed among all of the threads. There are non preemptive scheulders in which
+the thread itself must yield and there are preemptive in which the os will suspend a running process and run another one.
+There are varoius scheduling algorithms that each have their own pros and cons. 
+
+
 ----------------------
-- scheduler chooses which process to run next via some scheduling algorithm
-- context switch: switch from user more to kernel mode, save state of current process, restore state of other process
-- compute bound: long cpu bursts and infrequent I/O waits
-- i/o bound: short cpu bursts and frequency i/o waits
-- nonpreemptive scheduling algorithm: picks process to run and lets it run until it blocks
-- preemptive scheduling algorithm: picks a process and lets it run for some max time,
-- when should scheduling decision be made?: when new process created, when process exists, when process blocks, when I/O
-interrupt occurs
-- goals of a scheduling algorithm? give each process fair share of cpu, make sure policy is carried out, keep all parts of the 
-system busy
-- first come first serve: nonpreemptive processes assigned the cpu in the order they request it , remove from front 
-and add to back, easy to understand and simple to implement but not good for heavy I/O
-- shortet job first: nonpreemptive ,when runtimes are known, can just pick shortest one , optimal only when all jobs are available simultaneously
-- Shortest remaining time next: preemptive, choose process whose remaining time is the shortest,run time has to be known in advanced, allows short jobs to get good service
-- Round Robin Scheduling: each process assigned time interval called quantum, process allowed to run during its quantum, if still running 
-at end of quantum, preempted, if block while quantum not up, preempted, choosing correct quantum very important, too short -> too many context swtich 
-too high -> poor response to short req, 20-50 msec is often reasonable
-- Priority Scheduling: each process is assigned a priority, process with highest priority gets to run, scheudler may decrease priority to prevent it to 
-run idenfinitely, could also use a time quantum, can group processes into priority classes, use priority scheduling among classes, use round robin within class
-- Multiple queues scheduling: setup priority classes with different quantum levels, move down a class each time quantum expires
-- Guaranteed Schedling: with n processes, each get 1/n cpu, system tracks how my cpu each process has had
-- Lottery Scheduling: give processes lottery tickets for various system resources, upon scheduling decision, lottery ticket chosen 
-at random and process w/ ticket gets the resource, can give processes multiple tickets based on priority, "all processes are 
-equal, but some processes are more equal"
-- Fair-Share Scheduling: some systems take into account which user owns a process before scheduling it, each user allocated 
-some fraction of cpu
-
-
-
-
--------------------------
----- Chapter Summary ----
--------------------------
-- Operaing system provide a conceptual model of sequential processes running in parallel taht his interrupts. One key feature about processes
-is that they all have their own address space independant of each other. Within processes, the os enables you to have multiple threads of control.
-Threads are lighweight processes that have their own control context/information but share an address space. Threads can be implemented in user
-space or kernel space. Processes must synchronize between each other to prevent concurrent access to shared data. This is done via various concurrency
-primitives that prevent threads from creating deadlocks, race conditions, and various other concurrency realted bugs. Since there are multiple threads and
-multiple processes running on a cpu, they have to be scheduled in a fair and consistent way. There are various different scheduling algorithms with their own
-pros and cons that seek to balance the amount of cpu time each process gets on based on different factors such as process prirority
+---- Memory notes ----
+----------------------
+- Process: instance of a running program, including current values of program counter, registers, and variables
+- Process model: abstraction that provides illusion of many sequential processes running in parallel on a single CPU
+- Multiprogramming: technique of having multiple processes take turns using the CPU
+- Process creation events: system initialization, execution of process creation system call, user request, initiation of batch job
+- Process termination conditions: normal exit, error exit, fatal error, killed by another process
+- Process states: running (using CPU), ready (runnable, temporarily stopped), blocked (unable to run until some external event happens)
+- Process table: kernel data structure containing information about all processes
+- Process table entry contents: process state, program counter, stack pointer, memory allocation, open file status, accounting info, scheduling info
+- Thread: lightweight process within a process, shares address space but has own program counter and stack
+- Threads vs processes: threads share address space and resources, processes have separate address spaces
+- User-level threads: managed by user-space runtime system, kernel unaware
+- Kernel-level threads: managed by kernel, can be scheduled independently
+- Thread advantages: sharing of resources, economy, utilization of multiprocessor architectures
+- Event-driven programming: alternative to threads, uses finite state machine and non-blocking I/O
+- Interprocess communication (IPC): mechanisms for processes to synchronize and communicate
+- Race condition: situation where multiple processes access and manipulate shared data concurrently, with the outcome depending on the order of execution
+- Critical region: part of the program where shared memory is accessed
+- Mutual exclusion: ensuring that if one process is using a shared resource, the other processes will be excluded from doing the same
+- Busy waiting: continuously testing a variable until some value appears
+- Semaphores: synchronization primitive with down and up operations
+- Monitors: high-level synchronization primitive with procedures, variables, and data structures grouped together
+- Message passing: IPC method using send and receive primitives
+- Barriers: synchronization mechanism for groups of processes
+- Scheduling: process of deciding which process runs next
+- Scheduling algorithms:
+  - First-Come, First-Served (FCFS): non-preemptive, runs processes in order of arrival
+  - Shortest Job First (SJF): non-preemptive, runs shortest job next
+  - Shortest Remaining Time Next: preemptive version of SJF
+  - Round Robin (RR): each process gets a small unit of CPU time, cycles through all processes
+  - Priority Scheduling: assigns priority to each process, runs highest priority
+  - Multiple Queues: multiple priority queues, processes move between queues
+  - Guaranteed Scheduling: makes real promises about performance
+  - Lottery Scheduling: processes get lottery tickets, winners get CPU time
+  - Fair-Share Scheduling: users allocated portion of CPU time
+- Real-time scheduling: ensures that processes meet deadlines
+- Hard real-time systems: absolute deadlines that must be met
+- Soft real-time systems: missing occasional deadline is tolerable
+- Thread scheduling: differs for user-level and kernel-level threads
+- User-level thread scheduling: done by runtime system, no kernel involvement
+- Kernel-level thread scheduling: done by kernel, can take into account which process the thread belongs to
+- Policy vs. Mechanism: separation of scheduling algorithm (mechanism) from the parameters that control it (policy)
+- Context switch: saving the state of one process and loading the state of another
+- Process creation: fork() in UNIX, CreateProcess() in Windows
+- Process hierarchy: parent-child relationship in UNIX, flat structure in Windows
+- Signals: software interrupts for interprocess communication
+- Interprocess communication challenges: lost wake-ups, race conditions
+- Dekker's algorithm: first correct software solution for mutual exclusion
+- Peterson's solution: simplified mutual exclusion algorithm
+- TSL (Test and Set Lock) instruction: atomic instruction for implementing mutual exclusion
+- Producer-consumer problem: classic synchronization scenario
+- Readers-writers problem: synchronization scenario with multiple readers and writers
+- Priority inversion: scheduling anomaly where high-priority process is indirectly preempted by medium-priority process
+- POSIX threads (Pthreads): standardized threading API
+- Thread pooling: creating a pool of worker threads to handle tasks
+- Scheduler activations: mechanism for kernel to notify user-level thread scheduler about threading events
+- Memory barriers: instructions to ensure memory access ordering
+- Read-Copy-Update (RCU): synchronization mechanism allowing lock-free reads
+- Completely Fair Scheduler (CFS): Linux scheduling algorithm based on fair allocation of CPU time

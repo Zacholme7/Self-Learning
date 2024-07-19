@@ -1,0 +1,5 @@
+--------------------------------------
+| 2: Getting Started With the Kernel |
+--------------------------------------
+- General information about installing and building
+ - im just going to explore the repo here https://github.com/torvalds/linux

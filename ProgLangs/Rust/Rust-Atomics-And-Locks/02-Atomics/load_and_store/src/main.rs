@@ -1,4 +1,5 @@
 use std::sync::atomic::AtomicBool; // atomic boolean
+use std::sync::atomic::AtomicUsize; // atomic usize
 use std::sync::atomic::Ordering::Relaxed; // this is the simplest ordering
 use std::thread;
 // atomic operations allow different threads to safely read and modify same variables
@@ -39,4 +40,52 @@ fn main() {
     STOP.store(true, Relaxed);
     background_thread.join().unwrap();
 
+    // progress reporting example
+    let num_done = AtomicUsize::new(0);
+    let main_thread = thread::current();
+    thread::scope(|s|{
+        s.spawn(|| {
+            for i in 0..100 {
+                // do some processing
+                num_done.store(i + 1, Relaxed);
+                main_thread.unpark();
+            }
+        });
+        
+        loop {
+            let n = num_done.load(Relaxed);
+            if n == 100 { break }
+            println!("Working.. {n}/100 done");
+            thread::park_timeout(std::time::Duration::from_secs(1));
+        }
+    });
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
