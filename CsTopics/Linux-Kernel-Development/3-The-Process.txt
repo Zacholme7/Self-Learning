@@ -30,20 +30,70 @@
 - kernel stores list of processes in circular doubly linked list called "task_list"
 - links are maintained in the "tasks" field
 - each element in task list is a process descriptor of type "struct task_struct", 1.7 kilobytes
+  - both threads and and processes are represented via the task_struct, "everything is a process" model
   - contains all the information about the specific process
+
 
 ---- Allocating the process descriptor ----
 -------------------------------------------
-- task_struct allocated via slab allocator, provides object reuse and cache coloring
-- "task_info" is the first element of the task struct
-asdf Figure out why task info has task struct
+- "task_struct" allocated via slab allocator, provides object reuse and cache coloring
+- "thread_info" is the first element of the task struct
+  - contains pointer back to the "task_struct"
+
 
 ---- Storing the Process Descriptor ----
 ----------------------------------------
 - system identifies processes by unique processor identification value (PID)
 - numerical value represented by pit_t (int)
 - tasks typically referenced directly by pointer to their task_struct
+- thread group ID (tgid): logically group threads into processes
+  - all threads in a process have the same tgid, equal to pid of processes main thread
+  - each thread has a unique pid
+  -  if pid == tgid, main thread of process
+- current macro used for getting task_strut of currently executing process
+- tasks typeically referenced direclty via pointer ot their task_struct
 
+
+---- Process State ----
+-----------------------
+- state field described current condition of the process
+- 1 of 5 different states
+  - TASK_RUNNING: runnable, currently running/on a run queue waiting to run
+    - only possible state for a process executing in user space
+  - TASK_INTERRUPTIBLE: process is sleeping, waiting for some condition to exist
+    - set to TASK_RUNNING when condition occurs
+  - TASK_UNINTERRUPTIBLE: identical to TASK_INTERRUPTIBLE except it does not wake up and become
+    runnable if it receives a signal
+  - __TASK_TRACED: process is being traaced by another process
+  - __TASK_STOPPED: process execution has stopped, not running nor eligible to run
+
+
+---- Manipulting the current process state ----
+-----------------------------------------------
+- change state via "set_task_state(task, state)"
+  - also equivalent to task->state = state
+
+
+---- Process Context ----
+-------------------------
+- one of most important parts of process is executing program code
+  - code read in from executable file, executed in the programs addr space
+- normal program execution in user space
+- execute sys call to ender into kernel state which executes in a process context
+
+---- Process Family Tree ----
+-----------------------------
+- all processes are descendants of the init process, PID == 1
+  - init started in the last step of the boot process
+- every process has exactly one parent and zero or more children
+- each "task_struct" has pointer to parents "task_struct", called 'parent'
+  - also list of children called 'children'
+
+
+
+--------------------------
+---- Process Creation ----
+--------------------------
 
 
 

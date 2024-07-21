@@ -87,7 +87,52 @@ having to specify it in advanced
 ---- 5.2.2: Programmed I/O ----
 -------------------------------
 - programmed I/O: just have the cpu do all the work
+
+---- 5.2.3: Interrupt-Driven I/O ----
+-------------------------------------
+- allow cpu to do something else during I/O and handle the I/O when it is completed 
+  - interrupt will notify the cpu
+
+---- 5.2.4: I/O Using DMA ----
+------------------------------
+- DMA controller handles all of the I/O instead of the CPU
+- need special hardware but cpu can do other work
+
+
+
+
+----------------------------------
+---- 5.3: I/O Software Layers ----
+----------------------------------
+1) User level I/O software
+2) device indepenent operating system software
+3) Device drivers
+4) interrupt handlers
+
+---- 5.3.1: Interrupt Handlers ----
+-----------------------------------
+- very complex and expensive progress to handle an interrupt
+1) save any registers that have not been saved
+2) set up context for ISR
+3) set up stack for ISR
+4) ack the interrupt controller
+5) copy registers from where they were saved to process table
+6) run the ISR
+7) choose which process to run next
+8) setup mmu for the next process
+9) load the new processes registers
+10) start running the new process
+
+---- 5.3.2: Device Drivers ----
+-------------------------------
+- device registers and commands are very different from each other
+- device driver: device specific code for controlling it
+- user process -> os -> driver -> controller -> device
+- os classifies drivers into categories (block or character devices)
+  - have an interface for each that must be supported
 - 
+
+
 
 
 
