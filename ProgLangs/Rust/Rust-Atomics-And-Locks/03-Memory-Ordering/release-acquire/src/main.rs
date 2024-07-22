@@ -5,6 +5,9 @@ use std::thread;
 static DATA: AtomicUsize = AtomicUsize::new(0); // static mut DATA: usize = 0;
 static READY: AtomicBool = AtomicBool::new(false);
 
+static mut DATA2: String =  String::new();
+static LOCKED: AtomicBool = AtomicBool::new(false);
+
 fn main() {
     // relase and acquire ordering used to form happens before relationship between threads
     // release applies to store operations, acquire applies to load operations
@@ -29,6 +32,29 @@ fn main() {
     println!("{}", DATA.load(Ordering::Relaxed)); // only possible value is 123
     // if Release ordering was used, main thread may have saw true in ready before 123 was stored
     // dont technically need atomics for data since we know ordering, but compiler doesnt like it
+
+    // mutexes are most common use case for release acquire ordering
+    // check if unlocked using acquire and set back to unlocked using release
+    // happens before between unlocking and locking
+
+    thread::scope(|s| {
+        for _ in 0..100 {
+            s.spawn(f);
+        }
+    });
+
                             
 
+}
+
+
+fn f() {
+    // takes two memory ordering arguments
+    // 1) for case when comparison succeeded and store happens
+
+    if LOCKED.compare_exchange(false, true, Ordering::Acquire, Ordering::Relaxed).is_ok() {
+        // we hold the exclusive lock, so nothing else is accessing DATA
+        unsafe { DATA2.push('!') };
+        LOCKED.store(false, Ordering::Release);
+    }
 }
