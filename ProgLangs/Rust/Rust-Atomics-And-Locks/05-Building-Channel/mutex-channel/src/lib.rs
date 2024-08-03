@@ -1,11 +1,11 @@
-use std::sync::{Mutex, Condvar};
 use std::collections::VecDeque;
+use std::sync::{Condvar, Mutex};
 
 // channels can be used to send data between threads
 // can use a VecDeque and just protect it with a mutex
 
 // any send/recieve will block to lock the mutex
-// if his vecdeque capacity, wait for one thread to finish reallocation 
+// if his vecdeque capacity, wait for one thread to finish reallocation
 // can also grow without bounds
 
 pub struct Channel<T> {
@@ -13,11 +13,12 @@ pub struct Channel<T> {
     item_ready: Condvar,
 }
 
+
 impl<T> Channel<T> {
-    pub fn new() -> Self{
+    pub fn new() -> Self {
         Self {
             queue: Mutex::new(VecDeque::new()),
-            item_ready: Condvar::new()
+            item_ready: Condvar::new(),
         }
     }
 
@@ -41,5 +42,3 @@ impl<T> Channel<T> {
         }
     }
 }
-
-
