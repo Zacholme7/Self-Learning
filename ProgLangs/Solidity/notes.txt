@@ -1,0 +1,38 @@
+3 sections of a smart contract:
+    1. contract creation code 
+    2. Runtime (this is what is stored on chain/executed)
+    3. Metadata
+
+- codecopy (39): indication looking at contract creation
+
+Machine state (persistent)
+    Machine state (volatile)
+        - program counter
+        - available gas
+        - stack
+        - memory (RAM)
+- transient storage
+Evm code (ROM)
+Accounts (storage)
+
+- evm is a stack machine
+
+- stack: where opcode operations occur
+- memory: byte level storage where data is temporarily stored
+    - data deleted when function ends 
+- storage: permanent data storage space
+
+- storing data in storage (SSTORE) is expensive
+    - costs 20,000 gas, increases state size 
+
+
+- eip-1153: adding opcode for transient storage
+
+- ethereum can created multiple nested execution frames (via call instr)
+    - interact with each other via calldata or storage updates
+
+- transient storage operates exactly like storage, but discarded at end of tx
+    - TSTORE and TLOAD
+- exactly like existing storage, 32 byte addr pointing to 32 byte word
+
+- makes it possible to communicate between functions in cheap and safe way
