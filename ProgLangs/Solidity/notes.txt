@@ -36,3 +36,49 @@ Accounts (storage)
 - exactly like existing storage, 32 byte addr pointing to 32 byte word
 
 - makes it possible to communicate between functions in cheap and safe way
+
+
+
+PUSH0 - push 0 onto the stack
+PUSH(number of bytes to push) - push the next n bytes onto the stack
+
+
+1 byte = 8 bits
+0x00 = 8 bits where each is 4 bits, this is one byte
+
+3: push 0 onto the stack, this is going to be the offset for loading in the calldata
+4: load the calldata onto the stack. this is the function selector + arguments (i think),
+but, this will only load the first 32 bytes of calldata onto the stack
+5: push our shift number, this is 224 (e0) since we have to shift calldata 224 bits to the right
+to extract our function selector
+6: do the shift on the calldata which will extract the function selector
+7: duplicate the function selector in preparation for multiple comparisons
+8: push the function selector onto the stack
+9: compare the function selector from calldata and one of our functions 
+10: put the pc for the set number function onto the stack
+11: if the function selects match (via the eq), jump to the set number function
+12: put the other function selector on, this is our last one so we dont need to duplicate it
+13: compare if it is equal to the one in our clldata
+14: put the pc for the read number function onto the stack
+15: jump if the comparison was a success
+16: if we did not match anything, just revert
+
+
+
+13/14: setup the jump destination for the set number function
+
+
+- evm uses key value storage for persistent data
+- think of storage as a giant array, persistent 
+- each storage location is called a slot, each slot is 32 bytes
+- slots addresses using 256bits/32 bytes
+- think of storage as huge array where each element is 32 bytes and 
+each index is 256 bit number/32 bytes
+- for values types that are 32 bytes or smaller, each var gets its own slot
+- compiler can optimize by packing multiple smaller vars into one slot
+- for mappings
+    - for mappings, slot assinged to mapping is unused
+    - to store value for key K, Keccack256 hash of concatination of key and slot number
+- dynamic arrays
+    - slot assigned to array has length of array 
+    - array data stored started at keccack256 of slot number

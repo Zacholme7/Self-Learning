@@ -1,0 +1,46 @@
+#define function setNumber(uint256) nonpayable returns()
+#define function readNumber() view returns (uint256)
+
+#define constant NUMBER_SLOT = FREE_STORAGE_POINTER()
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00                        // [0]
+    calldataload                // [calldata]
+    0xe0                        // [0xe0, calldata]
+    shr                         // [function selector]
+    dup1                        // [function selector, function selector]
+    __FUNC_SIG(setNumber)       // [0cdfead3e, function selector, function selector]
+    eq                          // [true/false, function selector]
+    updateJump                  // [updateNumberPC, true/false, function seleector]
+    jumpi                       // [function selector]
+    __FUNC_SIG(readNumber)      // [0xe026c017, function selector]
+    eq                          // [true/false]
+    readJump                    // [readNumberPc, true/false]
+    jumpi                       // []
+    0x00                        // [0x00]
+    0x00                        // [0x00, 0x00]
+    revert
+
+    updateJump:
+        SET_NUMBER()
+    readJump:
+        READ_NUMBER()
+}
+
+#define macro SET_NUMBER() = takes(0) returns(0) {
+    0x04                        // [0x04] 
+    calldataload                // [calldata (minus function selector)/value]
+    [NUMBER_SLOT]               // [ptr to slot/0, value]
+    sstore                      // []
+    stop
+}
+
+#define macro READ_NUMBER() = takes(0) returns(0) {
+    [NUMBER_SLOT]               // [0]
+    sload                       // [value/number]
+    0x00                        // [0, value]
+    mstore                      // []
+    0x20                        // [0x20]
+    0x00                        // [0x00, 0x20]
+    return                      // []
+}
