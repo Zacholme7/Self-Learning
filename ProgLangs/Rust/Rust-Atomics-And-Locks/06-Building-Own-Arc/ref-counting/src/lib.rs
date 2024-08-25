@@ -1,6 +1,8 @@
 use std::ptr::NonNull;
 use std::sync::atomic::AtomicUsize;
+use std::sync::atomic::fence;
 use std::ops::Deref;
+use std::sync::atomic::Ordering;
 
 // a cloned Arc will share the original allocation without creating a new one
 
@@ -49,8 +51,23 @@ impl<T> Arc<T> {
     fn data(&self) -> &ArcData<T> {
         unsafe { self.ptr.as_ref() }
     }
-}
 
+    // for mutation, can conditionally allow it 
+    // only give out &mut T if ref counter is one, meaning no other Arc objs can be used to access the
+    // same data
+    // takes &mut Self so it can only be called like Arc::get_mut(&mut a)
+    // returned mutable reference implicitly borrows the lifetime of the argument, meaning
+    // nothing can use original arc as long as &mut T is around
+    pub fn get_mut(arc: &mut Self) -> Option<&mut T> {
+        if arc.data().ref_count.load(Ordering::Relaxed) == 1 {
+            fence(Ordering::Acquire);
+            // nothing else can access this data since there is only one arc
+            unsafe { Some(&mut arc.ptr.as_mut().data) }
+        } else {
+            None
+        }
+    }
+}
 
 
 // impl Deref to make Arc<T> behave like a ref to T
@@ -61,6 +78,33 @@ impl<T> Deref for Arc<T> {
         &self.data().data
     }
 }
+
+// dont impl DerefMut since Arc<T> is shared ownership and we dont want it to provider &mut T
+
+// we want to impl clone, will just inc a counter and use the smae pointer
+impl<T> Clone for Arc<T> {
+    fn clone(&self) -> Self {
+        self.data().ref_count.fetch_add(1, Ordering::Relaxed); // add one to the ref count
+        Self {
+            ptr: self.ptr
+        }
+    } 
+}
+
+// need to decrement counter when dropping, and deallocate if last one
+impl<T> Drop for Arc<T> {
+    fn drop(&mut self) {
+        if self.data().ref_count.fetch_sub(1, Ordering::Release) == 1 {
+            fence(Ordering::Acquire);
+            unsafe {
+                drop(Box::from_raw(self.ptr.as_ptr()));
+            }
+        }
+
+    }
+}
+
+
 
 
 

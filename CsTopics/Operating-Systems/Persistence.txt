@@ -1,0 +1,49 @@
+---------------
+| Persistence |
+---------------
+
+
+-------------------------
+---- 36: I/O Devices ----
+-------------------------
+- status, command, data registers
+- cpu read and write from
+- use dma to handle data transfer so cpu doesnt have to 
+
+- interact with device via memory mapped I/O
+- devices registers available as if they are mem locations
+  - read/write to a mem locat1ion
+- device driver knows in depth how a device works, but conforms to interface
+that a higher level specifies
+  - open/read/write.. <-> block read/write <-> protocol read/write
+- os interacts with device via dma and interrups
+
+
+------------------------------
+---- 37: Hard Disk Drives ----
+------------------------------
+
+---- 37.1: The interface ----
+-----------------------------
+- drive consists of a large number of sectors (512 bytes) that can be read and written
+  - numbered 0..n-1
+- 512 byte read/write is atomic
+
+---- 37.2: Basic Geometry ----
+------------------------------
+- data is stored on a 'platter' that has two 'surfaces'
+- platters bound together by spindle that rotates
+- data encoded in concentric circles, called track, on sector
+- disk head/arm do the reading and writing
+
+---- 37.3: Sample disk drive ----
+----------------------------------
+- rotatation delay: disk rotate for sector to be under head
+- seek time: have to move disk arm to the correct track
+- transfer time: data read/written from the sector
+- write back: say completed when data in disk memory
+- write through: write all data completely before saying completed
+
+
+
+
