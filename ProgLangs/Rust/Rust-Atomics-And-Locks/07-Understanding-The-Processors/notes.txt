@@ -1,0 +1,2 @@
+- can use --emit=asm flag for rustc to get assembly
+- can also use cargo-show-asm or godbolt
