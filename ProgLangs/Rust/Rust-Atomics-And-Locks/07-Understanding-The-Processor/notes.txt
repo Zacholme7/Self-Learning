@@ -1,0 +1,36 @@
+- normal store and store with relaxed is the same in assembly
+- same for load
+    - mov/str are atomic instructions
+- so, diff between &mut i32 store and &AtomicI32 is only relevant for compiler checks and optimizaitons
+- x86_64, the mov instr is atomic
+
+- the compiler might not differentiate but we cannot ignore difference in rust code
+
+
+pub fn a(x: &mut i32) {
+    *x += 1;
+}
+
+gets compiled to 
+
+a:
+    add dword ptr [rdi], 1
+    ret
+
+this is an atomic version
+a: 
+    lock add dword ptr [rdi], 1
+    ret
+
+the add is not atomic, split by processor into microinstructions
+    - this is fine on single core as switch thread between instructions
+    - on multicore, non atomic microinstructions can lead to race condition
+
+x86 introduced lock prefix, modifier which makes instruction atomic
+    - originalyl 
+    - only for limited set of instrs, typically load modify store
+
+- xchg (exchange) has implicit lock prefix
+    - this is an atomic swap
+
+- xadd (exchange and add), put originally loaded value into registerm
