@@ -82,3 +82,24 @@ each index is 256 bit number/32 bytes
 - dynamic arrays
     - slot assigned to array has length of array 
     - array data stored started at keccack256 of slot number
+
+
+
+- 0x00/0x20 is usually reserves for hasing stuff
+- 0x40 in memory is reserves for free memory pointer
+  - put 0x80 here to start, 
+  - check this location to see where we can put something in memory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
