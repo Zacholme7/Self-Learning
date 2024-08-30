@@ -39,9 +39,12 @@
 
 // compiler is free to move around memory but must preserve the semantics of the program
 
-
 // so, pinning means that it has been put in state where it is guaranteed to remain in the same
 // place in memory from the time it is pinned until its drop is called
+
+// - pin allows the impl of safe interfaces around types which have some state during which they
+// become address sensitive
+
 fn main() {
 
 }
