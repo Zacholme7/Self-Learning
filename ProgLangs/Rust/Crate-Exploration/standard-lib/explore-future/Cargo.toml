@@ -4,8 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "test"
-path = "src/bins/test.rs"
+name = "future"
+path = "src/bins/future.rs"
+
+[[bin]]
+name = "pin"
+path = "src/bins/pin.rs"
+
+[[bin]]
+name = "task"
+path = "src/bins/task.rs"
 
 [dependencies]
 tokio = { version = "1.39.3", features = ["full"] }

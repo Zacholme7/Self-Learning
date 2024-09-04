@@ -1,5 +1,0 @@
-/Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Crate-Exploration/standard-lib/explore-future/target/debug/deps/libsmallvec-a5ef9b423f3b1c42.rmeta: /Users/zacharyholme/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smallvec-1.13.2/src/lib.rs
-
-/Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Crate-Exploration/standard-lib/explore-future/target/debug/deps/smallvec-a5ef9b423f3b1c42.d: /Users/zacharyholme/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smallvec-1.13.2/src/lib.rs
-
-/Users/zacharyholme/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smallvec-1.13.2/src/lib.rs:
