@@ -15,6 +15,8 @@ use std::future;
 // when signal arives and it is ready, Waker::wake is called and task is awoken
 // then poll to get the value
 
+// want to express a value that is not quite ready
+
 
 fn main() {
 
