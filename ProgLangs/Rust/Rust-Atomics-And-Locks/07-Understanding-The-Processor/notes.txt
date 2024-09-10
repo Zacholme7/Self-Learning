@@ -34,3 +34,47 @@ x86 introduced lock prefix, modifier which makes instruction atomic
     - this is an atomic swap
 
 - xadd (exchange and add), put originally loaded value into registerm
+
+
+- cache usually writes in blocks of 64 bytes (cache lines)
+- things are interesting when we have multiple cores with own l1 cache and probably shared L2/L3
+  - cache cant assume it controls the 2 and 3 layers, multiple cores working with it
+  - need cache coherence protocol to fix this (define how they operate and communicate)
+- write through protocol
+  - writes are immediately send through to the next layer
+  - when cache observes write for address it has cached, drops or updates its own cache line to keep consistent
+- MESI protocol
+  - Modified, exclusive, shared, invalid. The four possible states that define a cache line
+  - Modified: line contains data that has been modified byt not written to mem yet (or next cache level)
+  - Exclusive: line contains unmodified data that is not caches in any other cache (at same level)
+  - Shared: for unmodified cache lines that might appear in one or more other (same lvl) caches
+  - Invalid: for empty/dropped cache lines, do not contain useful data
+- cache at same levels send updates and make requests with other caches
+
+Request for addr that is cache miss 
+  - first ask the other caches
+  - then ask lower level and mark new line as exclusive
+    - if modified, can change to M since it knows no other caches have a copy
+Request line that is already available
+  - results in shared cache line from other cache
+  - if Modified state, writen to next layer before sharing 
+Cache wants exclusive access
+  - other caches will drop the line to result in E
+
+
+Reordering
+----------
+- write operations can be slow, store in "store buffer" then keep executing while it stores in background
+- invalidation queue for saying that cahce lines are invalid
+- pipelining to execute multiple instrs in parallel if possible
+
+
+Memory ordering
+------------
+- For non atomic and relaxed, any reordering
+- sequentially consisnt allow no reordering
+- acquire cannot get reorderd with anything after
+- release cannot be reordered with anything before
+
+
+
