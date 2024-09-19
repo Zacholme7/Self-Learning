@@ -1,0 +1,10 @@
+[package]
+name = "yoshua-wuyts"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]]
+name = "rust-streams"
+path = "src/rust-streams.rs"
+[dependencies]

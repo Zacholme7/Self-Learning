@@ -7,4 +7,8 @@ edition = "2021"
 name = "pin"
 path = "src/pin.rs"
 
+[[bin]]
+name = "ownership"
+path = "src/ownership.rs"
+
 [dependencies]

@@ -1,1 +1,0 @@
-/Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Crate-Exploration/blogs/without-boats/target/release/pin: /Users/zacharyholme/csStuff/Readings/ProgLangs/Rust/Crate-Exploration/blogs/without-boats/src/pin.rs

@@ -56,8 +56,15 @@ fn main() {
     // how to create a pin
     let x = 5;
     let pin = Pin::new(&x);
-
     let pinned_future = Pin::new(Box::new(example));
+
+    // 2 guarantees
+    // 1) A pinned reference cannot be moved
 
 
 }
+
+
+// what are the two guarantees pin makes
+// 1) A pinned reference can never be moved
+// 2) If t: !Unpin, then &mut T only provides shared access to the pined value
