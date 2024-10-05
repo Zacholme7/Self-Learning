@@ -6,21 +6,24 @@ use tokio::task::JoinSet;
 // all tasks must have the same return type
 
 
+async fn task(i: u32) -> u32 { i * 2 }
+
 #[tokio::main]
 async fn main() {
 
-        // create a new joinset
-        let mut set = JoinSet::new();
+    // create a new joinset and put 10 tasks on it
+    let mut set = JoinSet::new();
+    for i in 0..10 {
+        set.spawn(task(i));
+    }
 
-        // spanw new tasks on the set
-        for i in 0..10 {
-                set.spawn(async move { i });
-        }
 
-        // await all of the results
-        while let Some(res) = set.join_next().await {
-                println!("{}", res.unwrap());
-        }
+    // get the results as they are done
+    while let Some(res) = set.join_next().await {
+        println!("The result is {:?}", res);
+    }
+    // in comparison, join_all would return when all are done
+
 
 
 }
