@@ -67,5 +67,13 @@ async fn main() {
     task::unconstrained(fut).await;
 
 
+    // consume_budget will yield if the cooperative budget is exhausted
+    // this is different from yield_now since it only does if the budget is up
+    let mut sum = 0;
+    //while let Some(i) = input.next() {
+    //    sum += 1;
+    //    tokio::task::consume_budget().await;
+    //}
+
 
 }
