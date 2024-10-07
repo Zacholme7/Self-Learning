@@ -14,7 +14,7 @@ async fn main() {
 
     // spawn task to send
     tokio::spawn(async move {
-        if let Err(_) = tx.send(3) {
+        if tx.send(3).is_err() {
             println!("the receiver dropped")
         }
     });

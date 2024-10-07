@@ -3,6 +3,13 @@ name = "explore-tokio"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "oneshot"
+path = "src/bin/sync/oneshot.rs"
+
+[[bin]]
+name = "broadcast"
+path = "src/bin/sync/broadcast.rs"
 
 [dependencies]
 anyhow = "1.0.86"
