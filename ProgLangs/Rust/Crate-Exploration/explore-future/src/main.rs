@@ -9,16 +9,16 @@ struct SimpleFuture {
 }
 
 impl Future for SimpleFuture {
-        type Output = i32;
+    type Output = i32;
 
-        fn poll(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
-                if self.state == 42 {
-                        Poll::Ready(self.state)
-                } else {
-                        self.state += 1;
-                        Poll::Pending
-                }
+    fn poll(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+        if self.state == 42 {
+            Poll::Ready(self.state)
+        } else {
+            self.state += 1;
+            Poll::Pending
         }
+    }
 }
 
 

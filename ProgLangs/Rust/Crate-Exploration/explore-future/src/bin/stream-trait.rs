@@ -29,7 +29,6 @@ impl Counter {
     }
 }
 
-
 impl Stream for Counter {
     type Item = u32;
 
@@ -49,10 +48,11 @@ impl Stream for Counter {
 #[tokio::main]
 async fn main() {
     let mut counter = Counter::new(0, Duration::from_secs(1));
-
     while let Some(number) = counter.next().await {
         println!("number {}", number);
     }
+
+
 
 
 }
