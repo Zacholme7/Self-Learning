@@ -1,0 +1,95 @@
+-------------------
+| 1: Introduction |
+-------------------
+
+----------------------------------
+---- 1.1: Systems Performance ----
+----------------------------------
+- anything in data path can affect performance
+- full stack: entire software stack from app down to metal
+    - includes system libraries, kernel, and hardware
+
+--------------------
+---- 1.2: Roles ----
+--------------------
+- performance engineer roles specific for understanding/improving performance
+
+
+-------------------------
+---- 1.3: Activities ----
+-------------------------
+- set objectives and create performance model
+- canary testing: testing new software on single cloud instance with franction of prod workload
+
+
+---------------------------
+---- 1.4: Perspectives ----
+---------------------------
+- workload analysis: top down approach
+- resource analysis: bottom up approach
+
+
+-----------------------------------------
+---- 1.5: Performance is Challenging ----
+-----------------------------------------
+- subjective, complex, may not be single root cause
+
+---- 1.5.1: Subjectivity ----
+-----------------------------
+- often unclear if there is an issue or not, and if it has been fixed or not
+- The average disk I/O response time is 1ms
+    - is this good or bad??
+    - depends on the performance expectations of the app dev and end user
+- can make objective by having clear goals
+
+---- 1.5.2: Complexity ----
+---------------------------
+- often complex and lack of starting point
+- may be complex interactions between subsystems
+
+---- 1.5.3: Multiple causes ----
+--------------------------------
+- may have multiple contributing factors
+
+---- 1.5.4: Multiple Performance Issues ----
+--------------------------------------------
+- isnt hard to find an issue, its hard to find which issue matters the most 
+- need to quantify the magnitude of issues
+
+
+----------------------
+---- 1.6: Latency ----
+----------------------
+- measure of time spent waiting
+- need quantifying terms for latency
+
+
+----------------------------
+---- 1.7: Observability ----
+----------------------------
+- understanding a system through observation
+    - tools that use counters, profiling, and tracing
+- not benchmarking tools which modify state of the systems
+
+---- 1.7.1: Counters, Statistics, Metrics ----
+----------------------------------------------
+- apps and kernel provide data on state and activity
+    - opeation counts, byte counts, latency, resource util, error rates
+- implemented as int called counters. hard coded in software
+- Ex: vmstat(8): prints sys wide summary of virtual memory stats
+- stack
+    - event processing (alerts)
+    - perf monitoring ui (metrics)
+    - perf tools/agents (statistics)
+    - apps/kernel (counters)
+
+---- 1.7.2: Profiling ----
+--------------------------
+- the use of tools that perform sampling
+    - take subset of measurements to paint coarse picture of target
+
+
+
+
+
+latency: measure of the time spent waiting
