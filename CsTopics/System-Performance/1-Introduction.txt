@@ -88,7 +88,55 @@
 - the use of tools that perform sampling
     - take subset of measurements to paint coarse picture of target
 
+---- 1.7.3: Tracing ----
+------------------------
+- event based recording, data captured and saved for analysis
+- static instrumentation are hard coded instrumentation points
+    - tracepoints in the kernel
+    - user statically defined tracing in user space 
+- dynamic instrumentation creates instrumentation points after software is running
+    - modify in memory instrs to insert instrumentation routines
+- BPF is in kernel execution environmenot for dynamic tracing
 
+
+------------------------------
+---- 1.8: Experimentation ----
+------------------------------
+- mainly benchmarking tools
+- perform experiment by applying synthetic workload to sys and measuring perf
+- "You have two hands, observability and experimentation. Only using one type of tool
+is like trying to solve a problem one handed"
+
+
+------------------------------
+---- 1.9: Cloud Computing ----
+------------------------------
+- may be competition among instances, make performance tough to debug
+
+
+-----------------------------
+---- 1.10: Methodologies ----
+-----------------------------
+ - need a methodology to get to the bottom of perf issues
+
+---- 1.10.1: Linux Perf Analysis in 60 seconds ----
+---------------------------------------------------
+- checklist to be executed in first 60 seconds of perf issue investigation
+1) uptime: Load averages to identify if load is increasing or
+decreasing (compare 1-, 5-, and 15-minute averages).
+2) dmesg -T | tail:  Kernel errors including OOM events
+3) vmstat -SM 1: System-wide statistics: run queue length, swapping,
+overall CPU usage.
+4) mpstat -P ALL 1: Per-CPU balance: a single busy CPU can indicate poor
+thread scaling.
+5) pidstat 1: Per-process CPU usage: identify unexpected CPU
+consumers, and user/system CPU time for each process.
+6) iostat -sxz 1: Disk I/O statistics: IOPS and throughput, average wait
+time, percent busy.
+7) free -m :Memory usage including the file system cache. 8.6.2
+8) sar -n DEV 1: Network device I/O: packets and throughput. 10.6.6
+9) sar -n TCP,ETCP 1: TCP statistics: connection rates, retransmits. 10.6.6
+10) top Check overview
 
 
 
