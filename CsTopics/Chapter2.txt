@@ -1,0 +1,60 @@
+--------------------------------------------
+---- 2: Data Models and Query Languages ----
+--------------------------------------------
+- how is each layer represented in terms of the next lower layer?
+
+---- Relational Model Versus Document Model ----
+------------------------------------------------
+- document model: schema flexbility, performance benefits via locality, closer do data
+structures used by apps
+- relational model: better join support, many-to-one and many-to-many relationships
+- if data has document like structure, use document model
+  - splitting document like structure into relational formation (shredding) can lead to complications
+- cannot directly refer to nested data in document model and poor join support
+- document model schema flexbility can be very good for natural hierarchical relationships
+- good locality in document model if you need large parts of document at same time as it is all loaded
+- relationships guide the model!
+
+---- Query Languages For Data ----
+----------------------------------
+- declarative query language: specify the pattern of data you want, what conditions must be met,
+and how the data should be transformed 
+- imperative language: tells computer to perform certain operations in certain order
+- declarative you specifiy what you want, imperative you specify how you do it
+- declarative makes it easier for db to optimize and is better for parallel execution
+- mapreduce: programming model for processing large amounts of data in bulk across many machines
+  - map, and then reduce
+
+---- Graph-Like Data Models ----
+--------------------------------
+- good or lots of many-to-many relationships
+- property graph
+  - vertex consists of: unique id, set out outgoing/incoming edges, collection of properties
+  - edge consist of: unique id, head/tail vertex, label describing relationship, collection of properties
+  - very flexibile and robust schema
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
