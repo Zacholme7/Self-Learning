@@ -1,0 +1,35 @@
+--------------------------------------------------------------
+---- 1: Reliable, Scalable, and Maintainable Applications ----
+--------------------------------------------------------------
+
+---- Thinking About Data Systems ----
+-------------------------------------
+- Databases, queues, caches, etc all grouped as data systems. 
+  - Line is blurred and a lot perform overlapping functions
+- Reliability: system should continue to work correctly even in fast of adversity
+- Scalability: as system grows, can handle groweth
+- Maintainability: able to maintain current behavior and adapt system to new use cases
+
+---- Reliability ----
+---------------------
+- “Continuing to work correctly even when things go wrong”
+- Fault: thing that can go wrong (one component deviating from spec)
+  - systems that can copy with faults are fault tolerant
+  - hardware faults, software faults, human error 
+- Failure: when system stops providing required services to user
+
+---- Scalability ----
+---------------------
+- "Systems ability to cope with increased load"
+- load described via load parameters (rps, r/w ratio, concurrent users, ...)
+- When you instead load, what happens to system?
+  - how is performance of system resources affected
+  - how much do you need to increase system resources to keep performance unchanged
+- look as performance metrics as distribution of values that you can measure
+- vertical scaling: moving to more powerful macine
+- horizontal scaling: distributing load across multiple smaller machines
+- architecture for scaling is very different depending on requirements
+
+---- Maintainability ----
+-------------------------
+- operability, simplicity, evolvability
